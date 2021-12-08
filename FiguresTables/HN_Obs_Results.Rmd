@@ -336,7 +336,7 @@ make_st_df = function(st_df, st_details){
   
   st_merged = merge(st_df, st_details, by.x = "id", by.y = "STID")
   head(st_merged)
-  st_merged$pt_id = unlist(lapply(strsplit(st_merged$id,"_"),function(x){x[1]}))
+  st_merged$pt_id = unlist(lapply(strsplit(as.character(st_merged$id),"_"),function(x){x[1]}))
   length(unique(st_merged$pt_id))
   
   st_uniq = st_merged[!duplicated(st_merged$ID),]
@@ -409,7 +409,7 @@ make_stan_df = function(stan_df, stan_datasheet, stan_train){
 
 
 make_uiowa_df = function(ui_df, ui_datasheet, ui_train){
-  ui_df$pt_id = unlist(lapply(strsplit(ui_df$id,"_"),function(x){x[1]}))
+  ui_df$pt_id = unlist(lapply(strsplit(as.character(ui_df$id),"_"),function(x){x[1]}))
   ui_df$target01 = ifelse(ui_df$target == "no Obstruction", 0, 1)
   
   ui_merge = merge(ui_df, ui_datasheet, by.y = "Name", by.x = "pt_id")
@@ -457,8 +457,8 @@ st_stan_test = add_platt_preds_dprep(in_list = st_stan_test, epoch = 30,sensitiv
 
 st_preds = data.frame(st_pred_mod_ep30 = st_stan_test$st[[1]][[30]]$pred_scaled,
                       id = st_stan_test$st[[1]][[30]]$id,
-                      target = st_stan_test$st[[1]][[30]]$target)
-st_preds$target = factor(st_preds$target, levels = c(0,1), labels = c("no Obstruction", "Obstruction"))
+                      target01 = st_stan_test$st[[1]][[30]]$target)
+st_preds$target = factor(st_preds$target01, levels = c(0,1), labels = c("no Obstruction", "Obstruction"))
 # head(st_preds)
 
 fold=1
@@ -881,7 +881,7 @@ ui_df = ui_preds
 ui_datasheet = read.csv(paste0(results_wd,"/Datasheets/UIowa_DeID_Datasheet.csv"), header = TRUE, as.is = TRUE)
 names(ui_datasheet)[1] = "Name"
 
-ui_df$pt_id = unlist(lapply(strsplit(ui_df$id,"_"),function(x){x[1]}))
+ui_df$pt_id = unlist(lapply(strsplit(as.character(ui_df$id),"_"),function(x){x[1]}))
 ui_df$target01 = ifelse(ui_df$target == "no Obstruction", 0, 1)
 
 ui_merge = merge(ui_df, ui_datasheet, by.y = "Name", by.x = "pt_id")
@@ -893,7 +893,7 @@ ui_merge$age_grp[ui_merge$age_days < 365*2] = "under2"
 ui_merge$age_grp[ui_merge$age_days >= 365*2 & ui_merge$age_days <= 365*5] = "age2to5"
 ui_merge$age_grp[ui_merge$age_days > 365*5] = "over5"
 
-ui_train = readRDS("C:/Users/lauren erdman/Desktop/kidney_img/HN/SickKids/UI60%train_ids.rds")
+ui_train = readRDS(paste0(results_wd, "/Datasheets/UI60%train_ids.rds"))
 
 ui40_test = ui_merge[!(ui_merge$pt_id %in% ui_train),]
 
@@ -1058,7 +1058,7 @@ ui_preds = data.frame(ui_pred_mod_ep30 = st_stan_test$ui[[1]][[30]]$pred_scaled,
                       target01 = st_stan_test$ui[[1]][[30]]$target)
 ui_preds$target = factor(ui_preds$target01, levels = c(0,1), labels = c("no Obstruction", "Obstruction"))
 ui_df = ui_preds
-ui_df$pt_id = unlist(lapply(strsplit(ui_df$id,"_"),function(x){x[1]}))
+ui_df$pt_id = unlist(lapply(strsplit(as.character(ui_df$id),"_"),function(x){x[1]}))
 
 dim(ui_df)
 dim(ui_merge)
@@ -1154,7 +1154,7 @@ ui_preds$target = factor(ui_preds$target01, levels = c(0,1), labels = c("no Obst
 
 ui_df = ui_preds
 
-ui_df$pt_id = unlist(lapply(strsplit(ui_df$id,"_"),function(x){x[1]}))
+ui_df$pt_id = unlist(lapply(strsplit(as.character(ui_df$id),"_"),function(x){x[1]}))
 
 ui_merge = merge(ui_df, ui_datasheet, by.y = "Name", by.x = "pt_id")
 
@@ -1239,7 +1239,7 @@ ui_preds$target = factor(ui_preds$target01, levels = c(0,1), labels = c("no Obst
 
 ui_df = ui_preds
 
-ui_df$pt_id = unlist(lapply(strsplit(ui_df$id,"_"),function(x){x[1]}))
+ui_df$pt_id = unlist(lapply(strsplit(as.character(ui_df$id),"_"),function(x){x[1]}))
 
 ui_merge = merge(ui_df, ui_datasheet, by.y = "Name", by.x = "pt_id")
 
@@ -1322,7 +1322,7 @@ ui_preds$target = factor(ui_preds$target01, levels = c(0,1), labels = c("no Obst
 
 ui_df = ui_preds
 
-ui_df$pt_id = unlist(lapply(strsplit(ui_df$id,"_"),function(x){x[1]}))
+ui_df$pt_id = unlist(lapply(strsplit(as.character(ui_df$id),"_"),function(x){x[1]}))
 ui_df$target01 = ifelse(ui_df$target == "no Obstruction", 0, 1)
 
 ui_merge = merge(ui_df, ui_datasheet, by.y = "Name", by.x = "pt_id")
@@ -1405,7 +1405,7 @@ ui_preds = data.frame(ui_pred_mod_ep20 = st_stan_test$ui[[1]][[20]]$pred_scaled,
                       target01 = st_stan_test$ui[[1]][[30]]$target)
 ui_preds$target = factor(ui_preds$target01, levels = c(0,1), labels = c("no Obstruction", "Obstruction"))
 ui_df = ui_preds
-ui_df$pt_id = unlist(lapply(strsplit(ui_df$id,"_"),function(x){x[1]}))
+ui_df$pt_id = unlist(lapply(strsplit(as.character(ui_df$id),"_"),function(x){x[1]}))
 ui_merge = merge(ui_df, ui_datasheet, by.y = "Name", by.x = "pt_id")
 
 (ui_overall_allcomb = get_sen_spec_withCI(score_vec = ui_df$ui_pred_mod_ep20, 
@@ -1578,7 +1578,7 @@ ggplot(gg_df, aes(x = Dim1, y = Dim2, col = DataSet)) +
 
 ### color by surgery status 
 
-training_df = readRDS(file = "C:/Users/lauren erdman/Desktop/kidney_img/HN/silent_trial/training_details.rds")
+training_df = readRDS(file = paste0(results_wd, "/Datasheets/training_details.rds"))
 
 # head(training_df)
 # head(umap_df)
