@@ -1,0 +1,448 @@
+---
+title: "HN_ModelBarplot"
+author: "LaurenErdman"
+date: "08/02/2022"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    toc_depth: 4 
+    number_sections: true
+    code_folding: hide
+---
+
+
+```{r, include=FALSE}
+
+library(ggplot2)
+
+results_wd = paste(c(strsplit(x = getwd(), split = "/")[[1]][1:(length(strsplit(x = getwd(), split = "/")[[1]])-3)], "Results_20220126"), collapse = "/")
+results_wd = paste0(results_wd, "/")
+
+```
+
+```{r, include=FALSE}
+
+orig_model_list = readRDS(paste0(results_wd,"/original_model_list_results_20220207.rds"))
+ageablated_model_list = readRDS(paste0(results_wd,"/agesideablation_model_list_results_20220207.rds"))
+sideablated_model_list = readRDS(paste0(results_wd,"/sideablation_model_list_results_20220207.rds"))
+agesideablated_model_list = readRDS(paste0(results_wd,"/agesideablation_model_list_results_20220207.rds"))
+nocov_model_list = readRDS(paste0(results_wd,"/nocov_model_list_results_20220207.rds"))
+
+```
+
+
+```{r}
+
+## ablation
+
+DataSet = c("SilentTrial_All", "SilentTrial_MostRecent", "Stanford", "UIowa", "CHOP",
+            "SilentTrial_All", "SilentTrial_MostRecent", "Stanford", "UIowa", "CHOP",
+            "SilentTrial_All", "SilentTrial_MostRecent", "Stanford", "UIowa", "CHOP",
+            "SilentTrial_All", "SilentTrial_MostRecent", "Stanford", "UIowa", "CHOP",
+            "SilentTrial_All", "SilentTrial_MostRecent", "Stanford", "UIowa", "CHOP")
+
+Model = c("Original", "Original", "Original", "Original", "Original",
+          "AgeAblated","AgeAblated","AgeAblated","AgeAblated","AgeAblated",
+          "SideAblated","SideAblated","SideAblated","SideAblated","SideAblated",
+          "AgeSideAblated","AgeSideAblated","AgeSideAblated","AgeSideAblated","AgeSideAblated",
+          "NoCov","NoCov","NoCov","NoCov","NoCov")
+
+AUROC = c(orig_model_list$st_overall_origmod$aucs$auroc,
+          orig_model_list$st_mostrec_origmod$aucs$auroc,
+          orig_model_list$stan_all_origmod$aucs$auroc,
+          orig_model_list$uiowa_all_origmod$aucs$auroc,
+          orig_model_list$chop_all_origmod$aucs$auroc,
+          
+          ageablated_model_list$st_overall$aucs$auroc,
+          ageablated_model_list$st_mostrec$aucs$auroc,
+          ageablated_model_list$stan_all$aucs$auroc,
+          ageablated_model_list$ui_all$aucs$auroc,
+          ageablated_model_list$chop_all$aucs$auroc,
+          
+          sideablated_model_list$st_overall$aucs$auroc,
+          sideablated_model_list$st_mostrec$aucs$auroc,
+          sideablated_model_list$stan_all$aucs$auroc,
+          sideablated_model_list$ui_all$aucs$auroc,
+          sideablated_model_list$chop_all$aucs$auroc,
+          
+          agesideablated_model_list$st_overall$aucs$auroc,
+          agesideablated_model_list$st_mostrec$aucs$auroc,
+          agesideablated_model_list$stan_all$aucs$auroc,
+          agesideablated_model_list$ui_all$aucs$auroc,
+          agesideablated_model_list$chop_all$aucs$auroc, 
+          
+          nocov_model_list$st_overall$aucs$auroc,
+          nocov_model_list$st_mostrec$aucs$auroc,
+          nocov_model_list$stan_all$aucs$auroc,
+          nocov_model_list$ui_all$aucs$auroc,
+          nocov_model_list$chop_all$aucs$auroc)
+
+AUROC_lcl = c(orig_model_list$st_overall_origmod$aucs$auroc_ci[1],
+              orig_model_list$st_mostrec_origmod$aucs$auroc_ci[1],
+              orig_model_list$stan_all_origmod$aucs$auroc_ci[1],
+              orig_model_list$uiowa_all_origmod$aucs$auroc_ci[1],
+              orig_model_list$chop_all_origmod$aucs$auroc_ci[1], 
+              
+              ageablated_model_list$st_overall$aucs$auroc_ci[1],
+              ageablated_model_list$st_mostrec$aucs$auroc_ci[1],
+              ageablated_model_list$stan_all$aucs$auroc_ci[1],
+              ageablated_model_list$ui_all$aucs$auroc_ci[1],
+              ageablated_model_list$chop_all$aucs$auroc_ci[1], 
+              
+              sideablated_model_list$st_overall$aucs$auroc_ci[1],
+              sideablated_model_list$st_mostrec$aucs$auroc_ci[1],
+              sideablated_model_list$stan_all$aucs$auroc_ci[1],
+              sideablated_model_list$ui_all$aucs$auroc_ci[1],
+              sideablated_model_list$chop_all$aucs$auroc_ci[1], 
+              
+              agesideablated_model_list$st_overall$aucs$auroc_ci[1],
+              agesideablated_model_list$st_mostrec$aucs$auroc_ci[1],
+              agesideablated_model_list$stan_all$aucs$auroc_ci[1],
+              agesideablated_model_list$ui_all$aucs$auroc_ci[1],
+              agesideablated_model_list$chop_all$aucs$auroc_ci[1], 
+          
+          nocov_model_list$st_overall$aucs$auroc_ci[1],
+          nocov_model_list$st_mostrec$aucs$auroc_ci[1],
+          nocov_model_list$stan_all$aucs$auroc_ci[1],
+          nocov_model_list$ui_all$aucs$auroc_ci[1],
+          nocov_model_list$chop_all$aucs$auroc_ci[1])
+
+AUROC_ucl = c(orig_model_list$st_overall_origmod$aucs$auroc_ci[2],
+              orig_model_list$st_mostrec_origmod$aucs$auroc_ci[2],
+              orig_model_list$stan_all_origmod$aucs$auroc_ci[2],
+              orig_model_list$uiowa_all_origmod$aucs$auroc_ci[2],
+              orig_model_list$chop_all_origmod$aucs$auroc_ci[2], 
+              
+              ageablated_model_list$st_overall$aucs$auroc_ci[2],
+              ageablated_model_list$st_mostrec$aucs$auroc_ci[2],
+              ageablated_model_list$stan_all$aucs$auroc_ci[2],
+              ageablated_model_list$ui_all$aucs$auroc_ci[2],
+              ageablated_model_list$chop_all$aucs$auroc_ci[2], 
+              
+              sideablated_model_list$st_overall$aucs$auroc_ci[2],
+              sideablated_model_list$st_mostrec$aucs$auroc_ci[2],
+              sideablated_model_list$stan_all$aucs$auroc_ci[2],
+              sideablated_model_list$ui_all$aucs$auroc_ci[2],
+              sideablated_model_list$chop_all$aucs$auroc_ci[2], 
+              
+              agesideablated_model_list$st_overall$aucs$auroc_ci[2],
+              agesideablated_model_list$st_mostrec$aucs$auroc_ci[2],
+              agesideablated_model_list$stan_all$aucs$auroc_ci[2],
+              agesideablated_model_list$ui_all$aucs$auroc_ci[2],
+              agesideablated_model_list$chop_all$aucs$auroc_ci[2], 
+          
+          nocov_model_list$st_overall$aucs$auroc_ci[2],
+          nocov_model_list$st_mostrec$aucs$auroc_ci[2],
+          nocov_model_list$stan_all$aucs$auroc_ci[2],
+          nocov_model_list$ui_all$aucs$auroc_ci[2],
+          nocov_model_list$chop_all$aucs$auroc_ci[2])
+
+AUPRC = c(orig_model_list$st_overall_origmod$aucs$auprc,
+          orig_model_list$st_mostrec_origmod$aucs$auprc,
+          orig_model_list$stan_all_origmod$aucs$auprc,
+          orig_model_list$uiowa_all_origmod$aucs$auprc,
+          orig_model_list$chop_all_origmod$aucs$auprc,
+          
+          ageablated_model_list$st_overall$aucs$auprc,
+          ageablated_model_list$st_mostrec$aucs$auprc,
+          ageablated_model_list$stan_all$aucs$auprc,
+          ageablated_model_list$ui_all$aucs$auprc,
+          ageablated_model_list$chop_all$aucs$auprc,
+          
+          sideablated_model_list$st_overall$aucs$auprc,
+          sideablated_model_list$st_mostrec$aucs$auprc,
+          sideablated_model_list$stan_all$aucs$auprc,
+          sideablated_model_list$ui_all$aucs$auprc,
+          sideablated_model_list$chop_all$aucs$auprc,
+          
+          agesideablated_model_list$st_overall$aucs$auprc,
+          agesideablated_model_list$st_mostrec$aucs$auprc,
+          agesideablated_model_list$stan_all$aucs$auprc,
+          agesideablated_model_list$ui_all$aucs$auprc,
+          agesideablated_model_list$chop_all$aucs$auprc, 
+          
+          nocov_model_list$st_overall$aucs$auprc,
+          nocov_model_list$st_mostrec$aucs$auprc,
+          nocov_model_list$stan_all$aucs$auprc,
+          nocov_model_list$ui_all$aucs$auprc,
+          nocov_model_list$chop_all$aucs$auprc)
+
+AUPRC_lcl = c(orig_model_list$st_overall_origmod$aucs$auprc_ci[1],
+              orig_model_list$st_mostrec_origmod$aucs$auprc_ci[1],
+              orig_model_list$stan_all_origmod$aucs$auprc_ci[1],
+              orig_model_list$uiowa_all_origmod$aucs$auprc_ci[1],
+              orig_model_list$chop_all_origmod$aucs$auprc_ci[1],
+          
+          ageablated_model_list$st_overall$aucs$auprc_ci[1],
+          ageablated_model_list$st_mostrec$aucs$auprc_ci[1],
+          ageablated_model_list$stan_all$aucs$auprc_ci[1],
+          ageablated_model_list$ui_all$aucs$auprc_ci[1],
+          ageablated_model_list$chop_all$aucs$auprc_ci[1],
+          
+          sideablated_model_list$st_overall$aucs$auprc_ci[1],
+          sideablated_model_list$st_mostrec$aucs$auprc_ci[1],
+          sideablated_model_list$stan_all$aucs$auprc_ci[1],
+          sideablated_model_list$ui_all$aucs$auprc_ci[1],
+          sideablated_model_list$chop_all$aucs$auprc_ci[1],
+          
+          agesideablated_model_list$st_overall$aucs$auprc_ci[1],
+          agesideablated_model_list$st_mostrec$aucs$auprc_ci[1],
+          agesideablated_model_list$stan_all$aucs$auprc_ci[1],
+          agesideablated_model_list$ui_all$aucs$auprc_ci[1],
+          agesideablated_model_list$chop_all$aucs$auprc_ci[1], 
+          
+          nocov_model_list$st_overall$aucs$auprc_ci[1],
+          nocov_model_list$st_mostrec$aucs$auprc_ci[1],
+          nocov_model_list$stan_all$aucs$auprc_ci[1],
+          nocov_model_list$ui_all$aucs$auprc_ci[1],
+          nocov_model_list$chop_all$aucs$auprc_ci[1])
+
+AUPRC_ucl = c(orig_model_list$st_overall_origmod$aucs$auprc_ci[2],
+              orig_model_list$st_mostrec_origmod$aucs$auprc_ci[2],
+              orig_model_list$stan_all_origmod$aucs$auprc_ci[2],
+              orig_model_list$uiowa_all_origmod$aucs$auprc_ci[2],
+              orig_model_list$chop_all_origmod$aucs$auprc_ci[2],
+          
+              ageablated_model_list$st_overall$aucs$auprc_ci[2],
+              ageablated_model_list$st_mostrec$aucs$auprc_ci[2],
+              ageablated_model_list$stan_all$aucs$auprc_ci[2],
+              ageablated_model_list$ui_all$aucs$auprc_ci[2],
+              ageablated_model_list$chop_all$aucs$auprc_ci[2],
+          
+              sideablated_model_list$st_overall$aucs$auprc_ci[2],
+              sideablated_model_list$st_mostrec$aucs$auprc_ci[2],
+              sideablated_model_list$stan_all$aucs$auprc_ci[2],
+              sideablated_model_list$ui_all$aucs$auprc_ci[2],
+              sideablated_model_list$chop_all$aucs$auprc_ci[2],
+          
+              agesideablated_model_list$st_overall$aucs$auprc_ci[2],
+              agesideablated_model_list$st_mostrec$aucs$auprc_ci[2],
+              agesideablated_model_list$stan_all$aucs$auprc_ci[2],
+              agesideablated_model_list$ui_all$aucs$auprc_ci[2],
+              agesideablated_model_list$chop_all$aucs$auprc_ci[2], 
+          
+          nocov_model_list$st_overall$aucs$auprc_ci[2],
+          nocov_model_list$st_mostrec$aucs$auprc_ci[2],
+          nocov_model_list$stan_all$aucs$auprc_ci[2],
+          nocov_model_list$ui_all$aucs$auprc_ci[2],
+          nocov_model_list$chop_all$aucs$auprc_ci[2])
+
+Sensitivity = c(orig_model_list$st_overall_origmod$sen_spec$sensitivity$est,
+                orig_model_list$st_mostrec_origmod$sen_spec$sensitivity$est,
+                orig_model_list$stan_all_origmod$sen_spec$sensitivity$est,
+                orig_model_list$uiowa_all_origmod$sen_spec$sensitivity$est, 
+                orig_model_list$chop_all_origmod$sen_spec$sensitivity$est,
+                
+                ageablated_model_list$st_overall$sen_spec$sensitivity$est,
+                ageablated_model_list$st_mostrec$sen_spec$sensitivity$est,
+                ageablated_model_list$stan_all$sen_spec$sensitivity$est,
+                ageablated_model_list$ui_all$sen_spec$sensitivity$est, 
+                ageablated_model_list$chop_all$sen_spec$sensitivity$est,
+                
+                sideablated_model_list$st_overall$sen_spec$sensitivity$est,
+                sideablated_model_list$st_mostrec$sen_spec$sensitivity$est,
+                sideablated_model_list$stan_all$sen_spec$sensitivity$est,
+                sideablated_model_list$ui_all$sen_spec$sensitivity$est, 
+                sideablated_model_list$chop_all$sen_spec$sensitivity$est,
+                
+                agesideablated_model_list$st_overall$sen_spec$sensitivity$est,
+                agesideablated_model_list$st_mostrec$sen_spec$sensitivity$est,
+                agesideablated_model_list$stan_all$sen_spec$sensitivity$est,
+                agesideablated_model_list$ui_all$sen_spec$sensitivity$est, 
+                agesideablated_model_list$chop_all$sen_spec$sensitivity$est,
+                
+                nocov_model_list$st_overall$sen_spec$sensitivity$est,
+                nocov_model_list$st_mostrec$sen_spec$sensitivity$est,
+                nocov_model_list$stan_all$sen_spec$sensitivity$est,
+                nocov_model_list$ui_all$sen_spec$sensitivity$est,
+                nocov_model_list$chop_all$sen_spec$sensitivity$est)
+
+sen_lcl = c(orig_model_list$st_overall_origmod$sen_spec$sensitivity$ci[1],
+            orig_model_list$st_mostrec_origmod$sen_spec$sensitivity$ci[1],
+            orig_model_list$stan_all_origmod$sen_spec$sensitivity$ci[1],
+            orig_model_list$uiowa_all_origmod$sen_spec$sensitivity$ci[1],
+            orig_model_list$chop_all_origmod$sen_spec$sensitivity$ci[1],
+                
+            ageablated_model_list$st_overall$sen_spec$sensitivity$ci[1],
+            ageablated_model_list$st_mostrec$sen_spec$sensitivity$ci[1],
+            ageablated_model_list$stan_all$sen_spec$sensitivity$ci[1],
+            ageablated_model_list$ui_all$sen_spec$sensitivity$ci[1], 
+            ageablated_model_list$chop_all$sen_spec$sensitivity$ci[1],
+                
+            sideablated_model_list$st_overall$sen_spec$sensitivity$ci[1],
+            sideablated_model_list$st_mostrec$sen_spec$sensitivity$ci[1],
+            sideablated_model_list$stan_all$sen_spec$sensitivity$ci[1],
+            sideablated_model_list$ui_all$sen_spec$sensitivity$ci[1], 
+            sideablated_model_list$chop_all$sen_spec$sensitivity$ci[1],
+                
+            agesideablated_model_list$st_overall$sen_spec$sensitivity$ci[1],
+            agesideablated_model_list$st_mostrec$sen_spec$sensitivity$ci[1],
+            agesideablated_model_list$stan_all$sen_spec$sensitivity$ci[1],
+            agesideablated_model_list$ui_all$sen_spec$sensitivity$ci[1], 
+            agesideablated_model_list$chop_all$sen_spec$sensitivity$ci[1],
+                
+                nocov_model_list$st_overall$sen_spec$sensitivity$ci[1],
+                nocov_model_list$st_mostrec$sen_spec$sensitivity$ci[1],
+                nocov_model_list$stan_all$sen_spec$sensitivity$ci[1],
+                nocov_model_list$ui_all$sen_spec$sensitivity$ci[1],
+                nocov_model_list$chop_all$sen_spec$sensitivity$ci[1])
+
+sen_ucl = c(orig_model_list$st_overall_origmod$sen_spec$sensitivity$ci[2],
+            orig_model_list$st_mostrec_origmod$sen_spec$sensitivity$ci[2],
+            orig_model_list$stan_all_origmod$sen_spec$sensitivity$ci[2],
+            orig_model_list$uiowa_all_origmod$sen_spec$sensitivity$ci[2],
+            orig_model_list$chop_all_origmod$sen_spec$sensitivity$ci[2],
+                
+            ageablated_model_list$st_overall$sen_spec$sensitivity$ci[2],
+            ageablated_model_list$st_mostrec$sen_spec$sensitivity$ci[2],
+            ageablated_model_list$stan_all$sen_spec$sensitivity$ci[2],
+            ageablated_model_list$ui_all$sen_spec$sensitivity$ci[2], 
+            ageablated_model_list$chop_all$sen_spec$sensitivity$ci[2],
+                
+            sideablated_model_list$st_overall$sen_spec$sensitivity$ci[2],
+            sideablated_model_list$st_mostrec$sen_spec$sensitivity$ci[2],
+            sideablated_model_list$stan_all$sen_spec$sensitivity$ci[2],
+            sideablated_model_list$ui_all$sen_spec$sensitivity$ci[2], 
+            sideablated_model_list$chop_all$sen_spec$sensitivity$ci[2],
+                
+            agesideablated_model_list$st_overall$sen_spec$sensitivity$ci[2],
+            agesideablated_model_list$st_mostrec$sen_spec$sensitivity$ci[2],
+            agesideablated_model_list$stan_all$sen_spec$sensitivity$ci[2],
+            agesideablated_model_list$ui_all$sen_spec$sensitivity$ci[2], 
+            agesideablated_model_list$chop_all$sen_spec$sensitivity$ci[2],
+                
+                nocov_model_list$st_overall$sen_spec$sensitivity$ci[2],
+                nocov_model_list$st_mostrec$sen_spec$sensitivity$ci[2],
+                nocov_model_list$stan_all$sen_spec$sensitivity$ci[2],
+                nocov_model_list$ui_all$sen_spec$sensitivity$ci[2],
+                nocov_model_list$chop_all$sen_spec$sensitivity$ci[2])
+
+Specificity = c(orig_model_list$st_overall_origmod$sen_spec$specificity$est,
+                orig_model_list$st_mostrec_origmod$sen_spec$specificity$est,
+                orig_model_list$stan_all_origmod$sen_spec$specificity$est,
+                orig_model_list$uiowa_all_origmod$sen_spec$specificity$est,
+                orig_model_list$chop_all_origmod$sen_spec$specificity$est,
+                
+                ageablated_model_list$st_overall$sen_spec$specificity$est,
+                ageablated_model_list$st_mostrec$sen_spec$specificity$est,
+                ageablated_model_list$stan_all$sen_spec$specificity$est,
+                ageablated_model_list$ui_all$sen_spec$specificity$est, 
+                ageablated_model_list$chop_all$sen_spec$specificity$est,
+                
+                sideablated_model_list$st_overall$sen_spec$specificity$est,
+                sideablated_model_list$st_mostrec$sen_spec$specificity$est,
+                sideablated_model_list$stan_all$sen_spec$specificity$est,
+                sideablated_model_list$ui_all$sen_spec$specificity$est, 
+                sideablated_model_list$chop_all$sen_spec$specificity$est,
+                
+                agesideablated_model_list$st_overall$sen_spec$specificity$est,
+                agesideablated_model_list$st_mostrec$sen_spec$specificity$est,
+                agesideablated_model_list$stan_all$sen_spec$specificity$est,
+                agesideablated_model_list$ui_all$sen_spec$specificity$est, 
+                agesideablated_model_list$chop_all$sen_spec$specificity$est,
+                
+                nocov_model_list$st_overall$sen_spec$specificity$est,
+                nocov_model_list$st_mostrec$sen_spec$specificity$est,
+                nocov_model_list$stan_all$sen_spec$specificity$est,
+                nocov_model_list$ui_all$sen_spec$specificity$est,
+                nocov_model_list$chop_all$sen_spec$specificity$est)
+
+spec_lcl = c(orig_model_list$st_overall_origmod$sen_spec$specificity$ci[1],
+             orig_model_list$st_mostrec_origmod$sen_spec$specificity$ci[1],
+             orig_model_list$stan_all_origmod$sen_spec$specificity$ci[1],
+             orig_model_list$uiowa_all_origmod$sen_spec$specificity$ci[1],
+             orig_model_list$chop_all_origmod$sen_spec$specificity$ci[1],
+                
+                ageablated_model_list$st_overall$sen_spec$specificity$ci[1],
+                ageablated_model_list$st_mostrec$sen_spec$specificity$ci[1],
+                ageablated_model_list$stan_all$sen_spec$specificity$ci[1],
+                ageablated_model_list$ui_all$sen_spec$specificity$ci[1], 
+                ageablated_model_list$chop_all$sen_spec$specificity$ci[1],
+                
+                sideablated_model_list$st_overall$sen_spec$specificity$ci[1],
+                sideablated_model_list$st_mostrec$sen_spec$specificity$ci[1],
+                sideablated_model_list$stan_all$sen_spec$specificity$ci[1],
+                sideablated_model_list$ui_all$sen_spec$specificity$ci[1], 
+                sideablated_model_list$chop_all$sen_spec$specificity$ci[1],
+                
+                agesideablated_model_list$st_overall$sen_spec$specificity$ci[1],
+                agesideablated_model_list$st_mostrec$sen_spec$specificity$ci[1],
+                agesideablated_model_list$stan_all$sen_spec$specificity$ci[1],
+                agesideablated_model_list$ui_all$sen_spec$specificity$ci[1], 
+                agesideablated_model_list$chop_all$sen_spec$specificity$ci[1],
+                
+                nocov_model_list$st_overall$sen_spec$specificity$ci[1],
+                nocov_model_list$st_mostrec$sen_spec$specificity$ci[1],
+                nocov_model_list$stan_all$sen_spec$specificity$ci[1],
+                nocov_model_list$ui_all$sen_spec$specificity$ci[1],
+                nocov_model_list$chop_all$sen_spec$specificity$ci[1])
+
+spec_ucl = c(orig_model_list$st_overall_origmod$sen_spec$specificity$ci[2],
+             orig_model_list$st_mostrec_origmod$sen_spec$specificity$ci[2],
+             orig_model_list$stan_all_origmod$sen_spec$specificity$ci[2],
+             orig_model_list$uiowa_all_origmod$sen_spec$specificity$ci[2],
+             orig_model_list$chop_all_origmod$sen_spec$specificity$ci[2],
+                
+                ageablated_model_list$st_overall$sen_spec$specificity$ci[2],
+                ageablated_model_list$st_mostrec$sen_spec$specificity$ci[2],
+                ageablated_model_list$stan_all$sen_spec$specificity$ci[2],
+                ageablated_model_list$ui_all$sen_spec$specificity$ci[2], 
+                ageablated_model_list$chop_all$sen_spec$specificity$ci[2],
+                
+                sideablated_model_list$st_overall$sen_spec$specificity$ci[2],
+                sideablated_model_list$st_mostrec$sen_spec$specificity$ci[2],
+                sideablated_model_list$stan_all$sen_spec$specificity$ci[2],
+                sideablated_model_list$ui_all$sen_spec$specificity$ci[2], 
+                sideablated_model_list$chop_all$sen_spec$specificity$ci[2],
+                
+                agesideablated_model_list$st_overall$sen_spec$specificity$ci[2],
+                agesideablated_model_list$st_mostrec$sen_spec$specificity$ci[2],
+                agesideablated_model_list$stan_all$sen_spec$specificity$ci[2],
+                agesideablated_model_list$ui_all$sen_spec$specificity$ci[2], 
+                agesideablated_model_list$chop_all$sen_spec$specificity$ci[2],
+                
+                nocov_model_list$st_overall$sen_spec$specificity$ci[2],
+                nocov_model_list$st_mostrec$sen_spec$specificity$ci[2],
+                nocov_model_list$stan_all$sen_spec$specificity$ci[2],
+                nocov_model_list$ui_all$sen_spec$specificity$ci[2],
+                nocov_model_list$chop_all$sen_spec$specificity$ci[2])
+
+barplot2_df = data.frame( 
+  DataSet = c(DataSet,DataSet,DataSet,DataSet),
+  Model = c(Model, Model, Model, Model),
+  Metric = c(rep("AUROC",25),rep("AUPRC",25), rep("Sensitivity", 25), rep("Specificity", 25)),
+  Value = c(AUROC, AUPRC, Sensitivity, Specificity),
+  LCL = c(AUROC_lcl, AUPRC_lcl, sen_lcl, spec_lcl),
+  UCL = c(AUROC_ucl, AUPRC_ucl, sen_ucl, spec_ucl)
+  )
+
+barplot2_df$DataSet = factor(barplot2_df$DataSet, levels = c("SilentTrial_All", "SilentTrial_MostRecent", "Stanford", "UIowa", "CHOP"),
+                             labels = c("Silent Trial: All", "Silent Trial: Most Recent", "Stanford", "UIowa", "CHOP"))
+barplot2_df$Model = factor(barplot2_df$Model, levels = c("Original", "AgeAblated","SideAblated","AgeSideAblated","NoCov"), 
+                           labels = c("Original", "Age-Ablated","Side-Ablated","Age,Side-Ablated", "No Covariates"))
+barplot2_df$Metric = factor(barplot2_df$Metric, levels = c("AUROC", "AUPRC", "Sensitivity", "Specificity"))
+
+head(barplot2_df)
+
+
+```
+
+```{r fig.width=10, fig.height=20}
+
+theme_set(
+  theme_bw(base_size = 20)
+)
+
+ggplot(barplot2_df, aes(x = DataSet, y = Value, fill = Model)) + 
+  geom_bar(stat = "identity", position = "dodge", col="black") + 
+  scale_fill_manual(values = c("#88CCEE", "#CC6677", "#332288", "#AA4499", "#44AA99")) + 
+  ylim(0,1) + 
+  geom_errorbar(aes(ymin=LCL, ymax=UCL), width=.2,
+                 position=position_dodge(.9)) + 
+  theme(axis.text.x = element_text(angle = 45, hjust=1)) + 
+  facet_wrap(~Metric, ncol=1)
+
+```
+
+

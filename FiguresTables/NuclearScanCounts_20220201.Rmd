@@ -1,0 +1,172 @@
+---
+title: "Nuclear Scan Count"
+author: "LaurenErdman"
+date: "01/29/2022"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    toc_depth: 4 
+    number_sections: true
+    code_folding: hide
+---
+
+```{r, include=FALSE}
+
+library(readxl)
+
+ids_to_df = function(in_vec){
+
+  full_ids = unlist(lapply(strsplit(in_vec,"_"),function(x)x[1]))
+  num_ids = substr(full_ids,5,nchar(full_ids))  
+  kidney_side = unlist(lapply(strsplit(in_vec,"_"),function(x)x[2]))
+  visit_num = unlist(lapply(strsplit(in_vec,"_"),function(x)x[3]))
+
+  out_df = data.frame(full_ids, num_ids, kidney_side, visit_num)
+    
+  return(out_df)
+}
+
+```
+
+```{r, include=FALSE}
+
+## silent trial data
+
+st_hn_df = data.frame(read_excel("C:/Users/lauren erdman/Desktop/kidney_img/HN/silent_trial/HN Silent Trial_20210411.xlsx"))
+head(st_hn_df)
+
+st_hn_df$Date.Nuc.Scan
+st_hn_df$Date.Nuc.Scan.2
+st_hn_df$Date.Nuc.Scan..3
+
+st_hn_df$renalscan1 = 0 
+st_hn_df$renalscan1[!is.na(st_hn_df$Date.Nuc.Scan)] = 1
+
+st_hn_df$renalscan2 = 0 
+st_hn_df$renalscan2[!is.na(st_hn_df$Date.Nuc.Scan.2)] = 1
+
+st_hn_df$renalscan3 = 0 
+st_hn_df$renalscan3[!is.na(st_hn_df$Date.Nuc.Scan..3)] = 1
+
+
+### Silent trial IDs from the manuscript: 
+sitrial_embed = read.csv("C:/Users/lauren erdman/Desktop/kidney_img/HN/Results_20220126/Datasheets/SilentTrial_predictions_20220201.csv", header=TRUE, as.is=TRUE)
+sitrial_ids = sitrial_embed$id
+
+sitrial_id_df = ids_to_df(sitrial_ids)
+head(sitrial_id_df)
+
+sitri_merged = merge(sitrial_id_df, st_hn_df, by.x = "num_ids", by.y = "ST.Study.ID", all.x = TRUE)
+head(sitri_merged)
+
+### Merge predictions 
+# dat_thresh_ep30 = 0.03094032
+dat_thresh_ep30 = 0.0634979
+
+###
+###     SILENT TRIAL DATA 
+###
+
+st_hn_only1 = read.csv("C:/Users/lauren erdman/Desktop/kidney_img/HN/Results_20220126/Datasheets/SilentTrial_predictions_20220201.csv", header=TRUE, as.is=TRUE)
+head(st_hn_only1)
+dim(st_hn_only1)
+st_hn_id_df = ids_to_df(in_vec = st_hn_only1$id)
+head(st_hn_id_df)
+dim(st_hn_id_df)
+
+st_hn_only = cbind(st_hn_id_df,st_hn_only1)
+head(st_hn_only)
+
+all_sitri_merge = merge(sitri_merged[,c("num_ids","full_ids","kidney_side","visit_num","renalscan1","renalscan2","Date.Nuc.Scan","Date.Nuc.Scan.2",
+                                        "Date.US.1","Date.US.2","Date.US.3","Date.US.4","Date.US.5","Date.US.6","Date.US.7","Date.US.8")],
+                        st_hn_only,
+                        by = c("num_ids","kidney_side","visit_num"))
+
+dim(all_sitri_merge)
+dim(sitri_merged)
+dim(st_hn_only)
+head(st_hn_only)
+head(sitri_merged)
+head(all_sitri_merge)
+
+## add vector counting the number of nuc scans performed after US for 
+  ## correctly predicted, non-obstructed HN cases
+all_sitri_merge$num_NCs_after = NA
+all_sitri_merge$visit_date = NA
+
+for(i in 1:nrow(all_sitri_merge)){
+  visit_num = all_sitri_merge$visit_num[i]
+  cat("\nVisit number: ")
+  cat(visit_num)
+
+  visit_date = as.Date(all_sitri_merge[i,paste0("Date.US.",visit_num)])
+  all_sitri_merge$visit_date[i] = visit_date
+  cat("\nVisit dat: ")
+  cat(visit_date)
+
+  no_nucs = ifelse(sum(all_sitri_merge[i,c("renalscan1","renalscan2")]) == 0, 1, 0)
+
+  if(!is.na(visit_date)){
+    if(no_nucs == 0){
+      if(visit_date < as.Date(all_sitri_merge[i,"Date.Nuc.Scan"])){
+        if(!is.na(as.Date(all_sitri_merge[i,"Date.Nuc.Scan.2"]))){
+          if(visit_date < as.Date(all_sitri_merge[i,"Date.Nuc.Scan.2"])){
+            all_sitri_merge$num_NCs_after[i] = 2 
+          } else{
+            all_sitri_merge$num_NCs_after[i] = 1 
+          } 
+        } else{
+          all_sitri_merge$num_NCs_after[i] = 1 
+        }
+      } else{
+        all_sitri_merge$num_NCs_after[i] = 0 
+      }
+    } else{
+      all_sitri_merge$num_NCs_after[i] = 0 
+    }
+  } else{
+    all_sitri_merge$num_NCs_after[i] = NA 
+  }
+  
+  cat("\nNumber of Nuc Scans: ")
+  cat(all_sitri_merge$num_NCs_after[i])
+  
+}
+
+all_sitri_merge$num_NCs_after = factor(all_sitri_merge$num_NCs_after, levels = c(0,1,2))
+
+all_sitri_merge$prediction = NA
+all_sitri_merge$prediction[all_sitri_merge$st_pred_mod_ep30 <= dat_thresh_ep30] = "No Obstruction"
+all_sitri_merge$prediction[all_sitri_merge$st_pred_mod_ep30 > dat_thresh_ep30] = "Obstruction"
+all_sitri_merge$prediction = factor(all_sitri_merge$prediction,levels = c("No Obstruction", "Obstruction"))
+
+
+plot_df = all_sitri_merge[all_sitri_merge$num_NCs_after != 0,]
+plot_df = plot_df[!is.na(plot_df$num_NCs_after),]
+
+```
+
+
+# First Ultrasound
+```{r}
+### look at first ultrasound only 
+first_us = plot_df[plot_df$visit_num == 1,]
+
+table(first_us$prediction,first_us$target)
+
+```
+
+# Second Ultrasound 
+```{r}
+
+### look at second ultrasound only 
+second_us = plot_df[plot_df$visit_num == 2,]
+
+table(second_us$prediction,second_us$target)
+
+```
+
+
+
+

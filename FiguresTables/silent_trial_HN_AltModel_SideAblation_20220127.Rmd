@@ -1,0 +1,1164 @@
+---
+title: "HN AltModel SideAblation 20220127"
+author: "LaurenErdman"
+date: "27/01/2022"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    toc_depth: 4 
+    number_sections: true
+    code_folding: hide
+---
+
+# Alternative model 
+```{r setup, include=FALSE}
+
+
+library(readxl)
+library(reshape2)
+library(rjson)
+library(RJSONIO)
+library(V8)
+library(ggplot2)
+library(umap)
+
+
+results_wd = paste(c(strsplit(x = getwd(), split = "/")[[1]][1:(length(strsplit(x = getwd(), split = "/")[[1]])-3)], "Results_20220126"), collapse = "/")
+results_wd = paste0(results_wd, "/")
+
+
+### FUNCTIONS
+
+get_hn_only = function(in_df){
+  left_df = in_df[in_df$Side == 1 & in_df$view_side == "Left",]
+  right_df = in_df[in_df$Side == 2 & in_df$view_side == "Right",]
+  both_df = in_df[in_df$Side == 3,]
+  
+  out_df = rbind(left_df, right_df, both_df)
+  
+  return(out_df)
+}
+
+get_sen_spec = function(score_vec, target, threshold){
+  score0 = score_vec[target == 0]
+  score1 = score_vec[target == 1]
+  
+  # browser()
+  
+  tnr = sum(score0 < threshold)/length(score0)
+  fnr = sum(score1 < threshold)/length(score1)
+  
+  out_list = list("specificity" = list("est" = tnr),
+                  "sensitivity" = list("est" = 1-fnr))
+  return(out_list)
+}
+
+
+get_auroc_aurpc = function(score_vec, target, n_it=1000){
+  
+  require(EGAD)
+  require(pROC)
+  
+  # browser()
+  
+  
+  ### BREAKING HERE WITH NA's
+  # target = na.omit(target)
+  # score_vec = na.omit(score_vec)
+  # target = target[!is.na(target)]
+  # score_vec = score_vec[!is.na(score_vec)]
+  # cat(target)
+  # cat("\n")
+  # cat(score_vec)
+  # cat("\n")
+    
+  sample_size = length(score_vec)
+  
+  ## AUPRC
+  
+  auprc_stat = ifelse(length(na.omit(unique(target))) == 2, auprc(score_vec, target), NA)
+  
+  auprc_samples = sapply(1:n_it, function(i){
+    set.seed(i)
+    
+    my_samp = sample.int(n = sample_size, size = sample_size, replace = TRUE)
+    
+    auprc_samp = ifelse(length(na.omit(unique(target[my_samp]))) == 2, auprc(score_vec[my_samp], target[my_samp]), NA)
+    
+    return(auprc_samp)
+  })
+  
+  auprc_ci = quantile(sort(auprc_samples),c(0.025, 0.975))
+  
+  ## AUROC
+  
+  auroc_stat = ifelse(length(na.omit(unique(target))) == 2, auc(roc(target, score_vec,quiet = TRUE)), NA)
+  
+  auroc_samples = sapply(1:n_it, function(i){
+    set.seed(i)
+    
+    my_samp = sample.int(n = sample_size, size = sample_size, replace = TRUE)
+
+    auroc_samp = ifelse(length(na.omit(unique(target[my_samp]))) == 2,auc(roc(target[my_samp], score_vec[my_samp],quiet = TRUE)), NA)
+
+    return(auroc_samp)    
+  })
+
+  auroc_ci = quantile(sort(auroc_samples),c(0.025, 0.975))
+
+  ## RETURN ALL STATS
+    
+  out_list = list("auprc" = auprc_stat,
+                  "auprc_ci" = auprc_ci,
+                  "auroc" = auroc_stat,
+                  "auroc_ci" = auroc_ci)  
+  return(out_list)
+}
+
+
+auroc_auprc_split = function(score_vec, target, split_vec, n_it=1000){
+  
+  out_list = list()
+  
+  # browser()
+  
+  for(grp in na.omit(unique(split_vec))){
+    
+    sub_score = na.omit(score_vec[split_vec == grp])
+    sub_target = na.omit(target[split_vec == grp])
+    
+    if(length(na.omit(unique(sub_target))) == 2){
+      out_list[[grp]] = get_auroc_aurpc(score_vec = sub_score, target = sub_target, n_it=n_it)
+    } else{
+      out_list[[grp]] = NA
+    }
+
+        
+  }
+
+  return(out_list)  
+}
+
+get_sen_spec_withCI = function(score_vec, target, threshold, n_it, out_vecs=FALSE){
+  
+  out_list = get_sen_spec(score_vec=score_vec,
+                          target=target,
+                          threshold=threshold)
+  n = length(score_vec)
+  
+  sen_vec = c()
+  spec_vec = c()
+  for(i in 1:n_it){
+    set.seed(i)
+    
+    # browser()
+    samp = sample(1:n,size = n,replace = TRUE)
+    true_tnr_fnr = get_sen_spec(score_vec=score_vec[samp],
+                                target=target[samp],
+                                threshold=threshold)
+    sen_vec = c(sen_vec, true_tnr_fnr$sensitivity)
+    spec_vec = c(spec_vec, true_tnr_fnr$specificity)
+  }
+  
+  # browser()
+  sen_vec = sort(unlist(sen_vec))
+  spec_vec = sort(unlist(spec_vec))
+  
+  out_list[["sensitivity"]][["ci"]] = quantile(sen_vec,c(0.025, 0.975))
+  out_list[["specificity"]][["ci"]] = quantile(spec_vec,c(0.025, 0.975))
+  
+  if(out_vecs){
+    
+    out_list[["sensitivity"]][["vec"]] = c(sen_vec, rep(NA, n_it - length(sen_vec)))
+    out_list[["specificity"]][["vec"]] = c(spec_vec, rep(NA, n_it - length(spec_vec)))
+    
+    
+  }
+  
+  return(out_list)
+  
+}  
+
+sen_spec_split = function(score_vec, target, split_vec, threshold, n_it, out_vecs=FALSE){
+  split_vals = unique(split_vec)
+  
+  out_list = list()
+  
+  for(split_val in split_vals){
+    
+    # browser()
+    
+    split_score = na.omit(score_vec[split_vec == split_val])
+    split_target = na.omit(target[split_vec == split_val])
+    
+    out_list[[split_val]] = get_sen_spec_withCI(score_vec = split_score, 
+                                                target = split_target, 
+                                                threshold = threshold, 
+                                                n_it = n_it, 
+                                                out_vecs = out_vecs)
+  }
+  
+  return(out_list)  
+}
+
+find_sensitivity_thresh = function(pred, label, sensitivity = 0.95){
+  sorted_lab = label[order(pred, decreasing = FALSE)]
+  sorted_pred = sort(pred, decreasing = FALSE)
+  n = length(sorted_lab)
+
+  sen = sapply(1:length(sorted_lab), function(i){
+    return(sum(sorted_lab[i:n])/sum(sorted_lab))
+  })
+
+  sen_enough = sen[sen > sensitivity]
+  threshold = sorted_pred[length(sen_enough)]
+
+  return(threshold)
+}
+
+get_fnrs = function(in_list, sensitivity = 0.95, thresh_set_split = "val",
+                    epoch = 47, test_sub = NULL, n_its = 500, fold = 1, st=TRUE, stan=TRUE,
+                    return_threshold=FALSE){
+
+  # browser()
+
+  train_pred = in_list$train[[fold]][[epoch]][["pred"]]
+  train_label = in_list$train[[fold]][[epoch]][["target"]]
+
+  val_pred = in_list$val[[fold]][[epoch]][["pred"]]
+  val_label = in_list$val[[fold]][[epoch]][["target"]]
+
+  if(is.null(test_sub)){
+    test_pred = in_list$test[[fold]][[epoch]][["pred"]]
+    test_label = in_list$test[[fold]][[epoch]][["target"]]
+  } else{
+    test_pred = in_list$test[[fold]][[epoch]][["pred"]][in_list$test[[fold]][[epoch]][["id"]] %in% test_sub]
+    test_label = in_list$test[[fold]][[epoch]][["target"]][in_list$test[[fold]][[epoch]][["id"]] %in% test_sub]
+  }
+
+
+  threshold = find_sensitivity_thresh(pred = in_list[[thresh_set_split]][[fold]][[epoch]][["pred"]],
+                                      label = in_list[[thresh_set_split]][[fold]][[epoch]][["target"]],
+                                      sensitivity = sensitivity)
+
+  # print(paste0(thresh_set_split, " threshold for epoch ", epoch, " fold ", fold, ": ", threshold))
+
+  train_fnr = sum(train_label[train_pred < threshold])/sum(train_label)
+  val_fnr = sum(val_label[val_pred < threshold])/sum(val_label)
+  test_fnr = sum(test_label[test_pred < threshold])/sum(test_label)
+
+  out_list = list("train" = list("fnr" = train_fnr),
+                  "val" = list("fnr" = val_fnr),
+                  "test" = list("fnr" = test_fnr))
+  train_fnrs = c()
+  val_fnrs = c()
+  test_fnrs = c()
+
+  if(st){
+    st_pred = in_list$st[[fold]][[epoch]][["pred"]]
+    st_label = in_list$st[[fold]][[epoch]][["target"]]
+    st_fnr = sum(st_label[st_pred < threshold])/sum(st_label)
+    out_list[["st"]] = list("fnr" = st_fnr)
+    st_fnrs = c()
+  }
+  if(stan){
+    stan_pred = in_list$stan[[fold]][[epoch]][["pred"]]
+    stan_label = in_list$stan[[fold]][[epoch]][["target"]]
+    stan_fnr = sum(stan_label[stan_pred < threshold])/sum(stan_label)
+    out_list[["stan"]] = list("fnr" = stan_fnr)
+    stan_fnrs = c()
+  }
+
+  for(it in 1:n_its){
+
+    train_sample = sample(1:length(train_pred),size = length(train_pred), replace = TRUE)
+    val_sample = sample(1:length(val_pred),size = length(val_pred), replace = TRUE)
+    test_sample = sample(1:length(test_pred),size = length(test_pred), replace = TRUE)
+
+    train_pred_s = train_pred[train_sample]
+    train_label_s = train_label[train_sample]
+
+    val_pred_s = val_pred[val_sample]
+    val_label_s = val_label[val_sample]
+
+    test_pred_s = test_pred[test_sample]
+    test_label_s = test_label[test_sample]
+
+    train_fnrs = c(sum(train_label_s[train_pred_s < threshold])/sum(train_label_s), train_fnrs)
+    val_fnrs = c(sum(val_label_s[val_pred_s < threshold])/sum(val_label_s), val_fnrs)
+    test_fnrs = c(sum(test_label_s[test_pred_s < threshold])/sum(test_label_s), test_fnrs)
+
+    if(st){
+      st_sample = sample(1:length(st_pred),size = length(st_pred), replace = TRUE)
+      st_pred_s = st_pred[st_sample]
+      st_label_s = st_label[st_sample]
+      st_fnrs = c(sum(st_label_s[st_pred_s < threshold])/sum(st_label_s), st_fnrs)
+    }
+    if(stan){
+      stan_sample = sample(1:length(stan_pred),size = length(stan_pred), replace = TRUE)
+      stan_pred_s = stan_pred[stan_sample]
+      stan_label_s = stan_label[stan_sample]
+      stan_fnrs = c(sum(stan_label_s[stan_pred_s < threshold])/sum(stan_label_s), stan_fnrs)
+    }
+
+  }
+
+  train_fnrs = sort(train_fnrs)
+  val_fnrs = sort(val_fnrs)
+  test_fnrs = sort(test_fnrs)
+
+  out_list[["train"]][["ci"]] = quantile(train_fnrs, c(0.025, 0.975))
+  out_list[["val"]][["ci"]] = quantile(val_fnrs, c(0.025, 0.975))
+  out_list[["test"]][["ci"]] = quantile(test_fnrs, c(0.025, 0.975))
+
+  if(st){
+    out_list[["st"]][["ci"]] = quantile(st_fnrs, c(0.025, 0.975))
+  }
+  if(stan){
+    out_list[["stan"]][["ci"]] = quantile(stan_fnrs, c(0.025, 0.975))
+  }
+
+  if(return_threshold){
+    return(threshold)
+  } else{
+    return(out_list)
+  }
+}
+
+add_platt_preds_dprep = function(in_list, scale_ref = "val", epoch = 1,
+                           sensitivity = 0.95, verbose=TRUE){
+  in_list_names = names(in_list)
+  
+  if("prenatal" %in% in_list_names){
+    in_list[["prenatal"]] = NULL
+  }
+  in_list_names = names(in_list)
+  
+  to_scale = in_list_names[in_list_names != scale_ref]
+
+  folds = length(in_list[[scale_ref]])
+
+  ## creating and applying scaling model
+  for(fold in 1:folds){
+
+    threshold = get_fnrs(in_list = in_list, epoch = epoch,fold = fold, return_threshold=TRUE,sensitivity = sensitivity)
+
+    # browser()
+
+    scale_set = data.frame(label = in_list[[scale_ref]][[fold]][[epoch]][["target"]],
+                           pred = in_list[[scale_ref]][[fold]][[epoch]][["pred"]])
+
+    scale_mod = glm(label ~ pred, scale_set, family = binomial)
+
+    if(verbose){
+      print(summary(scale_mod))
+    }
+
+    in_list[[scale_ref]][[fold]][[epoch]][["pred_scaled"]] = predict(scale_mod, newdata = data.frame(pred = in_list[[scale_ref]][[fold]][[epoch]][["pred"]]),type = "response")
+    in_list[[scale_ref]][[fold]][[epoch]][["threshold"]] = predict(scale_mod, newdata = data.frame(pred = threshold), type = "response")
+
+    for(group in to_scale){
+      in_list[[group]][[fold]][[epoch]][["pred_scaled"]] = predict(scale_mod, newdata = data.frame(pred = in_list[[group]][[fold]][[epoch]][["pred"]]),type = "response")
+    }
+  }
+
+  # browser()
+
+  return(in_list)
+}
+
+
+add_platt_preds = function(in_list, scale_ref = "val", epoch = 1){
+  in_list_names = names(in_list)
+  to_scale = in_list_names[in_list_names != scale_ref]
+  
+  folds = length(in_list[[scale_ref]])
+  
+  ## creating and applying scaling model
+  for(fold in 1:folds){
+    
+    threshold = get_fnrs(in_list = in_list, epoch = epoch,fold = fold, return_threshold=TRUE)
+    
+    # browser()
+    
+    scale_set = data.frame(label = in_list[[scale_ref]][[fold]][[epoch]][["target"]], 
+                           pred = in_list[[scale_ref]][[fold]][[epoch]][["pred"]])
+    
+    scale_mod = glm(label ~ pred, scale_set, family = binomial)    
+    
+    in_list[[scale_ref]][[fold]][[epoch]][["pred_scaled"]] = predict(scale_mod, newdata = data.frame(pred = in_list[[scale_ref]][[fold]][[epoch]][["pred"]]),type = "response")
+    in_list[[scale_ref]][[fold]][[epoch]][["threshold"]] = predict(scale_mod, newdata = data.frame(pred = threshold), type = "response")
+    
+    for(group in to_scale){
+      in_list[[group]][[fold]][[epoch]][["pred_scaled"]] = predict(scale_mod, newdata = data.frame(pred = in_list[[group]][[fold]][[epoch]][["pred"]]),type = "response")
+    }
+  }  
+  
+  # browser()
+  
+  return(in_list)
+}
+
+get_most_recent = function(in_dataset){
+  
+  # browser() 
+  # if(!("USNumber" %in% names(in_dataset))){
+  #   in_dataset$USNumber = labels(in_dataset$US_num
+  # }
+  # 
+  out_dataset = data.frame(matrix(nrow = 0, ncol = ncol(in_dataset)))
+  names(out_dataset) = names(in_dataset)
+  
+  for(id in unique(in_dataset$pt_id)){
+    pt_df = in_dataset[in_dataset$pt_id == id, ]
+    max_row = pt_df[pt_df$USNumber == max(as.numeric(pt_df$USNumber)),][1,]
+    
+    out_dataset = rbind(out_dataset,max_row)
+  }
+  
+  names(out_dataset) = names(in_dataset) 
+  
+  return(out_dataset)
+}
+
+make_st_df = function(st_df, st_details){
+
+  # browser()
+  
+  st_details$STID = paste0("STID", st_details$ID, "_", st_details$view_side, "_", st_details$US_num, "_1")
+  
+  st_merged = merge(st_df, st_details, by.x = "id", by.y = "STID")
+  head(st_merged)
+  st_merged$pt_id = unlist(lapply(strsplit(as.character(st_merged$id),"_"),function(x){x[1]}))
+  length(unique(st_merged$pt_id))
+  
+  st_uniq = st_merged[!duplicated(st_merged$ID),]
+  table(st_uniq$target)
+  
+  ## confirming HN only 
+  st_hn_only = get_hn_only(in_df = st_merged)
+  
+  st_hn_only$id_num = as.numeric(substr(st_hn_only$id,5,7))
+  
+  st_hn_only$sex = factor(st_hn_only$Sex, levels = c(1,2), labels = c("male","female"))
+  
+  if(!("target01" %in% names(st_hn_only))){
+    st_hn_only$target01 = ifelse(st_hn_only$target == "no Obstruction", 0, 1)
+  }
+  
+  st_hn_only$apd_groups = factor(st_hn_only$apd_groups, levels = c("under_6", "apd_6_to_9", "apd_9_to_14", "over_14", "unmeasured"))
+  st_hn_only$apd_groups[is.na(st_hn_only$apd_groups)] = "unmeasured"
+  st_hn_only$HN_Side_fac = factor(st_hn_only$Side, levels = 1:3, labels = c("Left", "Right", "Both"))
+  st_hn_only$USNumber = factor(st_hn_only$US_num, levels = sort(unique(st_hn_only$US_num)))
+  
+  st_hn_only$age_grps = NA
+  st_hn_only$age_grps[st_hn_only$age_at_US_wk < 102] = "under2"
+  st_hn_only$age_grps[st_hn_only$age_at_US_wk >= 102 & 
+                        st_hn_only$age_at_US_wk < 260] = "age2to5"
+  st_hn_only$age_grps[st_hn_only$age_at_US_wk >= 260] = "over5"
+  st_hn_only$age_grps_fac = factor(st_hn_only$age_grps, levels = c("under2","age2to5","over5"))
+  
+  st_hn_only$PostalCode = factor(st_hn_only$PC_region, levels = c("M", "N", "L", "P", "K"))
+  
+  st_hn_only$prep = ifelse(st_hn_only$id_num <= 300, "prep1", "prep2")
+  st_hn_only$prep = factor(st_hn_only$prep, levels = c("prep1","prep2"))
+  
+  st_hn_only$US_machine[is.na(st_hn_only$US_machine)] = "Unknown"
+  
+  ### most recent only dataset: 
+  hn_only_most_recent = get_most_recent(in_dataset = st_hn_only)
+  
+  out_list = list("overall" = st_hn_only,"most_recent" = hn_only_most_recent)
+  
+  return(out_list)
+}
+
+
+
+make_stan_df = function(stan_df, stan_datasheet, stan_train){
+  stan_df$target01 = ifelse(stan_df$target == "no Obstruction", 0, 1)
+  
+  stan_datasheet$img_id = paste0(stan_datasheet$anon_mrn,"_",stan_datasheet$`side of hydronephrosis`,"_",stan_datasheet$anon_accession,"_1")
+  
+  stan_merge = merge(stan_df, stan_datasheet, by.x = "id", by.y = "img_id")
+  
+  stan_uniq = stan_merge[!duplicated(stan_merge$anon_mrn),]
+  
+  dim(stan_merge)
+  
+  stan_merge$age_grps = NA
+  stan_merge$age_grps[stan_merge$age < 2] = "under2"
+  stan_merge$age_grps[stan_merge$age >= 2 & stan_merge$age <= 5] = "age2to5"
+  stan_merge$age_grps[stan_merge$age > 5] = "over5"
+  
+  stan40_test = stan_merge[!(stan_merge$anon_mrn %in% stan_train),]
+    
+  out_list = list("overall" = stan_merge, "test40" = stan40_test)
+  
+  return(out_list)
+}
+
+
+
+
+make_uiowa_df = function(ui_df, ui_datasheet, ui_train){
+  ui_df$pt_id = unlist(lapply(strsplit(as.character(ui_df$id),"_"),function(x){x[1]}))
+  ui_df$target01 = ifelse(ui_df$target == "no Obstruction", 0, 1)
+  
+  ui_merge = merge(ui_df, ui_datasheet, by.y = "Name", by.x = "pt_id")
+  
+  ui_merge$age_days = difftime(ui_merge$Ultrasound.Date, ui_merge$DOB, units = "days")
+  
+  ui_merge$age_grp = NA
+  ui_merge$age_grp[ui_merge$age_days < 365*2] = "under2"
+  ui_merge$age_grp[ui_merge$age_days >= 365*2 & ui_merge$age_days <= 365*5] = "age2to5"
+  ui_merge$age_grp[ui_merge$age_days > 365*5] = "over5"
+  
+  ui40_test = ui_merge[!(ui_merge$pt_id %in% ui_train),]
+  
+  out_list = list("overall" = ui_merge, "test40" = ui40_test)
+  
+  return(out_list)
+}
+
+
+
+```
+
+
+```{r}
+
+print(results_wd)
+
+```
+
+
+# Original SickKids model
+```{r silent_trial_data, warning=FALSE, include = FALSE}
+###
+###     SILENT TRIAL DATA 
+###
+
+SENSITIVITY = 0.90
+
+## No test data -- model usedto test Stanford and Silent trial
+# raw_in = readLines(paste0(results_wd,"NoFinalLayerFineTuneSickKidsTrained_noSTContra_TrainOnly_40epochs_bs16_lr0.001_RCFalse_covTrue_OSFalse.json"))
+raw_in = readLines(paste0(results_wd,"/AltModel/NoFinalLayerFineTuneSickKidsTrained_AltModel_SideAblated_TrainOnly_40epochs_bs16_lr0.001_RCFalse_covTrue_OSFalse.json"))
+test = v8()
+test$assign("dat", JS(raw_in))
+st_stan_test = test$get("dat")
+
+st_stan_test = add_platt_preds_dprep(in_list = st_stan_test, epoch = 30,sensitivity = SENSITIVITY, verbose = FALSE)
+
+st_preds = data.frame(st_pred_mod_ep30 = st_stan_test$st[[1]][[30]]$pred_scaled,
+                      id = st_stan_test$st[[1]][[30]]$id,
+                      target01 = st_stan_test$st[[1]][[30]]$target)
+st_preds$target = factor(st_preds$target01, levels = c(0,1), labels = c("no Obstruction", "Obstruction"))
+# head(st_preds)
+
+fold=1
+thresh_ep30 = st_stan_test[["val"]][[fold]][[30]][["threshold"]]
+
+st_orig_list = make_st_df(st_df = st_preds,
+                          st_details = read.csv(paste0(results_wd, "/Datasheets/SilentTrial_Datasheet_deID_20211205.csv"),header = TRUE, as.is = TRUE))
+
+st_hn_only = st_orig_list[["overall"]]
+hn_only_most_recent = st_orig_list[["most_recent"]]
+
+####
+#### SILENT TRIAL ALL VISITS
+####
+
+
+
+####
+#### SILENT TRIAL MOST-RECENT ONLY 
+####
+
+
+
+```
+
+### SickKids silent trial data: All visits
+
+#### Model performance
+##### Overall 
+```{r}
+
+## overall 
+cat("All silent trial participant ultrasounds overall model performance")
+get_auroc_aurpc(score_vec = st_hn_only$st_pred_mod_ep30, 
+                           target = st_hn_only$target01)
+
+(st_overall_origmod = get_sen_spec_withCI(score_vec = st_hn_only$st_pred_mod_ep30, 
+                                         target = st_hn_only$target01, 
+                                         threshold = thresh_ep30, 
+                                         n_it = 500, out_vecs = FALSE))
+
+
+
+
+```
+
+##### By preparation
+```{r}
+sen_spec_split(score_vec = st_hn_only$st_pred_mod_ep30, 
+               target = st_hn_only$target01, 
+               split_vec = st_hn_only$prep, 
+               threshold = thresh_ep30, 
+               n_it = 500)
+
+```
+
+#### By ApD
+```{r}
+sen_spec_split(score_vec = st_hn_only$st_pred_mod_ep30, 
+               target = st_hn_only$target01, 
+               split_vec = st_hn_only$apd_groups, 
+               threshold = thresh_ep30, 
+               n_it = 500)
+
+```
+
+#### By HN side
+```{r}
+sen_spec_split(score_vec = st_hn_only$st_pred_mod_ep30, 
+               target = st_hn_only$target01, 
+               split_vec = st_hn_only$Side, 
+               threshold = thresh_ep30, 
+               n_it = 500)
+```
+
+#### By Kidney side
+```{r}
+sen_spec_split(score_vec = st_hn_only$st_pred_mod_ep30, 
+               target = st_hn_only$target01, 
+               split_vec = st_hn_only$view_side, 
+               threshold = thresh_ep30, 
+               n_it = 500)
+
+```
+
+#### By Age 
+```{r}
+sen_spec_split(score_vec = st_hn_only$st_pred_mod_ep30, 
+               target = st_hn_only$target01, 
+               split_vec = st_hn_only$age_grps_fac, 
+               threshold = thresh_ep30, 
+               n_it = 500)
+
+```
+
+#### By Postal code 
+```{r}
+sen_spec_split(score_vec = st_hn_only$st_pred_mod_ep30, 
+               target = st_hn_only$target01, 
+               split_vec = st_hn_only$PostalCode, 
+               threshold = thresh_ep30, 
+               n_it = 500)
+
+```
+
+#### By US Number
+```{r}
+sen_spec_split(score_vec = st_hn_only$st_pred_mod_ep30, 
+               target = st_hn_only$target01, 
+               split_vec = st_hn_only$USNumber, 
+               threshold = thresh_ep30, 
+               n_it = 500)
+
+```
+
+#### By US machine 
+```{r}
+sen_spec_split(score_vec = st_hn_only$st_pred_mod_ep30, 
+               target = st_hn_only$target01, 
+               split_vec = st_hn_only$US_machine, 
+               threshold = thresh_ep30, 
+               n_it = 500)
+
+```
+
+
+
+### SickKids silent trial data: Most recent visits only
+
+#### Model performance: Most recent observations only (Table 2 and STable 3)
+##### Overall
+```{r}
+
+####
+#### SILENT TRIAL MOST-RECENT ONLY 
+####
+
+get_auroc_aurpc(score_vec = hn_only_most_recent$st_pred_mod_ep30, 
+                           target = hn_only_most_recent$target01)
+
+(st_mostrec_origmod = get_sen_spec_withCI(score_vec = hn_only_most_recent$st_pred_mod_ep30, 
+                                         target = hn_only_most_recent$target01, 
+                                         threshold = thresh_ep30, 
+                                         n_it = 500, out_vecs = FALSE))
+
+```
+
+##### By prepartion method
+```{r}
+auroc_auprc_split(score_vec = hn_only_most_recent$st_pred_mod_ep30, 
+                  target = hn_only_most_recent$target01, 
+                  split_vec = hn_only_most_recent$prep, 
+                  n_it=500)
+
+sen_spec_split(score_vec = hn_only_most_recent$st_pred_mod_ep30, 
+               target = hn_only_most_recent$target01, 
+               split_vec = hn_only_most_recent$prep, 
+               threshold = thresh_ep30, 
+               n_it = 500)
+
+```
+
+##### By Sex
+```{r}
+
+auroc_auprc_split(score_vec = hn_only_most_recent$st_pred_mod_ep30, 
+                  target = hn_only_most_recent$target01, 
+                  split_vec = hn_only_most_recent$sex, 
+                  n_it=500)
+
+sen_spec_split(score_vec = hn_only_most_recent$st_pred_mod_ep30, 
+               target = hn_only_most_recent$target01, 
+               split_vec = hn_only_most_recent$sex, 
+               threshold = thresh_ep30, 
+               n_it = 500)
+
+```
+
+##### By ApD Group
+```{r}
+auroc_auprc_split(score_vec = hn_only_most_recent$st_pred_mod_ep30, 
+                  target = hn_only_most_recent$target01, 
+                  split_vec = hn_only_most_recent$apd_groups, 
+                  n_it=500)
+
+sen_spec_split(score_vec = hn_only_most_recent$st_pred_mod_ep30, 
+               target = hn_only_most_recent$target01, 
+               split_vec = hn_only_most_recent$apd_groups, 
+               threshold = thresh_ep30, 
+               n_it = 500)
+
+```
+
+##### By HN side
+```{r}
+
+auroc_auprc_split(score_vec = hn_only_most_recent$st_pred_mod_ep30, 
+                  target = hn_only_most_recent$target01, 
+                  split_vec = hn_only_most_recent$Side, 
+                  n_it=500)
+
+sen_spec_split(score_vec = hn_only_most_recent$st_pred_mod_ep30, 
+               target = hn_only_most_recent$target01, 
+               split_vec = hn_only_most_recent$Side, 
+               threshold = thresh_ep30, 
+               n_it = 500)
+
+```
+
+##### By Kidney side
+```{r}
+
+auroc_auprc_split(score_vec = hn_only_most_recent$st_pred_mod_ep30, 
+                  target = hn_only_most_recent$target01, 
+                  split_vec = hn_only_most_recent$view_side, 
+                  n_it=500)
+
+sen_spec_split(score_vec = hn_only_most_recent$st_pred_mod_ep30, 
+               target = hn_only_most_recent$target01, 
+               split_vec = hn_only_most_recent$view_side, 
+               threshold = thresh_ep30, 
+               n_it = 500)
+
+```
+
+##### By Age
+```{r}
+
+auroc_auprc_split(score_vec = hn_only_most_recent$st_pred_mod_ep30, 
+                  target = hn_only_most_recent$target01, 
+                  split_vec = hn_only_most_recent$age_grps_fac, 
+                  n_it=500)
+
+sen_spec_split(score_vec = hn_only_most_recent$st_pred_mod_ep30, 
+               target = hn_only_most_recent$target01, 
+               split_vec = hn_only_most_recent$age_grps_fac, 
+               threshold = thresh_ep30, 
+               n_it = 500)
+
+```
+
+##### By Postal code 
+```{r}
+
+auroc_auprc_split(score_vec = hn_only_most_recent$st_pred_mod_ep30, 
+                  target = hn_only_most_recent$target01, 
+                  split_vec = hn_only_most_recent$PostalCode, 
+                  n_it=500)
+
+sen_spec_split(score_vec = hn_only_most_recent$st_pred_mod_ep30, 
+               target = hn_only_most_recent$target01, 
+               split_vec = hn_only_most_recent$PostalCode, 
+               threshold = thresh_ep30, 
+               n_it = 500)
+```
+
+##### By Ultrasound number
+```{r}
+
+auroc_auprc_split(score_vec = hn_only_most_recent$st_pred_mod_ep30, 
+                  target = hn_only_most_recent$target01, 
+                  split_vec = hn_only_most_recent$USNumber, 
+                  n_it=500)
+
+sen_spec_split(score_vec = hn_only_most_recent$st_pred_mod_ep30, 
+               target = hn_only_most_recent$target01, 
+               split_vec = hn_only_most_recent$USNumber, 
+               threshold = thresh_ep30, 
+               n_it = 500)
+
+```
+
+##### By Ultrasound machine 
+```{r}
+
+auroc_auprc_split(score_vec = hn_only_most_recent$st_pred_mod_ep30, 
+                  target = hn_only_most_recent$target01, 
+                  split_vec = hn_only_most_recent$US_machine, 
+                  n_it=500)
+
+sen_spec_split(score_vec = hn_only_most_recent$st_pred_mod_ep30, 
+               target = hn_only_most_recent$target01, 
+               split_vec = hn_only_most_recent$US_machine, 
+               threshold = thresh_ep30, 
+               n_it = 500)
+```
+
+### Stanford original model performance
+```{r, include=FALSE}
+stan_preds = data.frame(stan_pred_mod_ep30 = st_stan_test$stan[[1]][[30]]$pred_scaled,
+                      id = st_stan_test$stan[[1]][[30]]$id,
+                      target01 = st_stan_test$stan[[1]][[30]]$target)
+stan_preds$target = factor(stan_preds$target01, levels = c(0,1), labels = c("no Obstruction", "Obstruction"))
+stan_df = stan_preds
+stan_datasheet = read_excel(paste0(results_wd,"/Datasheets/AI Hydronephrosis Data deidentified.xlsx"))
+
+stan_orig_list = make_stan_df(stan_df = stan_df,
+             stan_datasheet = read_excel(paste0(results_wd,"/Datasheets/AI Hydronephrosis Data deidentified.xlsx")),
+             stan_train = readRDS(paste0(results_wd,"/Datasheets/Stan60%train_ids_20220114.rds")))
+
+
+stan_merge = stan_orig_list[["overall"]]
+head(stan_merge)
+stan40_test = stan_orig_list[["test40"]]
+
+dim(stan_merge)
+
+
+dim(stan40_test)
+
+
+
+```
+
+#### Model performance 
+```{r}
+
+get_auroc_aurpc(score_vec = stan_df$stan_pred_mod_ep30, 
+                    target = stan_preds$target01)
+
+(stan_all_origmod = get_sen_spec_withCI(score_vec = stan_df$stan_pred_mod_ep30, 
+                    target = stan_preds$target01, 
+                    threshold = thresh_ep30, 
+                    n_it = 500))
+
+
+```
+
+
+```{r}
+
+get_auroc_aurpc(score_vec = stan40_test$stan_pred_mod_ep30, 
+                    target = stan40_test$target01)
+
+(stan_40test_origmod = get_sen_spec_withCI(score_vec = stan40_test$stan_pred_mod_ep30, 
+                    target = stan40_test$target01, 
+                    threshold = thresh_ep30, 
+                    n_it = 500))
+
+```
+
+
+
+
+##### By sex 
+```{r}
+
+auroc_auprc_split(score_vec = stan_merge$stan_pred_mod_ep30, 
+               target = stan_merge$target01, 
+               split_vec = stan_merge$sex, 
+                  n_it=500)
+
+sen_spec_split(score_vec = stan_merge$stan_pred_mod_ep30, 
+               target = stan_merge$target01, 
+               split_vec = stan_merge$sex, 
+               threshold = thresh_ep30, 
+               n_it = 500)
+```
+
+
+##### By side
+```{r}
+
+auroc_auprc_split(score_vec = stan_merge$stan_pred_mod_ep30, 
+               target = stan_merge$target01, 
+               split_vec = stan_merge$`side of hydronephrosis`, 
+                  n_it=500)
+
+sen_spec_split(score_vec = stan_merge$stan_pred_mod_ep30, 
+               target = stan_merge$target01, 
+               split_vec = stan_merge$`side of hydronephrosis`, 
+               threshold = thresh_ep30, 
+               n_it = 500)
+
+```
+
+
+##### By Age
+```{r}
+auroc_auprc_split(score_vec = stan_merge$stan_pred_mod_ep30, 
+               target = stan_merge$target01, 
+               split_vec = stan_merge$age_grps, 
+                  n_it=500)
+
+sen_spec_split(score_vec = stan_merge$stan_pred_mod_ep30, 
+               target = stan_merge$target01, 
+               split_vec = stan_merge$age_grps, 
+               threshold = thresh_ep30, 
+               n_it = 500)
+
+```
+
+
+### UIowa original model performance
+```{r, include=FALSE}
+
+ui_preds = data.frame(ui_pred_mod_ep30 = st_stan_test$ui[[1]][[30]]$pred_scaled,
+                        id = st_stan_test$ui[[1]][[30]]$id,
+                        target = st_stan_test$ui[[1]][[30]]$target)
+
+ui_preds$target = factor(ui_preds$target, levels = c(0,1), labels = c("no Obstruction", "Obstruction"))
+ui_df = ui_preds
+
+ui_datasheet = read.csv(paste0(results_wd,"/Datasheets/UIowa_DeID_Datasheet.csv"), header = TRUE, as.is = TRUE)
+names(ui_datasheet)[1] = "Name"
+
+ui_df$pt_id = unlist(lapply(strsplit(as.character(ui_df$id),"_"),function(x){x[1]}))
+ui_df$target01 = ifelse(ui_df$target == "no Obstruction", 0, 1)
+
+ui_merge = merge(ui_df, ui_datasheet, by.y = "Name", by.x = "pt_id")
+
+ui_merge$age_days = ui_merge$Age_days
+
+ui_merge$age_grp = NA
+ui_merge$age_grp[ui_merge$age_days < 365*2] = "under2"
+ui_merge$age_grp[ui_merge$age_days >= 365*2 & ui_merge$age_days <= 365*5] = "age2to5"
+ui_merge$age_grp[ui_merge$age_days > 365*5] = "over5"
+
+ui_train = readRDS(paste0(results_wd, "/Datasheets/UI60%train_ids_20220114.rds"))
+
+ui40_test = ui_merge[!(ui_merge$pt_id %in% ui_train),]
+
+```
+
+#### Model performance 
+
+##### Overall
+```{r}
+
+get_auroc_aurpc(score_vec = ui_df$ui_pred_mod_ep30, 
+                    target = ui_df$target01)
+
+(ui_all_origmod = get_sen_spec_withCI(score_vec = ui_df$ui_pred_mod_ep30, 
+                    target = ui_df$target01, 
+                    threshold = thresh_ep30, 
+                    n_it = 500))
+
+```
+
+###### 40% Test
+```{r}
+
+get_auroc_aurpc(score_vec = ui40_test$ui_pred_mod_ep30, 
+                    target = ui40_test$target01)
+
+(ui_40test_origmod = get_sen_spec_withCI(score_vec = ui40_test$ui_pred_mod_ep30, 
+                    target = ui40_test$target01, 
+                    threshold = thresh_ep30, 
+                    n_it = 500))
+
+```
+
+##### By Sex
+```{r}
+
+auroc_auprc_split(score_vec = ui_merge$ui_pred_mod_ep30, 
+               target = ui_merge$target01, 
+               split_vec = ui_merge$Gender, 
+                  n_it=500)
+
+sen_spec_split(score_vec = ui_merge$ui_pred_mod_ep30, 
+               target = ui_merge$target01, 
+               split_vec = ui_merge$Gender, 
+               threshold = thresh_ep30, 
+               n_it = 500)
+
+```
+
+##### By HN Side
+```{r}
+auroc_auprc_split(score_vec = ui_merge$ui_pred_mod_ep30, 
+               target = ui_merge$target01, 
+               split_vec = ui_merge$U.B, 
+                  n_it=500)
+
+sen_spec_split(score_vec = ui_merge$ui_pred_mod_ep30, 
+               target = ui_merge$target01, 
+               split_vec = ui_merge$U.B, 
+               threshold = thresh_ep30, 
+               n_it = 500)
+
+```
+
+##### By Age Group
+```{r}
+
+auroc_auprc_split(score_vec = ui_merge$ui_pred_mod_ep30, 
+               target = ui_merge$target01, 
+               split_vec = ui_merge$age_grp, 
+                  n_it=500)
+
+sen_spec_split(score_vec = ui_merge$ui_pred_mod_ep30, 
+               target = ui_merge$target01, 
+               split_vec = ui_merge$age_grp, 
+               threshold = thresh_ep30, 
+               n_it = 500)
+
+```
+
+
+### CHOP original model performance
+```{r}
+
+chop_preds = data.frame(chop_pred_mod_ep30 = st_stan_test$chop[[1]][[30]]$pred_scaled,
+                        id = st_stan_test$chop[[1]][[30]]$id,
+                        target = st_stan_test$chop[[1]][[30]]$target)
+
+chop_preds$target = factor(chop_preds$target, levels = c(0,1), labels = c("no Obstruction", "Obstruction"))
+chop_df = chop_preds
+
+chop_datasheet = read.csv(paste0(results_wd,"/Datasheets/CHOP_deid_20220127.csv"), header = TRUE, as.is = TRUE)
+names(chop_datasheet)[1] = "Name"
+
+chop_df$pt_id = unlist(lapply(strsplit(as.character(chop_df$id),"_"),function(x){x[1]}))
+chop_df$pt_id = sub(pattern = "CHOP",replacement = "",chop_df$pt_id)
+chop_df$target01 = ifelse(chop_df$target == "no Obstruction", 0, 1)
+
+chop_merge = merge(chop_df, chop_datasheet, by.y = "Name", by.x = "pt_id")
+
+chop_merge$age_days = as.numeric(chop_merge$Age.of.patient.at.US..weeks.)*7
+
+chop_merge$age_grp = NA
+chop_merge$age_grp[chop_merge$age_days < 365*2] = "under2"
+chop_merge$age_grp[chop_merge$age_days >= 365*2 & chop_merge$age_days <= 365*5] = "age2to5"
+chop_merge$age_grp[chop_merge$age_days > 365*5] = "over5"
+
+chop_train = readRDS(paste0(results_wd, "/Datasheets/CHOP60%train_ids_20220114.rds"))
+chop_train = sub(pattern = "CHOP",replacement = "",x = chop_train)
+
+chop40_test = chop_merge[!(chop_merge$pt_id %in% chop_train),]
+
+```
+
+#### Model performance 
+
+##### Overall
+```{r}
+
+get_auroc_aurpc(score_vec = chop_df$chop_pred_mod_ep30, 
+                    target = chop_df$target01)
+
+(chop_all_origmod = get_sen_spec_withCI(score_vec = chop_df$chop_pred_mod_ep30, 
+                    target = chop_df$target01, 
+                    threshold = thresh_ep30, 
+                    n_it = 500))
+
+```
+
+###### 40% Test 
+```{r}
+
+get_auroc_aurpc(score_vec = chop40_test$chop_pred_mod_ep30, 
+                    target = chop40_test$target01)
+
+(chop_40test_origmod = get_sen_spec_withCI(score_vec = chop40_test$chop_pred_mod_ep30, 
+                    target = chop40_test$target01, 
+                    threshold = thresh_ep30, 
+                    n_it = 500))
+
+```
+
+##### By Sex
+```{r}
+auroc_auprc_split(score_vec = chop_merge$chop_pred_mod_ep30, 
+               target = chop_merge$target01, 
+               split_vec = chop_merge$Sex, 
+                  n_it=500)
+
+sen_spec_split(score_vec = chop_merge$chop_pred_mod_ep30, 
+               target = chop_merge$target01, 
+               split_vec = chop_merge$Sex, 
+               threshold = thresh_ep30, 
+               n_it = 500)
+
+```
+
+##### By HN Side
+```{r}
+
+auroc_auprc_split(score_vec = chop_merge$chop_pred_mod_ep30, 
+               target = chop_merge$target01, 
+               split_vec = chop_merge$Laterality.of.hydro, 
+                  n_it=500)
+
+sen_spec_split(score_vec = chop_merge$chop_pred_mod_ep30, 
+               target = chop_merge$target01, 
+               split_vec = chop_merge$Laterality.of.hydro, 
+               threshold = thresh_ep30, 
+               n_it = 500)
+
+```
+
+##### By Age Group
+```{r}
+
+auroc_auprc_split(score_vec = chop_merge$chop_pred_mod_ep30, 
+               target = chop_merge$target01, 
+               split_vec = chop_merge$age_grp, 
+                  n_it=500)
+
+sen_spec_split(score_vec = chop_merge$chop_pred_mod_ep30, 
+               target = chop_merge$target01, 
+               split_vec = chop_merge$age_grp, 
+               threshold = thresh_ep30, 
+               n_it = 500)
+
+```
