@@ -552,7 +552,7 @@ test = v8()
 test$assign("dat", JS(raw_in))
 st_stan_test = test$get("dat")
 
-st_stan_test = add_platt_preds_dprep(in_list = st_stan_test, epoch = 30,sensitivity = SENSITIVITY, verbose = FALSE)
+st_stan_test = add_platt_preds_dprep(in_list = st_stan_test, epoch = 30,sensitivity = SENSITIVITY, verbose = TRUE)
 
 st_preds = data.frame(st_pred_mod_ep30 = st_stan_test$st[[1]][[30]]$pred_scaled,
                       id = st_stan_test$st[[1]][[30]]$id,

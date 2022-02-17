@@ -103,7 +103,7 @@ def load_image(sag_path, trans_path, output_dim=256):
 
 
 class SiamNet(nn.Module):
-    def __init__(self, classes=2, num_inputs=2, dropout_rate=0.5, output_dim=256, cov_layers=True):
+    def __init__(self, cov_layers, classes=2, num_inputs=2, dropout_rate=0.5, output_dim=256):
         super(SiamNet, self).__init__()
 
         self.cov_layers = cov_layers
@@ -276,15 +276,22 @@ if __name__ == '__main__':
     parser.add_argument('--trans_path', default='/ModelTest/Images/test_RT_cropped1.png', type=str)
     parser.add_argument('--age_wks', default=34, type=int)
     parser.add_argument('--left_kidney', action="store_true", help="Flag for left kidney")
-    parser.add_argument('-checkpoint', default="\ModelTest\ModelWeights\SickKids_origST_TrainOnly_40epochs_bs16_lr0.001_RCFalse_covTrue_OSFalse_30thEpoch_20210614_v5.pth")
+    parser.add_argument('--with_cov', action="store_true", help="Flag for no Covariate model")
+    # parser.add_argument('-checkpoint', default="\ModelTest\ModelWeights\SickKids_origST_TrainOnly_40epochs_bs16_lr0.001_RCFalse_covTrue_OSFalse_30thEpoch_20210614_v5.pth")
     args = parser.parse_args()
+
+    if args.with_cov:
+        checkpoint = "/ModelTest/ModelWeights/SickKids_origST_TrainOnly_40epochs_bs16_lr0.001_RCFalse_covTrue_OSFalse_30thEpoch_20210614_v5.pth"
+    else:
+        checkpoint = "/ModelTest/ModelWeights/NoFinalLayerFineTuneNoCov_v2_TrainOnly_40epochs_bs16_lr0.001_RCFalse_covFalse_OSFalse_30thEpoch.pth"
+
 
     dir_paste = os.getcwd().split("\\")[0:(len(os.getcwd().split("\\"))-3)]
 
     in_dir = "\\".join(dir_paste) + "\\"
 
-    checkpoint = in_dir + args.checkpoint
-    net = SiamNet().to(device)
+    checkpoint = in_dir + checkpoint
+    net = SiamNet(cov_layers=args.with_cov).to(device)
 
     if torch.cuda.is_available():
         pretrained_dict = torch.load(checkpoint)['model_state_dict']
@@ -320,11 +327,19 @@ if __name__ == '__main__':
 
     with torch.no_grad():
         net.zero_grad()
-        output = net(combined_image, age=args.age_wks, left=args.left_kidney)
+        if args.with_cov:
+            output = net(combined_image, age=args.age_wks, left=args.left_kidney)
+        else:
+            output = net(combined_image)
+
         output_softmax = softmax(output)
         pred_prob = output_softmax[:, 1]
 
-        ## use Platt scaling determined a priori to scale prediction
-        pred_prob = np.exp(-2.311 + 3.5598*float(pred_prob))
+
+        if args.with_cov:
+            ## use Platt scaling determined a priori to scale prediction
+            pred_prob = np.exp(-2.311 + 3.5598*float(pred_prob))
+        else:
+            pred_prob = np(exp(-2.5982 + 4.318*float(pred_prob)))
 
     print("Probability of surgery:::{:6.3f}".format(float(pred_prob)))
