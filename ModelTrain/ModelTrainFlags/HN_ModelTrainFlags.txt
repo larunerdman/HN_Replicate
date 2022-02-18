@@ -1,0 +1,98 @@
+
+Script:
+TrainModel_HN_Obs_20220218.py
+
+Basic model: 
+--cov_in --train_only 
+--out_label SickKidsTrained
+
+	if embedding: 
+--cov_in --train_only --embed --embed_epoch 30	
+--out_label SickKidsTrained
+
+Stanford fine-tune: 
+--cov_in --train_only
+--checkpoint "C:/Users/lauren erdman/Desktop/kidney_img/HN/SickKids/orig_st_results/SickKids_origST_TrainOnly_40epochs_bs16_lr0.001_RCFalse_covTrue_OSFalse_30thEpoch_20210614_v5.pth"
+--out_label StanfordFinetune60%
+--final_layers
+--json_infile Stan_rootfilenames_finetune60%_train_20220114.json
+--json_stan_test Stan_rootfilenames_finetune60%_test_20220114.json
+
+
+UIowa fine-tune: 
+--cov_in --train_only
+--checkpoint "C:/Users/lauren erdman/Desktop/kidney_img/HN/SickKids/orig_st_results/SickKids_origST_TrainOnly_40epochs_bs16_lr0.001_RCFalse_covTrue_OSFalse_30thEpoch_20210614_v5.pth"
+--out_label UIowaFinetune60%
+--final_layers
+--json_infile UIowa_moreDat_finetune60%_train_20220114.json
+--json_ui_test UIowa_moreDat_finetune60%_test_20220114.json
+
+
+CHOP fine-tune:
+--cov_in --train_only
+--checkpoint "C:/Users/lauren erdman/Desktop/kidney_img/HN/SickKids/orig_st_results/SickKids_origST_TrainOnly_40epochs_bs16_lr0.001_RCFalse_covTrue_OSFalse_30thEpoch_20210614_v5.pth"
+--out_label CHOPFinetune60%
+--final_layers 
+--json_infile CHOP_finetune60%_train_rootfilenames_20220114.json
+--json_chop_test CHOP_finetune60%_test_rootfilenames_20220114.json
+
+Combined train: 
+--cov_in --train_only
+--checkpoint "C:/Users/lauren erdman/Desktop/kidney_img/HN/SickKids/orig_st_results/SickKids_origST_TrainOnly_40epochs_bs16_lr0.001_RCFalse_covTrue_OSFalse_30thEpoch_20210614_v5.pth"
+--out_label CombinedTrain60%
+--final_layers
+--json_infile SKSTStanUICHOP_60%train_noContra_Updated20220124.json
+--json_stan_test Stan_rootfilenames_finetune60%_test_20220114.json
+--json_ui_test UIowa_moreDat_finetune60%_test_20220114.json
+--json_chop_test CHOP_finetune60%_test_rootfilenames_20220114.json
+
+Combined train, no covariates: 
+--train_only
+--out_label CombinedTrain60%NoCov
+--final_layers
+--json_infile SKSTStanUICHOP_60%train_noContra_Updated20220124.json
+--json_stan_test Stan_rootfilenames_finetune60%_test_20220114.json
+--json_ui_test UIowa_moreDat_finetune60%_test_20220114.json
+--json_chop_test CHOP_finetune60%_test_rootfilenames_20220114.json
+
+Combined train with one hot: 
+--cov_in --train_only
+--checkpoint "C:/Users/lauren erdman/Desktop/kidney_img/HN/SickKids/orig_st_results/SickKids_origST_TrainOnly_40epochs_bs16_lr0.001_RCFalse_covTrue_OSFalse_30thEpoch_20210614_v5.pth"
+--out_label CombinedTrain60%_withOneHot
+--final_layers
+--json_infile SKSTStanUICHOP_60%train_noContra_Updated20220124.json
+--json_stan_test Stan_rootfilenames_finetune60%_test_20220114.json
+--json_ui_test UIowa_moreDat_finetune60%_test_20220114.json
+--json_chop_test CHOP_finetune60%_test_rootfilenames_20220114.json
+--one_hot
+
+Ablation: 
+	Age:
+--cov_in --train_only --ablate_age
+--out_label SickKidsTrained_AgeAblated
+
+	Side:
+--cov_in --train_only --ablate_side
+--out_label SickKidsTrained_SideAblated
+	
+	Age and Side:
+--cov_in --train_only --ablate_age --ablate_side
+--out_label SickKidsTrained_AgeSideAblated
+
+Alternative architecture: 
+--cov_in --train_only --alt_model
+--out_label SickKidsTrained_AltModel
+
+Ablation in alternative architecture model: 
+	Age:
+--cov_in --train_only --ablate_age
+--out_label SickKidsTrained_AltModel_AgeAblated
+
+	Side:
+--cov_in --train_only --ablate_side
+--out_label SickKidsTrained_AltModel_SideAblated
+	
+	Age and Side:
+--cov_in --train_only --ablate_age --ablate_side
+--out_label SickKidsTrained_AltModel_AgeSideAblated
+

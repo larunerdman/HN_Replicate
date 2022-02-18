@@ -185,7 +185,7 @@ class SiamNet(nn.Module):
     def save(self, checkpoint):
         torch.save(self.state_dict(), checkpoint)
 
-    def forward(self, x, age, left):
+    def forward(self, x, age=None, left=None):
 
         if self.num_inputs == 1:
             x = x.unsqueeze(1)
@@ -340,6 +340,6 @@ if __name__ == '__main__':
             ## use Platt scaling determined a priori to scale prediction
             pred_prob = np.exp(-2.311 + 3.5598*float(pred_prob))
         else:
-            pred_prob = np(exp(-2.5982 + 4.318*float(pred_prob)))
+            pred_prob = np.exp(-2.5982 + 4.318*float(pred_prob))
 
     print("Probability of surgery:::{:6.3f}".format(float(pred_prob)))
