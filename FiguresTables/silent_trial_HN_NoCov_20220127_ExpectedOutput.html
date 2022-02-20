@@ -1591,8 +1591,8 @@ div.tocify {
 <pre class="r"><code>print(results_wd)</code></pre>
 <pre><code>## [1] &quot;C:/Users/lauren erdman/OneDrive - SickKids/HNReplicateData_20220218/Results_20220126/&quot;</code></pre>
 </div>
-<div id="original-sickkids-model" class="section level1">
-<h1><span class="header-section-number">2</span> Original SickKids model</h1>
+<div id="sickkids-data" class="section level1">
+<h1><span class="header-section-number">2</span> SickKids data</h1>
 <div id="model-performance-tables-2-and-3" class="section level4">
 <h4><span class="header-section-number">2.0.0.1</span> Model performance (Tables 2 and 3)</h4>
 <div id="overall" class="section level5">
@@ -1615,29 +1615,29 @@ cat(&quot;All silent trial participant ultrasounds overall model performance&quo
 ## 
 ##     cov, smooth, var</code></pre>
 <pre><code>## $auprc
-## [1] 0.5957591
+## [1] 0.614123
 ## 
 ## $auprc_ci
 ##      2.5%     97.5% 
-## 0.4840842 0.7186353 
+## 0.4996565 0.7292196 
 ## 
 ## $auroc
-## [1] 0.9404822
+## [1] 0.936478
 ## 
 ## $auroc_ci
 ##      2.5%     97.5% 
-## 0.9159803 0.9624874</code></pre>
+## 0.9090194 0.9615247</code></pre>
 <pre class="r"><code>(st_overall_origmod = get_sen_spec_withCI(score_vec = st_hn_only$st_pred_mod_ep30, 
                                          target = st_hn_only$target01, 
                                          threshold = thresh_ep30, 
                                          n_it = 500, out_vecs = FALSE))</code></pre>
 <pre><code>## $specificity
 ## $specificity$est
-## [1] 0.7185535
+## [1] 0.7248428
 ## 
 ## $specificity$ci
 ##      2.5%     97.5% 
-## 0.6808495 0.7502073 
+## 0.6889533 0.7579804 
 ## 
 ## 
 ## $sensitivity
@@ -1646,7 +1646,7 @@ cat(&quot;All silent trial participant ultrasounds overall model performance&quo
 ## 
 ## $sensitivity$ci
 ##      2.5%     97.5% 
-## 0.9112268 1.0000000</code></pre>
+## 0.9114226 1.0000000</code></pre>
 <pre class="r"><code>nocov_list = list()
 nocov_list[[&quot;st_overall&quot;]] = list()
 nocov_list[[&quot;st_overall&quot;]][[&quot;aucs&quot;]] = st_overall_origmod_auc
@@ -1666,7 +1666,7 @@ nocov_list[[&quot;st_overall&quot;]][[&quot;sen_spec&quot;]] = st_overall_origmo
 ## 
 ## $prep1$specificity$ci
 ##      2.5%     97.5% 
-## 0.6823016 0.7910001 
+## 0.6827874 0.7914526 
 ## 
 ## 
 ## $prep1$sensitivity
@@ -1682,11 +1682,11 @@ nocov_list[[&quot;st_overall&quot;]][[&quot;sen_spec&quot;]] = st_overall_origmo
 ## $prep2
 ## $prep2$specificity
 ## $prep2$specificity$est
-## [1] 0.7057221
+## [1] 0.7166213
 ## 
 ## $prep2$specificity$ci
 ##      2.5%     97.5% 
-## 0.6621253 0.7521308 
+## 0.6721078 0.7608889 
 ## 
 ## 
 ## $prep2$sensitivity
@@ -1694,8 +1694,8 @@ nocov_list[[&quot;st_overall&quot;]][[&quot;sen_spec&quot;]] = st_overall_origmo
 ## [1] 0.9459459
 ## 
 ## $prep2$sensitivity$ci
-##     2.5%    97.5% 
-## 0.872054 1.000000</code></pre>
+##      2.5%     97.5% 
+## 0.8571429 1.0000000</code></pre>
 </div>
 <div id="by-apd" class="section level5">
 <h5><span class="header-section-number">2.0.0.1.3</span> By ApD</h5>
@@ -1707,11 +1707,11 @@ nocov_list[[&quot;st_overall&quot;]][[&quot;sen_spec&quot;]] = st_overall_origmo
 <pre><code>## $apd_9_to_14
 ## $apd_9_to_14$specificity
 ## $apd_9_to_14$specificity$est
-## [1] 0.5496183
+## [1] 0.5038168
 ## 
 ## $apd_9_to_14$specificity$ci
 ##      2.5%     97.5% 
-## 0.4565498 0.6315789 
+## 0.4198473 0.5820896 
 ## 
 ## 
 ## $apd_9_to_14$sensitivity
@@ -1727,51 +1727,51 @@ nocov_list[[&quot;st_overall&quot;]][[&quot;sen_spec&quot;]] = st_overall_origmo
 ## $apd_6_to_9
 ## $apd_6_to_9$specificity
 ## $apd_6_to_9$specificity$est
-## [1] 0.7666667
+## [1] 0.7933333
 ## 
 ## $apd_6_to_9$specificity$ci
 ##      2.5%     97.5% 
-## 0.6979866 0.8322148 
+## 0.7283656 0.8595537 
 ## 
 ## 
 ## $apd_6_to_9$sensitivity
 ## $apd_6_to_9$sensitivity$est
-## [1] 0.6
+## [1] 0.8
 ## 
 ## $apd_6_to_9$sensitivity$ci
-##  2.5% 97.5% 
-##     0     1 
+##      2.5%     97.5% 
+## 0.3333333 1.0000000 
 ## 
 ## 
 ## 
 ## $over_14
 ## $over_14$specificity
 ## $over_14$specificity$est
-## [1] 0.2142857
+## [1] 0.2
 ## 
 ## $over_14$specificity$ci
-##     2.5%    97.5% 
-## 0.116389 0.307103 
+##      2.5%     97.5% 
+## 0.1118545 0.2973111 
 ## 
 ## 
 ## $over_14$sensitivity
 ## $over_14$sensitivity$est
-## [1] 1
+## [1] 0.983871
 ## 
 ## $over_14$sensitivity$ci
-##  2.5% 97.5% 
-##     1     1 
+##      2.5%     97.5% 
+## 0.9454545 1.0000000 
 ## 
 ## 
 ## 
 ## $under_6
 ## $under_6$specificity
 ## $under_6$specificity$est
-## [1] 0.8978873
+## [1] 0.9225352
 ## 
 ## $under_6$specificity$ci
 ##      2.5%     97.5% 
-## 0.8573063 0.9295775 
+## 0.8873239 0.9542254 
 ## 
 ## 
 ## $under_6$sensitivity
@@ -1812,11 +1812,11 @@ nocov_list[[&quot;st_overall&quot;]][[&quot;sen_spec&quot;]] = st_overall_origmo
 <pre><code>## [[1]]
 ## [[1]]$specificity
 ## [[1]]$specificity$est
-## [1] 0.64
+## [1] 0.6618182
 ## 
 ## [[1]]$specificity$ci
 ##      2.5%     97.5% 
-## 0.5856287 0.6944608 
+## 0.6091954 0.7216000 
 ## 
 ## 
 ## [[1]]$sensitivity
@@ -1825,18 +1825,18 @@ nocov_list[[&quot;st_overall&quot;]][[&quot;sen_spec&quot;]] = st_overall_origmo
 ## 
 ## [[1]]$sensitivity$ci
 ##      2.5%     97.5% 
-## 0.8880673 1.0000000 
+## 0.8965517 1.0000000 
 ## 
 ## 
 ## 
 ## [[2]]
 ## [[2]]$specificity
 ## [[2]]$specificity$est
-## [1] 0.8554217
+## [1] 0.8313253
 ## 
 ## [[2]]$specificity$ci
 ##      2.5%     97.5% 
-## 0.7790698 0.9268293 
+## 0.7515422 0.9114478 
 ## 
 ## 
 ## [[2]]$sensitivity
@@ -1856,7 +1856,7 @@ nocov_list[[&quot;st_overall&quot;]][[&quot;sen_spec&quot;]] = st_overall_origmo
 ## 
 ## [[3]]$specificity$ci
 ##      2.5%     97.5% 
-## 0.7019472 0.8025306 
+## 0.7014388 0.8025306 
 ## 
 ## 
 ## [[3]]$sensitivity
@@ -1875,34 +1875,34 @@ nocov_list[[&quot;st_overall&quot;]][[&quot;sen_spec&quot;]] = st_overall_origmo
                   n_it=500)</code></pre>
 <pre><code>## $Left
 ## $Left$auprc
-## [1] 0.5688856
+## [1] 0.5895005
 ## 
 ## $Left$auprc_ci
 ##      2.5%     97.5% 
-## 0.4536579 0.7119343 
+## 0.4676006 0.7224712 
 ## 
 ## $Left$auroc
-## [1] 0.9156173
+## [1] 0.9112616
 ## 
 ## $Left$auroc_ci
 ##      2.5%     97.5% 
-## 0.8826466 0.9495629 
+## 0.8763940 0.9465004 
 ## 
 ## 
 ## $Right
 ## $Right$auprc
-## [1] 0.6883226
+## [1] 0.6490824
 ## 
 ## $Right$auprc_ci
 ##      2.5%     97.5% 
-## 0.4238445 0.9172902 
+## 0.3991420 0.9008612 
 ## 
 ## $Right$auroc
-## [1] 0.988417
+## [1] 0.984556
 ## 
 ## $Right$auroc_ci
 ##      2.5%     97.5% 
-## 0.9749802 0.9992175</code></pre>
+## 0.9679509 0.9970660</code></pre>
 <pre class="r"><code>sen_spec_split(score_vec = st_hn_only$st_pred_mod_ep30, 
                target = st_hn_only$target01, 
                split_vec = st_hn_only$view_side, 
@@ -1911,11 +1911,11 @@ nocov_list[[&quot;st_overall&quot;]][[&quot;sen_spec&quot;]] = st_overall_origmo
 <pre><code>## $Left
 ## $Left$specificity
 ## $Left$specificity$est
-## [1] 0.647343
+## [1] 0.6594203
 ## 
 ## $Left$specificity$ci
 ##      2.5%     97.5% 
-## 0.5987455 0.6942937 
+## 0.6132396 0.7051996 
 ## 
 ## 
 ## $Left$sensitivity
@@ -1924,18 +1924,18 @@ nocov_list[[&quot;st_overall&quot;]][[&quot;sen_spec&quot;]] = st_overall_origmo
 ## 
 ## $Left$sensitivity$ci
 ##      2.5%     97.5% 
-## 0.8888919 1.0000000 
+## 0.8955989 1.0000000 
 ## 
 ## 
 ## 
 ## $Right
 ## $Right$specificity
 ## $Right$specificity$est
-## [1] 0.8513514
+## [1] 0.8468468
 ## 
 ## $Right$specificity$ci
 ##      2.5%     97.5% 
-## 0.8004398 0.8946222 
+## 0.8022458 0.8948934 
 ## 
 ## 
 ## $Right$sensitivity
@@ -1954,18 +1954,18 @@ nocov_list[[&quot;st_overall&quot;]][[&quot;sen_spec&quot;]] = st_overall_origmo
                   n_it=500)</code></pre>
 <pre><code>## $under2
 ## $under2$auprc
-## [1] 0.6073172
+## [1] 0.6294404
 ## 
 ## $under2$auprc_ci
-##      2.5%     97.5% 
-## 0.5054458 0.7507209 
+##     2.5%    97.5% 
+## 0.511212 0.759439 
 ## 
 ## $under2$auroc
-## [1] 0.9426326
+## [1] 0.941302
 ## 
 ## $under2$auroc_ci
 ##      2.5%     97.5% 
-## 0.9169738 0.9658295 
+## 0.9133213 0.9654281 
 ## 
 ## 
 ## $age2to5
@@ -1973,18 +1973,18 @@ nocov_list[[&quot;st_overall&quot;]][[&quot;sen_spec&quot;]] = st_overall_origmo
 ## 
 ## $over5
 ## $over5$auprc
-## [1] 0.5694444
+## [1] 0.4305556
 ## 
 ## $over5$auprc_ci
 ##  2.5% 97.5% 
 ##   0.0   0.8 
 ## 
 ## $over5$auroc
-## [1] 0.8888889
+## [1] 0.7777778
 ## 
 ## $over5$auroc_ci
 ##  2.5% 97.5% 
-##   0.5   1.0</code></pre>
+## 0.375 1.000</code></pre>
 <pre class="r"><code>sen_spec_split(score_vec = st_hn_only$st_pred_mod_ep30, 
                target = st_hn_only$target01, 
                split_vec = st_hn_only$age_grps_fac, 
@@ -1993,11 +1993,11 @@ nocov_list[[&quot;st_overall&quot;]][[&quot;sen_spec&quot;]] = st_overall_origmo
 <pre><code>## $under2
 ## $under2$specificity
 ## $under2$specificity$est
-## [1] 0.7326203
+## [1] 0.7361854
 ## 
 ## $under2$specificity$ci
 ##      2.5%     97.5% 
-## 0.6974299 0.7663728 
+## 0.7002581 0.7717749 
 ## 
 ## 
 ## $under2$sensitivity
@@ -2006,18 +2006,18 @@ nocov_list[[&quot;st_overall&quot;]][[&quot;sen_spec&quot;]] = st_overall_origmo
 ## 
 ## $under2$sensitivity$ci
 ##      2.5%     97.5% 
-## 0.9275362 1.0000000 
+## 0.9319465 1.0000000 
 ## 
 ## 
 ## 
 ## $age2to5
 ## $age2to5$specificity
 ## $age2to5$specificity$est
-## [1] 0.6111111
+## [1] 0.6388889
 ## 
 ## $age2to5$specificity$ci
 ##      2.5%     97.5% 
-## 0.4861111 0.7083333 
+## 0.5138889 0.7500000 
 ## 
 ## 
 ## $age2to5$sensitivity
@@ -2078,11 +2078,11 @@ nocov_list[[&quot;st_overall&quot;]][[&quot;sen_spec&quot;]] = st_overall_origmo
 <pre><code>## $M
 ## $M$specificity
 ## $M$specificity$est
-## [1] 0.696319
+## [1] 0.6993865
 ## 
 ## $M$specificity$ci
 ##      2.5%     97.5% 
-## 0.6472393 0.7484975 
+## 0.6527649 0.7512059 
 ## 
 ## 
 ## $M$sensitivity
@@ -2098,11 +2098,11 @@ nocov_list[[&quot;st_overall&quot;]][[&quot;sen_spec&quot;]] = st_overall_origmo
 ## $L
 ## $L$specificity
 ## $L$specificity$est
-## [1] 0.7447552
+## [1] 0.7552448
 ## 
 ## $L$specificity$ci
-##      2.5%     97.5% 
-## 0.6929838 0.7971285 
+##     2.5%    97.5% 
+## 0.701766 0.807049 
 ## 
 ## 
 ## $L$sensitivity
@@ -2111,7 +2111,7 @@ nocov_list[[&quot;st_overall&quot;]][[&quot;sen_spec&quot;]] = st_overall_origmo
 ## 
 ## $L$sensitivity$ci
 ##      2.5%     97.5% 
-## 0.8837209 1.0000000 
+## 0.8900362 1.0000000 
 ## 
 ## 
 ## 
@@ -2207,47 +2207,47 @@ nocov_list[[&quot;st_overall&quot;]][[&quot;sen_spec&quot;]] = st_overall_origmo
 ## 
 ## $`1`$specificity$ci
 ##      2.5%     97.5% 
-## 0.6486901 0.7749528 
+## 0.6500749 0.7742408 
 ## 
 ## 
 ## $`1`$sensitivity
 ## $`1`$sensitivity$est
-## [1] 0.9642857
+## [1] 1
 ## 
 ## $`1`$sensitivity$ci
 ##  2.5% 97.5% 
-## 0.875 1.000 
+##     1     1 
 ## 
 ## 
 ## 
 ## $`2`
 ## $`2`$specificity
 ## $`2`$specificity$est
-## [1] 0.7282609
+## [1] 0.7391304
 ## 
 ## $`2`$specificity$ci
 ##      2.5%     97.5% 
-## 0.6610427 0.7904556 
+## 0.6739701 0.8027948 
 ## 
 ## 
 ## $`2`$sensitivity
 ## $`2`$sensitivity$est
-## [1] 1
+## [1] 0.9583333
 ## 
 ## $`2`$sensitivity$ci
-##  2.5% 97.5% 
-##     1     1 
+##      2.5%     97.5% 
+## 0.8602273 1.0000000 
 ## 
 ## 
 ## 
 ## $`3`
 ## $`3`$specificity
 ## $`3`$specificity$est
-## [1] 0.7461538
+## [1] 0.7769231
 ## 
 ## $`3`$specificity$ci
 ##      2.5%     97.5% 
-## 0.6678846 0.8217802 
+## 0.7063025 0.8503937 
 ## 
 ## 
 ## $`3`$sensitivity
@@ -2263,11 +2263,11 @@ nocov_list[[&quot;st_overall&quot;]][[&quot;sen_spec&quot;]] = st_overall_origmo
 ## $`4`
 ## $`4`$specificity
 ## $`4`$specificity$est
-## [1] 0.6825397
+## [1] 0.6666667
 ## 
 ## $`4`$specificity$ci
 ##      2.5%     97.5% 
-## 0.5689655 0.7878788 
+## 0.5403005 0.7868852 
 ## 
 ## 
 ## $`4`$sensitivity
@@ -2283,11 +2283,11 @@ nocov_list[[&quot;st_overall&quot;]][[&quot;sen_spec&quot;]] = st_overall_origmo
 ## $`5`
 ## $`5`$specificity
 ## $`5`$specificity$est
-## [1] 0.65625
+## [1] 0.625
 ## 
 ## $`5`$specificity$ci
-##      2.5%     97.5% 
-## 0.4838710 0.7941176 
+##    2.5%   97.5% 
+## 0.43750 0.78125 
 ## 
 ## 
 ## $`5`$sensitivity
@@ -2368,11 +2368,11 @@ nocov_list[[&quot;st_overall&quot;]][[&quot;sen_spec&quot;]] = st_overall_origmo
 <pre><code>## $Toshiba
 ## $Toshiba$specificity
 ## $Toshiba$specificity$est
-## [1] 0.7579251
+## [1] 0.7723343
 ## 
 ## $Toshiba$specificity$ci
 ##      2.5%     97.5% 
-## 0.7130795 0.8020054 
+## 0.7298035 0.8158286 
 ## 
 ## 
 ## $Toshiba$sensitivity
@@ -2388,11 +2388,11 @@ nocov_list[[&quot;st_overall&quot;]][[&quot;sen_spec&quot;]] = st_overall_origmo
 ## $Philips
 ## $Philips$specificity
 ## $Philips$specificity$est
-## [1] 0.6903226
+## [1] 0.683871
 ## 
 ## $Philips$specificity$ci
 ##      2.5%     97.5% 
-## 0.6229907 0.7565160 
+## 0.6153758 0.7564988 
 ## 
 ## 
 ## $Philips$sensitivity
@@ -2401,7 +2401,7 @@ nocov_list[[&quot;st_overall&quot;]][[&quot;sen_spec&quot;]] = st_overall_origmo
 ## 
 ## $Philips$sensitivity$ci
 ##      2.5%     97.5% 
-## 0.8467349 1.0000000 
+## 0.8628135 1.0000000 
 ## 
 ## 
 ## 
@@ -2412,7 +2412,7 @@ nocov_list[[&quot;st_overall&quot;]][[&quot;sen_spec&quot;]] = st_overall_origmo
 ## 
 ## $Samsung$specificity$ci
 ##      2.5%     97.5% 
-## 0.5669291 0.7233396 
+## 0.5666962 0.7204884 
 ## 
 ## 
 ## $Samsung$sensitivity
@@ -2497,38 +2497,38 @@ nocov_list[[&quot;st_overall&quot;]][[&quot;sen_spec&quot;]] = st_overall_origmo
 (st_mostrec_origmod_auc = get_auroc_aurpc(score_vec = hn_only_most_recent$st_pred_mod_ep30, 
                            target = hn_only_most_recent$target01))</code></pre>
 <pre><code>## $auprc
-## [1] 0.6538056
+## [1] 0.6807014
 ## 
 ## $auprc_ci
 ##      2.5%     97.5% 
-## 0.4722727 0.8275451 
+## 0.4929803 0.8310327 
 ## 
 ## $auroc
-## [1] 0.930624
+## [1] 0.9197455
 ## 
 ## $auroc_ci
 ##      2.5%     97.5% 
-## 0.8695606 0.9743933</code></pre>
+## 0.8476977 0.9730816</code></pre>
 <pre class="r"><code>(st_mostrec_origmod = get_sen_spec_withCI(score_vec = hn_only_most_recent$st_pred_mod_ep30, 
                                          target = hn_only_most_recent$target01, 
                                          threshold = thresh_ep30, 
                                          n_it = 500, out_vecs = FALSE))</code></pre>
 <pre><code>## $specificity
 ## $specificity$est
-## [1] 0.7356322
+## [1] 0.7413793
 ## 
 ## $specificity$ci
 ##      2.5%     97.5% 
-## 0.6675872 0.7977220 
+## 0.6772735 0.8044693 
 ## 
 ## 
 ## $sensitivity
 ## $sensitivity$est
-## [1] 0.9285714
+## [1] 0.8928571
 ## 
 ## $sensitivity$ci
 ##      2.5%     97.5% 
-## 0.8236413 1.0000000</code></pre>
+## 0.7826087 1.0000000</code></pre>
 <pre class="r"><code>nocov_list[[&quot;st_mostrec&quot;]] = list()
 nocov_list[[&quot;st_mostrec&quot;]][[&quot;aucs&quot;]] = st_mostrec_origmod_auc
 nocov_list[[&quot;st_mostrec&quot;]][[&quot;sen_spec&quot;]] = st_mostrec_origmod</code></pre>
@@ -2541,34 +2541,34 @@ nocov_list[[&quot;st_mostrec&quot;]][[&quot;sen_spec&quot;]] = st_mostrec_origmo
                   n_it=500)</code></pre>
 <pre><code>## $prep1
 ## $prep1$auprc
-## [1] 0.7061523
+## [1] 0.7088246
 ## 
 ## $prep1$auprc_ci
-##      2.5%     97.5% 
-## 0.4061577 0.8923808 
+##     2.5%    97.5% 
+## 0.420876 0.881685 
 ## 
 ## $prep1$auroc
-## [1] 0.9273504
+## [1] 0.9166667
 ## 
 ## $prep1$auroc_ci
 ##      2.5%     97.5% 
-## 0.8144526 0.9935045 
+## 0.7874657 0.9926290 
 ## 
 ## 
 ## $prep2
 ## $prep2$auprc
-## [1] 0.5958017
+## [1] 0.5906094
 ## 
 ## $prep2$auprc_ci
 ##      2.5%     97.5% 
-## 0.3787132 0.8377023 
+## 0.3634865 0.8433729 
 ## 
 ## $prep2$auroc
-## [1] 0.9379085
+## [1] 0.9215686
 ## 
 ## $prep2$auroc_ci
 ##      2.5%     97.5% 
-## 0.8815635 0.9830653</code></pre>
+## 0.8461291 0.9805882</code></pre>
 <pre class="r"><code>sen_spec_split(score_vec = hn_only_most_recent$st_pred_mod_ep30, 
                target = hn_only_most_recent$target01, 
                split_vec = hn_only_most_recent$prep, 
@@ -2577,11 +2577,11 @@ nocov_list[[&quot;st_mostrec&quot;]][[&quot;sen_spec&quot;]] = st_mostrec_origmo
 <pre><code>## $prep1
 ## $prep1$specificity
 ## $prep1$specificity$est
-## [1] 0.75
+## [1] 0.7916667
 ## 
 ## $prep1$specificity$ci
 ##      2.5%     97.5% 
-## 0.6489821 0.8561594 
+## 0.7042254 0.8875057 
 ## 
 ## 
 ## $prep1$sensitivity
@@ -2597,20 +2597,20 @@ nocov_list[[&quot;st_mostrec&quot;]][[&quot;sen_spec&quot;]] = st_mostrec_origmo
 ## $prep2
 ## $prep2$specificity
 ## $prep2$specificity$est
-## [1] 0.7254902
+## [1] 0.7058824
 ## 
 ## $prep2$specificity$ci
 ##      2.5%     97.5% 
-## 0.6446421 0.8118812 
+## 0.6146107 0.7961165 
 ## 
 ## 
 ## $prep2$sensitivity
 ## $prep2$sensitivity$est
-## [1] 0.9333333
+## [1] 0.8666667
 ## 
 ## $prep2$sensitivity$ci
 ##      2.5%     97.5% 
-## 0.7732906 1.0000000</code></pre>
+## 0.6666667 1.0000000</code></pre>
 </div>
 <div id="by-sex" class="section level5">
 <h5><span class="header-section-number">2.0.1.1.3</span> By Sex</h5>
@@ -2620,34 +2620,34 @@ nocov_list[[&quot;st_mostrec&quot;]][[&quot;sen_spec&quot;]] = st_mostrec_origmo
                   n_it=500)</code></pre>
 <pre><code>## $male
 ## $male$auprc
-## [1] 0.6723996
+## [1] 0.692968
 ## 
 ## $male$auprc_ci
 ##      2.5%     97.5% 
-## 0.4680352 0.8571201 
+## 0.4734649 0.8529119 
 ## 
 ## $male$auroc
-## [1] 0.9313929
+## [1] 0.9196985
 ## 
 ## $male$auroc_ci
 ##      2.5%     97.5% 
-## 0.8729674 0.9745519 
+## 0.8523166 0.9701078 
 ## 
 ## 
 ## $female
 ## $female$auprc
-## [1] 0.2083333
+## [1] 0.2916667
 ## 
 ## $female$auprc_ci
 ##  2.5% 97.5% 
-##  0.00  0.75 
+##   0.0   0.8 
 ## 
 ## $female$auroc
-## [1] 0.9615385
+## [1] 0.9807692
 ## 
 ## $female$auroc_ci
 ##      2.5%     97.5% 
-## 0.8514245 1.0000000</code></pre>
+## 0.9230769 1.0000000</code></pre>
 <pre class="r"><code>sen_spec_split(score_vec = hn_only_most_recent$st_pred_mod_ep30, 
                target = hn_only_most_recent$target01, 
                split_vec = hn_only_most_recent$sex, 
@@ -2656,31 +2656,31 @@ nocov_list[[&quot;st_mostrec&quot;]][[&quot;sen_spec&quot;]] = st_mostrec_origmo
 <pre><code>## $male
 ## $male$specificity
 ## $male$specificity$est
-## [1] 0.7432432
+## [1] 0.7364865
 ## 
 ## $male$specificity$ci
 ##      2.5%     97.5% 
-## 0.6755817 0.8139297 
+## 0.6688729 0.8034209 
 ## 
 ## 
 ## $male$sensitivity
 ## $male$sensitivity$est
-## [1] 0.9230769
+## [1] 0.8846154
 ## 
 ## $male$sensitivity$ci
-##      2.5%     97.5% 
-## 0.8164141 1.0000000 
+##  2.5% 97.5% 
+##  0.75  1.00 
 ## 
 ## 
 ## 
 ## $female
 ## $female$specificity
 ## $female$specificity$est
-## [1] 0.6923077
+## [1] 0.7692308
 ## 
 ## $female$specificity$ci
 ##      2.5%     97.5% 
-## 0.5000000 0.8636646 
+## 0.6073077 0.9200000 
 ## 
 ## 
 ## $female$sensitivity
@@ -2699,34 +2699,34 @@ nocov_list[[&quot;st_mostrec&quot;]][[&quot;sen_spec&quot;]] = st_mostrec_origmo
                   n_it=500)</code></pre>
 <pre><code>## $apd_6_to_9
 ## $apd_6_to_9$auprc
-## [1] 0.104543
+## [1] 0.1136958
 ## 
 ## $apd_6_to_9$auprc_ci
 ##      2.5%     97.5% 
-## 0.0000000 0.5924759 
+## 0.0000000 0.6040133 
 ## 
 ## $apd_6_to_9$auroc
-## [1] 0.7416667
+## [1] 0.7083333
 ## 
 ## $apd_6_to_9$auroc_ci
 ##      2.5%     97.5% 
-## 0.3958985 1.0000000 
+## 0.4721195 1.0000000 
 ## 
 ## 
 ## $over_14
 ## $over_14$auprc
-## [1] 0.7067602
+## [1] 0.7463594
 ## 
 ## $over_14$auprc_ci
 ##      2.5%     97.5% 
-## 0.5281565 0.8992755 
+## 0.5530228 0.9074609 
 ## 
 ## $over_14$auroc
-## [1] 0.7546296
+## [1] 0.7685185
 ## 
 ## $over_14$auroc_ci
 ##      2.5%     97.5% 
-## 0.5695934 0.9060480 
+## 0.5934937 0.9156119 
 ## 
 ## 
 ## $under_6
@@ -2761,7 +2761,7 @@ nocov_list[[&quot;st_mostrec&quot;]][[&quot;sen_spec&quot;]] = st_mostrec_origmo
 ## 
 ## $apd_6_to_9$specificity$ci
 ##      2.5%     97.5% 
-## 0.6500000 0.8933855 
+## 0.6500000 0.8809524 
 ## 
 ## 
 ## $apd_6_to_9$sensitivity
@@ -2777,31 +2777,31 @@ nocov_list[[&quot;st_mostrec&quot;]][[&quot;sen_spec&quot;]] = st_mostrec_origmo
 ## $over_14
 ## $over_14$specificity
 ## $over_14$specificity$est
-## [1] 0.1666667
+## [1] 0.2222222
 ## 
 ## $over_14$specificity$ci
-##      2.5%     97.5% 
-## 0.0000000 0.3529412 
+##       2.5%      97.5% 
+## 0.05263158 0.41664087 
 ## 
 ## 
 ## $over_14$sensitivity
 ## $over_14$sensitivity$est
-## [1] 1
+## [1] 0.9583333
 ## 
 ## $over_14$sensitivity$ci
 ##  2.5% 97.5% 
-##     1     1 
+## 0.875 1.000 
 ## 
 ## 
 ## 
 ## $under_6
 ## $under_6$specificity
 ## $under_6$specificity$est
-## [1] 0.8780488
+## [1] 0.902439
 ## 
 ## $under_6$specificity$ci
 ##      2.5%     97.5% 
-## 0.8048780 0.9512195 
+## 0.8414634 0.9634146 
 ## 
 ## 
 ## $under_6$sensitivity
@@ -2817,11 +2817,11 @@ nocov_list[[&quot;st_mostrec&quot;]][[&quot;sen_spec&quot;]] = st_mostrec_origmo
 ## $apd_9_to_14
 ## $apd_9_to_14$specificity
 ## $apd_9_to_14$specificity$est
-## [1] 0.6666667
+## [1] 0.6060606
 ## 
 ## $apd_9_to_14$specificity$ci
 ##      2.5%     97.5% 
-## 0.4848485 0.8181818 
+## 0.4242424 0.7575758 
 ## 
 ## 
 ## $apd_9_to_14$sensitivity
@@ -2860,18 +2860,18 @@ nocov_list[[&quot;st_mostrec&quot;]][[&quot;sen_spec&quot;]] = st_mostrec_origmo
                   n_it=500)</code></pre>
 <pre><code>## [[1]]
 ## [[1]]$auprc
-## [1] 0.7294766
+## [1] 0.721873
 ## 
 ## [[1]]$auprc_ci
 ##      2.5%     97.5% 
-## 0.5576148 0.8671907 
+## 0.5506101 0.8584722 
 ## 
 ## [[1]]$auroc
-## [1] 0.9157105
+## [1] 0.9002648
 ## 
 ## [[1]]$auroc_ci
 ##      2.5%     97.5% 
-## 0.8378027 0.9729089 
+## 0.8077809 0.9689845 
 ## 
 ## 
 ## [[2]]
@@ -2900,20 +2900,20 @@ nocov_list[[&quot;st_mostrec&quot;]][[&quot;sen_spec&quot;]] = st_mostrec_origmo
 <pre><code>## [[1]]
 ## [[1]]$specificity
 ## [[1]]$specificity$est
-## [1] 0.6893204
+## [1] 0.7087379
 ## 
 ## [[1]]$specificity$ci
 ##      2.5%     97.5% 
-## 0.5999410 0.7757009 
+## 0.6187899 0.7949190 
 ## 
 ## 
 ## [[1]]$sensitivity
 ## [[1]]$sensitivity$est
-## [1] 0.9090909
+## [1] 0.8636364
 ## 
 ## [[1]]$sensitivity$ci
 ##      2.5%     97.5% 
-## 0.7840839 1.0000000 
+## 0.7142857 1.0000000 
 ## 
 ## 
 ## 
@@ -2940,11 +2940,11 @@ nocov_list[[&quot;st_mostrec&quot;]][[&quot;sen_spec&quot;]] = st_mostrec_origmo
 ## [[3]]
 ## [[3]]$specificity
 ## [[3]]$specificity$est
-## [1] 0.7142857
+## [1] 0.6904762
 ## 
 ## [[3]]$specificity$ci
 ##      2.5%     97.5% 
-## 0.5952381 0.8458333 
+## 0.5476190 0.8333333 
 ## 
 ## 
 ## [[3]]$sensitivity
@@ -2963,18 +2963,18 @@ nocov_list[[&quot;st_mostrec&quot;]][[&quot;sen_spec&quot;]] = st_mostrec_origmo
                   n_it=500)</code></pre>
 <pre><code>## $Left
 ## $Left$auprc
-## [1] 0.6162445
+## [1] 0.6289026
 ## 
 ## $Left$auprc_ci
 ##      2.5%     97.5% 
-## 0.4169748 0.8396984 
+## 0.4142555 0.8214665 
 ## 
 ## $Left$auroc
-## [1] 0.9119318
+## [1] 0.8958333
 ## 
 ## $Left$auroc_ci
 ##      2.5%     97.5% 
-## 0.8333600 0.9722305 
+## 0.8052141 0.9701581 
 ## 
 ## 
 ## $Right
@@ -2999,20 +2999,20 @@ nocov_list[[&quot;st_mostrec&quot;]][[&quot;sen_spec&quot;]] = st_mostrec_origmo
 <pre><code>## $Left
 ## $Left$specificity
 ## $Left$specificity$est
-## [1] 0.6944444
+## [1] 0.7013889
 ## 
 ## $Left$specificity$ci
 ##      2.5%     97.5% 
-## 0.6190476 0.7656777 
+## 0.6237025 0.7766455 
 ## 
 ## 
 ## $Left$sensitivity
 ## $Left$sensitivity$est
-## [1] 0.9090909
+## [1] 0.8636364
 ## 
 ## $Left$sensitivity$ci
 ##      2.5%     97.5% 
-## 0.7777778 1.0000000 
+## 0.7180556 1.0000000 
 ## 
 ## 
 ## 
@@ -3042,18 +3042,18 @@ nocov_list[[&quot;st_mostrec&quot;]][[&quot;sen_spec&quot;]] = st_mostrec_origmo
                   n_it=500)</code></pre>
 <pre><code>## $under2
 ## $under2$auprc
-## [1] 0.6639357
+## [1] 0.7033867
 ## 
 ## $under2$auprc_ci
 ##      2.5%     97.5% 
-## 0.4667488 0.8550562 
+## 0.4940855 0.8663209 
 ## 
 ## $under2$auroc
-## [1] 0.9355556
+## [1] 0.9313889
 ## 
 ## $under2$auroc_ci
 ##      2.5%     97.5% 
-## 0.8701179 0.9804940 
+## 0.8561626 0.9815519 
 ## 
 ## 
 ## $age2to5
@@ -3061,18 +3061,18 @@ nocov_list[[&quot;st_mostrec&quot;]][[&quot;sen_spec&quot;]] = st_mostrec_origmo
 ## 
 ## $over5
 ## $over5$auprc
-## [1] 0.5
+## [1] 0.2916667
 ## 
 ## $over5$auprc_ci
 ##      2.5%     97.5% 
 ## 0.0000000 0.6666667 
 ## 
 ## $over5$auroc
-## [1] 1
+## [1] 0.75
 ## 
 ## $over5$auroc_ci
 ##  2.5% 97.5% 
-##     1     1</code></pre>
+##   0.5   1.0</code></pre>
 <pre class="r"><code>sen_spec_split(score_vec = hn_only_most_recent$st_pred_mod_ep30, 
                target = hn_only_most_recent$target01, 
                split_vec = hn_only_most_recent$age_grps_fac, 
@@ -3085,27 +3085,27 @@ nocov_list[[&quot;st_mostrec&quot;]][[&quot;sen_spec&quot;]] = st_mostrec_origmo
 ## 
 ## $under2$specificity$ci
 ##      2.5%     97.5% 
-## 0.6920311 0.8333333 
+## 0.7058824 0.8399490 
 ## 
 ## 
 ## $under2$sensitivity
 ## $under2$sensitivity$est
-## [1] 0.96
+## [1] 0.92
 ## 
 ## $under2$sensitivity$ci
-##      2.5%     97.5% 
-## 0.8636364 1.0000000 
+##  2.5% 97.5% 
+##   0.8   1.0 
 ## 
 ## 
 ## 
 ## $age2to5
 ## $age2to5$specificity
 ## $age2to5$specificity$est
-## [1] 0.5714286
+## [1] 0.6071429
 ## 
 ## $age2to5$specificity$ci
 ##      2.5%     97.5% 
-## 0.3928571 0.7500000 
+## 0.4285714 0.7857143 
 ## 
 ## 
 ## $age2to5$sensitivity
@@ -3164,34 +3164,34 @@ nocov_list[[&quot;st_mostrec&quot;]][[&quot;sen_spec&quot;]] = st_mostrec_origmo
                   n_it=500)</code></pre>
 <pre><code>## $M
 ## $M$auprc
-## [1] 0.625907
+## [1] 0.5517857
 ## 
 ## $M$auprc_ci
 ##      2.5%     97.5% 
-## 0.2540934 0.8750000 
+## 0.2119147 0.8750000 
 ## 
 ## $M$auroc
-## [1] 0.9569707
+## [1] 0.919105
 ## 
 ## $M$auroc_ci
 ##      2.5%     97.5% 
-## 0.8700754 1.0000000 
+## 0.7556984 1.0000000 
 ## 
 ## 
 ## $L
 ## $L$auprc
-## [1] 0.638752
+## [1] 0.6603014
 ## 
 ## $L$auprc_ci
 ##      2.5%     97.5% 
-## 0.4245890 0.8582773 
+## 0.4389669 0.8584497 
 ## 
 ## $L$auroc
-## [1] 0.9094427
+## [1] 0.9009288
 ## 
 ## $L$auroc_ci
 ##      2.5%     97.5% 
-## 0.8097707 0.9799836 
+## 0.7859327 0.9837551 
 ## 
 ## 
 ## $P
@@ -3236,11 +3236,11 @@ nocov_list[[&quot;st_mostrec&quot;]][[&quot;sen_spec&quot;]] = st_mostrec_origmo
 <pre><code>## $M
 ## $M$specificity
 ## $M$specificity$est
-## [1] 0.7590361
+## [1] 0.7710843
 ## 
 ## $M$specificity$ci
 ##      2.5%     97.5% 
-## 0.6585366 0.8488372 
+## 0.6787909 0.8674699 
 ## 
 ## 
 ## $M$sensitivity
@@ -3260,16 +3260,16 @@ nocov_list[[&quot;st_mostrec&quot;]][[&quot;sen_spec&quot;]] = st_mostrec_origmo
 ## 
 ## $L$specificity$ci
 ##      2.5%     97.5% 
-## 0.6249394 0.8239467 
+## 0.6274401 0.8333333 
 ## 
 ## 
 ## $L$sensitivity
 ## $L$sensitivity$est
-## [1] 0.9411765
+## [1] 0.8823529
 ## 
 ## $L$sensitivity$ci
 ##  2.5% 97.5% 
-##   0.8   1.0 
+##   0.7   1.0 
 ## 
 ## 
 ## 
@@ -3359,82 +3359,82 @@ nocov_list[[&quot;st_mostrec&quot;]][[&quot;sen_spec&quot;]] = st_mostrec_origmo
                   n_it=500)</code></pre>
 <pre><code>## $`3`
 ## $`3`$auprc
-## [1] 0.3416667
+## [1] 0.3722222
 ## 
 ## $`3`$auprc_ci
-##       2.5%      97.5% 
-## 0.08333333 0.71833333 
+##  2.5% 97.5% 
+##  0.00  0.75 
 ## 
 ## $`3`$auroc
-## [1] 0.9575758
+## [1] 0.9636364
 ## 
 ## $`3`$auroc_ci
 ##      2.5%     97.5% 
-## 0.8928571 1.0000000 
+## 0.9090909 1.0000000 
 ## 
 ## 
 ## $`2`
 ## $`2`$auprc
-## [1] 0.6305105
+## [1] 0.622816
 ## 
 ## $`2`$auprc_ci
 ##      2.5%     97.5% 
-## 0.4031376 0.8927872 
+## 0.3926729 0.8909302 
 ## 
 ## $`2`$auroc
 ## [1] 0.9310897
 ## 
 ## $`2`$auroc_ci
 ##      2.5%     97.5% 
-## 0.8621869 0.9906455 
+## 0.8615488 0.9886845 
 ## 
 ## 
 ## $`1`
 ## $`1`$auprc
-## [1] 0.6583333
+## [1] 0.75
 ## 
 ## $`1`$auprc_ci
-##      2.5%     97.5% 
-## 0.0000000 0.8547487 
+##  2.5% 97.5% 
+## 0.000 0.875 
 ## 
 ## $`1`$auroc
-## [1] 0.9807692
+## [1] 1
 ## 
 ## $`1`$auroc_ci
-##      2.5%     97.5% 
-## 0.9259259 1.0000000 
+##  2.5% 97.5% 
+##     1     1 
 ## 
 ## 
 ## $`4`
 ## $`4`$auprc
-## [1] 0.7092352
+## [1] 0.7040278
 ## 
 ## $`4`$auprc_ci
 ##      2.5%     97.5% 
-## 0.3037954 0.8750000 
+## 0.2849264 0.8750000 
 ## 
 ## $`4`$auroc
-## [1] 0.884058
+## [1] 0.8623188
 ## 
 ## $`4`$auroc_ci
-##  2.5% 97.5% 
-##  0.58  1.00 
+##      2.5%     97.5% 
+## 0.5434783 1.0000000 
 ## 
 ## 
 ## $`5`
 ## $`5`$auprc
-## [1] 0
+## [1] 0.25
 ## 
 ## $`5`$auprc_ci
 ##      2.5%     97.5% 
 ## 0.0000000 0.6666667 
 ## 
 ## $`5`$auroc
-## [1] 1
+## [1] 0.9333333
 ## 
 ## $`5`$auroc_ci
-##  2.5% 97.5% 
-##     1     1 
+##      2.5%     97.5% 
+## 0.7692308 1.0000000 
 ## 
 ## 
 ## $`8`
@@ -3465,11 +3465,11 @@ nocov_list[[&quot;st_mostrec&quot;]][[&quot;sen_spec&quot;]] = st_mostrec_origmo
 <pre><code>## $`3`
 ## $`3`$specificity
 ## $`3`$specificity$est
-## [1] 0.7272727
+## [1] 0.7818182
 ## 
 ## $`3`$specificity$ci
 ##      2.5%     97.5% 
-## 0.6144697 0.8318396 
+## 0.6635417 0.8846837 
 ## 
 ## 
 ## $`3`$sensitivity
@@ -3485,20 +3485,20 @@ nocov_list[[&quot;st_mostrec&quot;]][[&quot;sen_spec&quot;]] = st_mostrec_origmo
 ## $`2`
 ## $`2`$specificity
 ## $`2`$specificity$est
-## [1] 0.7916667
+## [1] 0.7708333
 ## 
 ## $`2`$specificity$ci
 ##      2.5%     97.5% 
-## 0.6666667 0.8990306 
+## 0.6372824 0.8835407 
 ## 
 ## 
 ## $`2`$sensitivity
 ## $`2`$sensitivity$est
-## [1] 1
+## [1] 0.9230769
 ## 
 ## $`2`$sensitivity$ci
 ##  2.5% 97.5% 
-##     1     1 
+##  0.75  1.00 
 ## 
 ## 
 ## 
@@ -3509,7 +3509,7 @@ nocov_list[[&quot;st_mostrec&quot;]][[&quot;sen_spec&quot;]] = st_mostrec_origmo
 ## 
 ## $`1`$specificity$ci
 ##      2.5%     97.5% 
-## 0.6400000 0.9574728 
+## 0.6666667 0.9565217 
 ## 
 ## 
 ## $`1`$sensitivity
@@ -3545,11 +3545,11 @@ nocov_list[[&quot;st_mostrec&quot;]][[&quot;sen_spec&quot;]] = st_mostrec_origmo
 ## $`5`
 ## $`5`$specificity
 ## $`5`$specificity$est
-## [1] 0.6
+## [1] 0.5333333
 ## 
 ## $`5`$specificity$ci
 ##      2.5%     97.5% 
-## 0.3571429 0.8461538 
+## 0.3076923 0.7857143 
 ## 
 ## 
 ## $`5`$sensitivity
@@ -3628,50 +3628,50 @@ nocov_list[[&quot;st_mostrec&quot;]][[&quot;sen_spec&quot;]] = st_mostrec_origmo
                   n_it=500)</code></pre>
 <pre><code>## $Toshiba
 ## $Toshiba$auprc
-## [1] 0.6649789
+## [1] 0.663437
 ## 
 ## $Toshiba$auprc_ci
 ##      2.5%     97.5% 
-## 0.2924546 0.8680418 
+## 0.2922974 0.8680418 
 ## 
 ## $Toshiba$auroc
-## [1] 0.9132231
+## [1] 0.8987603
 ## 
 ## $Toshiba$auroc_ci
 ##      2.5%     97.5% 
-## 0.7511707 1.0000000 
+## 0.7019568 1.0000000 
 ## 
 ## 
 ## $Philips
 ## $Philips$auprc
-## [1] 0.7725108
+## [1] 0.6968235
 ## 
 ## $Philips$auprc_ci
 ##      2.5%     97.5% 
-## 0.4603175 0.8949659 
+## 0.3744631 0.8752283 
 ## 
 ## $Philips$auroc
-## [1] 0.95
+## [1] 0.9125
 ## 
 ## $Philips$auroc_ci
 ##      2.5%     97.5% 
-## 0.8631866 1.0000000 
+## 0.7956749 1.0000000 
 ## 
 ## 
 ## $Samsung
 ## $Samsung$auprc
-## [1] 0.5901998
+## [1] 0.5808317
 ## 
 ## $Samsung$auprc_ci
 ##      2.5%     97.5% 
-## 0.3378080 0.8946397 
+## 0.3385412 0.9130682 
 ## 
 ## $Samsung$auroc
-## [1] 0.9035714
+## [1] 0.9142857
 ## 
 ## $Samsung$auroc_ci
 ##      2.5%     97.5% 
-## 0.7961911 0.9985863 
+## 0.8061538 1.0000000 
 ## 
 ## 
 ## $GE
@@ -3682,18 +3682,18 @@ nocov_list[[&quot;st_mostrec&quot;]][[&quot;sen_spec&quot;]] = st_mostrec_origmo
 ## 
 ## $Unknown
 ## $Unknown$auprc
-## [1] 0.25
+## [1] 0.1666667
 ## 
 ## $Unknown$auprc_ci
-##  2.5% 97.5% 
-##   0.0   0.5 
+##      2.5%     97.5% 
+## 0.1666667 0.4166667 
 ## 
 ## $Unknown$auroc
-## [1] 0.5
+## [1] 1
 ## 
 ## $Unknown$auroc_ci
 ##  2.5% 97.5% 
-##   0.5   1.0</code></pre>
+##     1     1</code></pre>
 <pre class="r"><code>sen_spec_split(score_vec = hn_only_most_recent$st_pred_mod_ep30, 
                target = hn_only_most_recent$target01, 
                split_vec = hn_only_most_recent$US_machine, 
@@ -3706,7 +3706,7 @@ nocov_list[[&quot;st_mostrec&quot;]][[&quot;sen_spec&quot;]] = st_mostrec_origmo
 ## 
 ## $Toshiba$specificity$ci
 ##      2.5%     97.5% 
-## 0.7253831 0.8655932 
+## 0.7265029 0.8719724 
 ## 
 ## 
 ## $Toshiba$sensitivity
@@ -3722,20 +3722,20 @@ nocov_list[[&quot;st_mostrec&quot;]][[&quot;sen_spec&quot;]] = st_mostrec_origmo
 ## $Philips
 ## $Philips$specificity
 ## $Philips$specificity$est
-## [1] 0.7
+## [1] 0.75
 ## 
 ## $Philips$specificity$ci
 ##      2.5%     97.5% 
-## 0.4875000 0.8857843 
+## 0.5476136 0.9285714 
 ## 
 ## 
 ## $Philips$sensitivity
 ## $Philips$sensitivity$est
-## [1] 1
+## [1] 0.875
 ## 
 ## $Philips$sensitivity$ci
-##  2.5% 97.5% 
-##     1     1 
+##      2.5%     97.5% 
+## 0.6303977 1.0000000 
 ## 
 ## 
 ## 
@@ -3746,7 +3746,7 @@ nocov_list[[&quot;st_mostrec&quot;]][[&quot;sen_spec&quot;]] = st_mostrec_origmo
 ## 
 ## $Samsung$specificity$ci
 ##      2.5%     97.5% 
-## 0.3333333 0.6896552 
+## 0.3206786 0.6963462 
 ## 
 ## 
 ## $Samsung$sensitivity
@@ -3819,119 +3819,120 @@ nocov_list[[&quot;st_mostrec&quot;]][[&quot;sen_spec&quot;]] = st_mostrec_origmo
 </div>
 </div>
 </div>
-<div id="stanford-original-model-performance" class="section level3">
-<h3><span class="header-section-number">2.0.2</span> Stanford original model performance</h3>
+</div>
+<div id="stanford-data" class="section level1">
+<h1><span class="header-section-number">3</span> Stanford data</h1>
 <div id="model-performance-table-2" class="section level4">
-<h4><span class="header-section-number">2.0.2.1</span> Model performance (Table 2)</h4>
+<h4><span class="header-section-number">3.0.0.1</span> Model performance (Table 2)</h4>
 <pre class="r"><code>(stan_all_origmod_auc = get_auroc_aurpc(score_vec = stan_df$stan_pred_mod_ep30, 
                     target = stan_preds$target01))</code></pre>
 <pre><code>## $auprc
-## [1] 0.61347
+## [1] 0.6603575
 ## 
 ## $auprc_ci
 ##      2.5%     97.5% 
-## 0.4034988 0.8048417 
+## 0.4601231 0.8251561 
 ## 
 ## $auroc
-## [1] 0.8970798
+## [1] 0.8999288
 ## 
 ## $auroc_ci
 ##      2.5%     97.5% 
-## 0.7855284 0.9806741</code></pre>
+## 0.7850897 0.9844428</code></pre>
 <pre class="r"><code>(stan_all_origmod = get_sen_spec_withCI(score_vec = stan_df$stan_pred_mod_ep30, 
                     target = stan_preds$target01, 
                     threshold = thresh_ep30, 
                     n_it = 500))</code></pre>
 <pre><code>## $specificity
 ## $specificity$est
-## [1] 0.7519231
+## [1] 0.7480769
 ## 
 ## $specificity$ci
 ##      2.5%     97.5% 
-## 0.7143848 0.7839274 
+## 0.7150967 0.7818533 
 ## 
 ## 
 ## $sensitivity
 ## $sensitivity$est
-## [1] 0.8518519
+## [1] 0.8888889
 ## 
 ## $sensitivity$ci
 ##      2.5%     97.5% 
-## 0.6956522 0.9696970</code></pre>
+## 0.7398953 1.0000000</code></pre>
 <pre class="r"><code>nocov_list[[&quot;stan_all&quot;]] = list()
 nocov_list[[&quot;stan_all&quot;]][[&quot;aucs&quot;]] = stan_all_origmod_auc
 nocov_list[[&quot;stan_all&quot;]][[&quot;sen_spec&quot;]] = stan_all_origmod</code></pre>
 <pre class="r"><code>get_auroc_aurpc(score_vec = stan40_test$stan_pred_mod_ep30, 
                     target = stan40_test$target01)</code></pre>
 <pre><code>## $auprc
-## [1] 0.5602015
+## [1] 0.5952335
 ## 
 ## $auprc_ci
 ##      2.5%     97.5% 
-## 0.2446023 0.7834467 
+## 0.2966319 0.8067407 
 ## 
 ## $auroc
-## [1] 0.755102
+## [1] 0.7687075
 ## 
 ## $auroc_ci
 ##      2.5%     97.5% 
-## 0.5327471 0.9302153</code></pre>
+## 0.5580771 0.9477947</code></pre>
 <pre class="r"><code>(stan_40test_origmod = get_sen_spec_withCI(score_vec = stan40_test$stan_pred_mod_ep30, 
                     target = stan40_test$target01, 
                     threshold = thresh_ep30, 
                     n_it = 500))</code></pre>
 <pre><code>## $specificity
 ## $specificity$est
-## [1] 0.5357143
+## [1] 0.547619
 ## 
 ## $specificity$ci
 ##      2.5%     97.5% 
-## 0.4293605 0.6450630 
+## 0.4367816 0.6489205 
 ## 
 ## 
 ## $sensitivity
 ## $sensitivity$est
-## [1] 0.7142857
+## [1] 0.7857143
 ## 
 ## $sensitivity$ci
 ##      2.5%     97.5% 
-## 0.4639744 0.9355208</code></pre>
+## 0.5139706 1.0000000</code></pre>
 <div id="by-sex-table-4" class="section level5">
-<h5><span class="header-section-number">2.0.2.1.1</span> By sex (Table 4)</h5>
+<h5><span class="header-section-number">3.0.0.1.1</span> By sex (Table 4)</h5>
 <pre class="r"><code>auroc_auprc_split(score_vec = stan_merge$stan_pred_mod_ep30, 
                target = stan_merge$target01, 
                split_vec = stan_merge$sex, 
                   n_it=500)</code></pre>
 <pre><code>## $F
 ## $F$auprc
-## [1] 0.5138889
+## [1] 0.4277778
 ## 
 ## $F$auprc_ci
-##      2.5%     97.5% 
-## 0.0000000 0.8333333 
+##  2.5% 97.5% 
+##   0.0   0.8 
 ## 
 ## $F$auroc
-## [1] 0.9848485
+## [1] 0.9747475
 ## 
 ## $F$auroc_ci
-##     2.5%    97.5% 
-## 0.953125 1.000000 
+##      2.5%     97.5% 
+## 0.9264432 1.0000000 
 ## 
 ## 
 ## $M
 ## $M$auprc
-## [1] 0.7000813
+## [1] 0.7329821
 ## 
 ## $M$auprc_ci
 ##      2.5%     97.5% 
-## 0.4891458 0.8487216 
+## 0.5665391 0.8664808 
 ## 
 ## $M$auroc
-## [1] 0.8599537
+## [1] 0.8666667
 ## 
 ## $M$auroc_ci
 ##      2.5%     97.5% 
-## 0.7266440 0.9612861</code></pre>
+## 0.7380876 0.9671603</code></pre>
 <pre class="r"><code>sen_spec_split(score_vec = stan_merge$stan_pred_mod_ep30, 
                target = stan_merge$target01, 
                split_vec = stan_merge$sex, 
@@ -3940,11 +3941,11 @@ nocov_list[[&quot;stan_all&quot;]][[&quot;sen_spec&quot;]] = stan_all_origmod</c
 <pre><code>## $F
 ## $F$specificity
 ## $F$specificity$est
-## [1] 0.6969697
+## [1] 0.7121212
 ## 
 ## $F$specificity$ci
 ##      2.5%     97.5% 
-## 0.5832893 0.8030303 
+## 0.6045455 0.8140144 
 ## 
 ## 
 ## $F$sensitivity
@@ -3960,57 +3961,57 @@ nocov_list[[&quot;stan_all&quot;]][[&quot;sen_spec&quot;]] = stan_all_origmod</c
 ## $M
 ## $M$specificity
 ## $M$specificity$est
-## [1] 0.5666667
+## [1] 0.55
 ## 
 ## $M$specificity$ci
 ##      2.5%     97.5% 
-## 0.4918454 0.6401338 
+## 0.4762947 0.6236641 
 ## 
 ## 
 ## $M$sensitivity
 ## $M$sensitivity$est
-## [1] 0.8333333
+## [1] 0.875
 ## 
 ## $M$sensitivity$ci
-##     2.5%    97.5% 
-## 0.659058 0.960000</code></pre>
+##      2.5%     97.5% 
+## 0.7210556 1.0000000</code></pre>
 </div>
 <div id="by-side" class="section level5">
-<h5><span class="header-section-number">2.0.2.1.2</span> By side</h5>
+<h5><span class="header-section-number">3.0.0.1.2</span> By side</h5>
 <pre class="r"><code>auroc_auprc_split(score_vec = stan_merge$stan_pred_mod_ep30, 
                target = stan_merge$target01, 
                split_vec = stan_merge$`side of hydronephrosis`, 
                   n_it=500)</code></pre>
 <pre><code>## $Right
 ## $Right$auprc
-## [1] 0.3878235
+## [1] 0.3920834
 ## 
 ## $Right$auprc_ci
 ##       2.5%      97.5% 
-## 0.01573582 0.73214152 
+## 0.01758029 0.73341837 
 ## 
 ## $Right$auroc
-## [1] 0.625
+## [1] 0.6474359
 ## 
 ## $Right$auroc_ci
 ##      2.5%     97.5% 
-## 0.4409224 1.0000000 
+## 0.4649112 1.0000000 
 ## 
 ## 
 ## $Left
 ## $Left$auprc
-## [1] 0.7573282
+## [1] 0.7916181
 ## 
 ## $Left$auprc_ci
 ##      2.5%     97.5% 
-## 0.5663786 0.8803494 
+## 0.6117655 0.9036160 
 ## 
 ## $Left$auroc
-## [1] 0.9563083
+## [1] 0.9621993
 ## 
 ## $Left$auroc_ci
-##      2.5%     97.5% 
-## 0.8998213 0.9907693</code></pre>
+##     2.5%    97.5% 
+## 0.912265 0.993175</code></pre>
 <pre class="r"><code>sen_spec_split(score_vec = stan_merge$stan_pred_mod_ep30, 
                target = stan_merge$target01, 
                split_vec = stan_merge$`side of hydronephrosis`, 
@@ -4019,11 +4020,11 @@ nocov_list[[&quot;stan_all&quot;]][[&quot;sen_spec&quot;]] = stan_all_origmod</c
 <pre><code>## $Right
 ## $Right$specificity
 ## $Right$specificity$est
-## [1] 0.8846154
+## [1] 0.8076923
 ## 
 ## $Right$specificity$ci
 ##      2.5%     97.5% 
-## 0.8018627 0.9622642 
+## 0.7027941 0.9074074 
 ## 
 ## 
 ## $Right$sensitivity
@@ -4039,41 +4040,41 @@ nocov_list[[&quot;stan_all&quot;]][[&quot;sen_spec&quot;]] = stan_all_origmod</c
 ## $Left
 ## $Left$specificity
 ## $Left$specificity$est
-## [1] 0.5257732
+## [1] 0.5360825
 ## 
 ## $Left$specificity$ci
 ##      2.5%     97.5% 
-## 0.4514392 0.5974254 
+## 0.4693689 0.6061430 
 ## 
 ## 
 ## $Left$sensitivity
 ## $Left$sensitivity$est
-## [1] 0.952381
+## [1] 1
 ## 
 ## $Left$sensitivity$ci
-##    2.5%   97.5% 
-## 0.84125 1.00000</code></pre>
+##  2.5% 97.5% 
+##     1     1</code></pre>
 </div>
 <div id="by-age-2" class="section level5">
-<h5><span class="header-section-number">2.0.2.1.3</span> By Age</h5>
+<h5><span class="header-section-number">3.0.0.1.3</span> By Age</h5>
 <pre class="r"><code>auroc_auprc_split(score_vec = stan_merge$stan_pred_mod_ep30, 
                target = stan_merge$target01, 
                split_vec = stan_merge$age_grps, 
                   n_it=500)</code></pre>
 <pre><code>## $age2to5
 ## $age2to5$auprc
-## [1] 0.6861644
+## [1] 0.7201904
 ## 
 ## $age2to5$auprc_ci
 ##      2.5%     97.5% 
-## 0.4804391 0.8226528 
+## 0.5148217 0.8487359 
 ## 
 ## $age2to5$auroc
-## [1] 0.8738616
+## [1] 0.880085
 ## 
 ## $age2to5$auroc_ci
 ##      2.5%     97.5% 
-## 0.7407226 0.9630290 
+## 0.7431508 0.9681095 
 ## 
 ## 
 ## $over5
@@ -4086,20 +4087,20 @@ nocov_list[[&quot;stan_all&quot;]][[&quot;sen_spec&quot;]] = stan_all_origmod</c
 <pre><code>## $age2to5
 ## $age2to5$specificity
 ## $age2to5$specificity$est
-## [1] 0.6065574
+## [1] 0.5983607
 ## 
 ## $age2to5$specificity$ci
 ##      2.5%     97.5% 
-## 0.5487639 0.6693227 
+## 0.5392488 0.6624749 
 ## 
 ## 
 ## $age2to5$sensitivity
 ## $age2to5$sensitivity$est
-## [1] 0.8518519
+## [1] 0.8888889
 ## 
 ## $age2to5$sensitivity$ci
 ##      2.5%     97.5% 
-## 0.6800000 0.9655172 
+## 0.7318182 1.0000000 
 ## 
 ## 
 ## 
@@ -4123,38 +4124,38 @@ nocov_list[[&quot;stan_all&quot;]][[&quot;sen_spec&quot;]] = stan_all_origmod</c
 </div>
 </div>
 </div>
-<div id="uiowa-original-model-performance" class="section level3">
-<h3><span class="header-section-number">2.0.3</span> UIowa original model performance</h3>
+<div id="uiowa-data" class="section level1">
+<h1><span class="header-section-number">4</span> UIowa data</h1>
 <div id="model-performance" class="section level4">
-<h4><span class="header-section-number">2.0.3.1</span> Model performance</h4>
+<h4><span class="header-section-number">4.0.0.1</span> Model performance</h4>
 <div id="overall-table-2" class="section level5">
-<h5><span class="header-section-number">2.0.3.1.1</span> Overall (Table 2)</h5>
+<h5><span class="header-section-number">4.0.0.1.1</span> Overall (Table 2)</h5>
 <pre class="r"><code>(ui_all_origmod_auc = get_auroc_aurpc(score_vec = ui_df$ui_pred_mod_ep30, 
                     target = ui_df$target01))</code></pre>
 <pre><code>## $auprc
-## [1] 0.9411211
+## [1] 0.9425827
 ## 
 ## $auprc_ci
 ##      2.5%     97.5% 
-## 0.8976908 0.9713371 
+## 0.9007780 0.9717959 
 ## 
 ## $auroc
-## [1] 0.940331
+## [1] 0.9420732
 ## 
 ## $auroc_ci
 ##      2.5%     97.5% 
-## 0.8850321 0.9817379</code></pre>
+## 0.8898216 0.9819935</code></pre>
 <pre class="r"><code>(ui_all_origmod = get_sen_spec_withCI(score_vec = ui_df$ui_pred_mod_ep30, 
                     target = ui_df$target01, 
                     threshold = thresh_ep30, 
                     n_it = 500))</code></pre>
 <pre><code>## $specificity
 ## $specificity$est
-## [1] 0.4634146
+## [1] 0.5365854
 ## 
 ## $specificity$ci
 ##      2.5%     97.5% 
-## 0.3026389 0.6153846 
+## 0.3826923 0.6836008 
 ## 
 ## 
 ## $sensitivity
@@ -4168,33 +4169,33 @@ nocov_list[[&quot;stan_all&quot;]][[&quot;sen_spec&quot;]] = stan_all_origmod</c
 nocov_list[[&quot;ui_all&quot;]][[&quot;aucs&quot;]] = ui_all_origmod_auc
 nocov_list[[&quot;ui_all&quot;]][[&quot;sen_spec&quot;]] = ui_all_origmod </code></pre>
 <div id="test-tables-5-and-6" class="section level6">
-<h6><span class="header-section-number">2.0.3.1.1.1</span> 40% Test (Tables 5 and 6)</h6>
+<h6><span class="header-section-number">4.0.0.1.1.1</span> 40% Test (Tables 5 and 6)</h6>
 <pre class="r"><code>get_auroc_aurpc(score_vec = ui40_test$ui_pred_mod_ep30, 
                     target = ui40_test$target01)</code></pre>
 <pre><code>## $auprc
-## [1] 0.8712945
+## [1] 0.8629654
 ## 
 ## $auprc_ci
 ##      2.5%     97.5% 
-## 0.7177194 0.9473684 
+## 0.7287581 0.9411810 
 ## 
 ## $auroc
-## [1] 0.8839286
+## [1] 0.9560185
 ## 
 ## $auroc_ci
 ##      2.5%     97.5% 
-## 0.6695685 1.0000000</code></pre>
+## 0.8936652 0.9977376</code></pre>
 <pre class="r"><code>(ui_40test_origmod = get_sen_spec_withCI(score_vec = ui40_test$ui_pred_mod_ep30, 
                     target = ui40_test$target01, 
                     threshold = thresh_ep30, 
                     n_it = 500))</code></pre>
 <pre><code>## $specificity
 ## $specificity$est
-## [1] 0.1428571
+## [1] 0.5925926
 ## 
 ## $specificity$ci
-##      2.5%     97.5% 
-## 0.0000000 0.4369048 
+##    2.5%   97.5% 
+## 0.39625 0.76000 
 ## 
 ## 
 ## $sensitivity
@@ -4207,41 +4208,41 @@ nocov_list[[&quot;ui_all&quot;]][[&quot;sen_spec&quot;]] = ui_all_origmod </code
 </div>
 </div>
 <div id="by-sex-table-4-1" class="section level5">
-<h5><span class="header-section-number">2.0.3.1.2</span> By Sex (Table 4)</h5>
+<h5><span class="header-section-number">4.0.0.1.2</span> By Sex (Table 4)</h5>
 <pre class="r"><code>auroc_auprc_split(score_vec = ui_merge$ui_pred_mod_ep30, 
                target = ui_merge$target01, 
                split_vec = ui_merge$Gender, 
                   n_it=500)</code></pre>
 <pre><code>## $M
 ## $M$auprc
-## [1] 0.9357844
+## [1] 0.9320071
 ## 
 ## $M$auprc_ci
 ##      2.5%     97.5% 
-## 0.8872095 0.9710685 
+## 0.8787264 0.9689804 
 ## 
 ## $M$auroc
-## [1] 0.9061625
+## [1] 0.9473684
 ## 
 ## $M$auroc_ci
 ##      2.5%     97.5% 
-## 0.8240196 0.9788642 
+## 0.8949210 0.9903158 
 ## 
 ## 
 ## $F
 ## $F$auprc
-## [1] 0.9193452
+## [1] 0.9126177
 ## 
 ## $F$auprc_ci
 ##      2.5%     97.5% 
-## 0.8644812 0.9375000 
+## 0.8429274 0.9375000 
 ## 
 ## $F$auroc
-## [1] 0.952381
+## [1] 0.9285714
 ## 
 ## $F$auroc_ci
-##  2.5% 97.5% 
-##   0.8   1.0</code></pre>
+##      2.5%     97.5% 
+## 0.7120879 1.0000000</code></pre>
 <pre class="r"><code>sen_spec_split(score_vec = ui_merge$ui_pred_mod_ep30, 
                target = ui_merge$target01, 
                split_vec = ui_merge$Gender, 
@@ -4250,11 +4251,11 @@ nocov_list[[&quot;ui_all&quot;]][[&quot;sen_spec&quot;]] = ui_all_origmod </code
 <pre><code>## $M
 ## $M$specificity
 ## $M$specificity$est
-## [1] 0.2352941
+## [1] 0.5263158
 ## 
 ## $M$specificity$ci
-##       2.5%      97.5% 
-## 0.05402047 0.45000000 
+##      2.5%     97.5% 
+## 0.3715461 0.6756757 
 ## 
 ## 
 ## $M$sensitivity
@@ -4263,7 +4264,7 @@ nocov_list[[&quot;ui_all&quot;]][[&quot;sen_spec&quot;]] = ui_all_origmod </code
 ## 
 ## $M$sensitivity$ci
 ##      2.5%     97.5% 
-## 0.9189189 1.0000000 
+## 0.9210526 1.0000000 
 ## 
 ## 
 ## 
@@ -4286,41 +4287,45 @@ nocov_list[[&quot;ui_all&quot;]][[&quot;sen_spec&quot;]] = ui_all_origmod </code
 ## 0.7569853 1.0000000</code></pre>
 </div>
 <div id="by-hn-side-2" class="section level5">
-<h5><span class="header-section-number">2.0.3.1.3</span> By HN Side</h5>
+<h5><span class="header-section-number">4.0.0.1.3</span> By HN Side</h5>
 <pre class="r"><code>auroc_auprc_split(score_vec = ui_merge$ui_pred_mod_ep30, 
                target = ui_merge$target01, 
                split_vec = ui_merge$U.B, 
                   n_it=500)</code></pre>
 <pre><code>## $L
 ## $L$auprc
-## [1] 0.9161424
+## [1] 0.9301855
 ## 
 ## $L$auprc_ci
 ##      2.5%     97.5% 
-## 0.8380779 0.9655937 
+## 0.8674518 0.9696970 
 ## 
 ## $L$auroc
-## [1] 0.8950893
+## [1] 0.9479167
 ## 
 ## $L$auroc_ci
 ##      2.5%     97.5% 
-## 0.7780986 0.9829514 
+## 0.8721073 1.0000000 
 ## 
 ## 
 ## $R
 ## $R$auprc
-## [1] 0.9392289
+## [1] 0.9420113
 ## 
 ## $R$auprc_ci
 ##      2.5%     97.5% 
-## 0.8950013 0.9600454 
+## 0.9011778 0.9619394 
 ## 
 ## $R$auroc
-## [1] 0.9097222
+## [1] 0.9427083
 ## 
 ## $R$auroc_ci
 ##      2.5%     97.5% 
-## 0.7826087 1.0000000</code></pre>
+## 0.8405797 1.0000000 
+## 
+## 
+## $B
+## [1] NA</code></pre>
 <pre class="r"><code>sen_spec_split(score_vec = ui_merge$ui_pred_mod_ep30, 
                target = ui_merge$target01, 
                split_vec = ui_merge$U.B, 
@@ -4329,11 +4334,11 @@ nocov_list[[&quot;ui_all&quot;]][[&quot;sen_spec&quot;]] = ui_all_origmod </code
 <pre><code>## $L
 ## $L$specificity
 ## $L$specificity$est
-## [1] 0.2142857
+## [1] 0.3333333
 ## 
 ## $L$specificity$ci
 ##      2.5%     97.5% 
-## 0.0000000 0.4666667 
+## 0.1211397 0.5600000 
 ## 
 ## 
 ## $L$sensitivity
@@ -4349,11 +4354,11 @@ nocov_list[[&quot;ui_all&quot;]][[&quot;sen_spec&quot;]] = ui_all_origmod </code
 ## $R
 ## $R$specificity
 ## $R$specificity$est
-## [1] 0.5
+## [1] 0.625
 ## 
 ## $R$specificity$ci
 ##  2.5% 97.5% 
-##     0     1 
+##  0.25  1.00 
 ## 
 ## 
 ## $R$sensitivity
@@ -4361,29 +4366,49 @@ nocov_list[[&quot;ui_all&quot;]][[&quot;sen_spec&quot;]] = ui_all_origmod </code
 ## [1] 0.9166667
 ## 
 ## $R$sensitivity$ci
+##      2.5%     97.5% 
+## 0.8076923 1.0000000 
+## 
+## 
+## 
+## $B
+## $B$specificity
+## $B$specificity$est
+## [1] 0.8333333
+## 
+## $B$specificity$ci
+##      2.5%     97.5% 
+## 0.5833333 1.0000000 
+## 
+## 
+## $B$sensitivity
+## $B$sensitivity$est
+## [1] NaN
+## 
+## $B$sensitivity$ci
 ##  2.5% 97.5% 
-##   0.8   1.0</code></pre>
+##    NA    NA</code></pre>
 </div>
 <div id="by-age-group" class="section level5">
-<h5><span class="header-section-number">2.0.3.1.4</span> By Age Group</h5>
+<h5><span class="header-section-number">4.0.0.1.4</span> By Age Group</h5>
 <pre class="r"><code>auroc_auprc_split(score_vec = ui_merge$ui_pred_mod_ep30, 
                target = ui_merge$target01, 
                split_vec = ui_merge$age_grp, 
                   n_it=500)</code></pre>
 <pre><code>## $under2
 ## $under2$auprc
-## [1] 0.9429095
+## [1] 0.9487132
 ## 
 ## $under2$auprc_ci
 ##      2.5%     97.5% 
-## 0.9031000 0.9709337 
+## 0.9099114 0.9723338 
 ## 
 ## $under2$auroc
-## [1] 0.905478
+## [1] 0.9183673
 ## 
 ## $under2$auroc_ci
 ##      2.5%     97.5% 
-## 0.8265655 0.9676877 
+## 0.8486175 0.9750922 
 ## 
 ## 
 ## $age2to5
@@ -4412,11 +4437,11 @@ nocov_list[[&quot;ui_all&quot;]][[&quot;sen_spec&quot;]] = ui_all_origmod </code
 <pre><code>## $under2
 ## $under2$specificity
 ## $under2$specificity$est
-## [1] 0.2631579
+## [1] 0.3157895
 ## 
 ## $under2$specificity$ci
-##       2.5%      97.5% 
-## 0.05882353 0.45653409 
+##      2.5%     97.5% 
+## 0.1211397 0.5251253 
 ## 
 ## 
 ## $under2$sensitivity
@@ -4426,6 +4451,26 @@ nocov_list[[&quot;ui_all&quot;]][[&quot;sen_spec&quot;]] = ui_all_origmod </code
 ## $under2$sensitivity$ci
 ##      2.5%     97.5% 
 ## 0.8934556 1.0000000 
+## 
+## 
+## 
+## $&lt;NA&gt;
+## $&lt;NA&gt;$specificity
+## $&lt;NA&gt;$specificity$est
+## [1] NaN
+## 
+## $&lt;NA&gt;$specificity$ci
+##  2.5% 97.5% 
+##    NA    NA 
+## 
+## 
+## $&lt;NA&gt;$sensitivity
+## $&lt;NA&gt;$sensitivity$est
+## [1] NaN
+## 
+## $&lt;NA&gt;$sensitivity$ci
+##  2.5% 97.5% 
+##    NA    NA 
 ## 
 ## 
 ## 
@@ -4469,8 +4514,8 @@ nocov_list[[&quot;ui_all&quot;]][[&quot;sen_spec&quot;]] = ui_all_origmod </code
 </div>
 </div>
 </div>
-<div id="chop-original-model-performance" class="section level3">
-<h3><span class="header-section-number">2.0.4</span> CHOP original model performance</h3>
+<div id="chop-data" class="section level1">
+<h1><span class="header-section-number">5</span> CHOP data</h1>
 <pre class="r"><code>chop_preds = data.frame(chop_pred_mod_ep30 = st_stan_test$chop[[1]][[30]]$pred_scaled,
                         id = st_stan_test$chop[[1]][[30]]$id,
                         target = st_stan_test$chop[[1]][[30]]$target)
@@ -4504,35 +4549,35 @@ chop40_test = chop_merge[!(chop_merge$pt_id %in% chop_train),]
 write.csv(chop_merge[,c(&quot;id&quot;,&quot;chop_pred_mod_ep30&quot;,&quot;target01&quot;,&quot;target&quot;)], paste0(results_wd, &quot;/Datasheets/CHOP_NoCov_predictions_20220213.csv&quot;),
           quote=FALSE,row.names=FALSE)</code></pre>
 <div id="model-performance-1" class="section level4">
-<h4><span class="header-section-number">2.0.4.1</span> Model performance</h4>
+<h4><span class="header-section-number">5.0.0.1</span> Model performance</h4>
 <div id="overall-table-2-1" class="section level5">
-<h5><span class="header-section-number">2.0.4.1.1</span> Overall (Table 2)</h5>
+<h5><span class="header-section-number">5.0.0.1.1</span> Overall (Table 2)</h5>
 <pre class="r"><code>(chop_all_origmod_auc = get_auroc_aurpc(score_vec = chop_df$chop_pred_mod_ep30, 
                     target = chop_df$target01))</code></pre>
 <pre><code>## $auprc
-## [1] 0.9454939
+## [1] 0.9457828
 ## 
 ## $auprc_ci
 ##      2.5%     97.5% 
-## 0.9056644 0.9719793 
+## 0.9119656 0.9694619 
 ## 
 ## $auroc
-## [1] 0.9241379
+## [1] 0.9178161
 ## 
 ## $auroc_ci
-##      2.5%     97.5% 
-## 0.8610148 0.9691563</code></pre>
+##    2.5%   97.5% 
+## 0.85538 0.96445</code></pre>
 <pre class="r"><code>(chop_all_origmod = get_sen_spec_withCI(score_vec = chop_df$chop_pred_mod_ep30, 
                     target = chop_df$target01, 
                     threshold = thresh_ep30, 
                     n_it = 500))</code></pre>
 <pre><code>## $specificity
 ## $specificity$est
-## [1] 0.8275862
+## [1] 0.7586207
 ## 
 ## $specificity$ci
 ##      2.5%     97.5% 
-## 0.6666667 0.9622863 
+## 0.6000000 0.9104947 
 ## 
 ## 
 ## $sensitivity
@@ -4548,33 +4593,33 @@ nocov_list[[&quot;chop_all&quot;]][[&quot;sen_spec&quot;]] = chop_all_origmod
 
 saveRDS(object = nocov_list, file = paste0(results_wd,&quot;/nocov_model_list_results_20220207.rds&quot;))</code></pre>
 <div id="test-tables-5-and-6-1" class="section level6">
-<h6><span class="header-section-number">2.0.4.1.1.1</span> 40% Test (Tables 5 and 6)</h6>
+<h6><span class="header-section-number">5.0.0.1.1.1</span> 40% Test (Tables 5 and 6)</h6>
 <pre class="r"><code>get_auroc_aurpc(score_vec = chop40_test$chop_pred_mod_ep30, 
                     target = chop40_test$target01)</code></pre>
 <pre><code>## $auprc
-## [1] 0.9468133
+## [1] 0.9392489
 ## 
 ## $auprc_ci
 ##      2.5%     97.5% 
-## 0.9093474 0.9642857 
+## 0.8901922 0.9618637 
 ## 
 ## $auroc
-## [1] 0.96
+## [1] 0.9333333
 ## 
 ## $auroc_ci
-##      2.5%     97.5% 
-## 0.8835913 1.0000000</code></pre>
+##     2.5%    97.5% 
+## 0.833251 1.000000</code></pre>
 <pre class="r"><code>(chop_40test_origmod = get_sen_spec_withCI(score_vec = chop40_test$chop_pred_mod_ep30, 
                     target = chop40_test$target01, 
                     threshold = thresh_ep30, 
                     n_it = 500))</code></pre>
 <pre><code>## $specificity
 ## $specificity$est
-## [1] 1
+## [1] 0.7777778
 ## 
 ## $specificity$ci
-##  2.5% 97.5% 
-##     1     1 
+##      2.5%     97.5% 
+## 0.4761364 1.0000000 
 ## 
 ## 
 ## $sensitivity
@@ -4587,41 +4632,41 @@ saveRDS(object = nocov_list, file = paste0(results_wd,&quot;/nocov_model_list_re
 </div>
 </div>
 <div id="by-sex-table-4-2" class="section level5">
-<h5><span class="header-section-number">2.0.4.1.2</span> By Sex (Table 4)</h5>
+<h5><span class="header-section-number">5.0.0.1.2</span> By Sex (Table 4)</h5>
 <pre class="r"><code>auroc_auprc_split(score_vec = chop_merge$chop_pred_mod_ep30, 
                target = chop_merge$target01, 
                split_vec = chop_merge$Sex, 
                   n_it=500)</code></pre>
 <pre><code>## $M
 ## $M$auprc
-## [1] 0.9308242
+## [1] 0.9322607
 ## 
 ## $M$auprc_ci
 ##      2.5%     97.5% 
-## 0.8744623 0.9651486 
+## 0.8844815 0.9636908 
 ## 
 ## $M$auroc
-## [1] 0.9125596
+## [1] 0.90938
 ## 
 ## $M$auroc_ci
 ##      2.5%     97.5% 
-## 0.8253045 0.9763221 
+## 0.8249265 0.9714217 
 ## 
 ## 
 ## $F
 ## $F$auprc
-## [1] 0.919235
+## [1] 0.9112863
 ## 
 ## $F$auprc_ci
 ##      2.5%     97.5% 
-## 0.8575710 0.9528987 
+## 0.8315154 0.9500000 
 ## 
 ## $F$auroc
-## [1] 0.9375
+## [1] 0.9166667
 ## 
 ## $F$auroc_ci
-##      2.5%     97.5% 
-## 0.8386072 1.0000000</code></pre>
+##  2.5% 97.5% 
+##   0.8   1.0</code></pre>
 <pre class="r"><code>sen_spec_split(score_vec = chop_merge$chop_pred_mod_ep30, 
                target = chop_merge$target01, 
                split_vec = chop_merge$Sex, 
@@ -4630,11 +4675,11 @@ saveRDS(object = nocov_list, file = paste0(results_wd,&quot;/nocov_model_list_re
 <pre><code>## $M
 ## $M$specificity
 ## $M$specificity$est
-## [1] 0.7058824
+## [1] 0.6470588
 ## 
 ## $M$specificity$ci
 ##      2.5%     97.5% 
-## 0.4639744 0.9230769 
+## 0.3919231 0.8888889 
 ## 
 ## 
 ## $M$sensitivity
@@ -4650,11 +4695,11 @@ saveRDS(object = nocov_list, file = paste0(results_wd,&quot;/nocov_model_list_re
 ## $F
 ## $F$specificity
 ## $F$specificity$est
-## [1] 1
+## [1] 0.9166667
 ## 
 ## $F$specificity$ci
-##  2.5% 97.5% 
-##     1     1 
+##      2.5%     97.5% 
+## 0.7272727 1.0000000 
 ## 
 ## 
 ## $F$sensitivity
@@ -4666,41 +4711,41 @@ saveRDS(object = nocov_list, file = paste0(results_wd,&quot;/nocov_model_list_re
 ## 0.6818182 0.9600000</code></pre>
 </div>
 <div id="by-hn-side-3" class="section level5">
-<h5><span class="header-section-number">2.0.4.1.3</span> By HN Side</h5>
+<h5><span class="header-section-number">5.0.0.1.3</span> By HN Side</h5>
 <pre class="r"><code>auroc_auprc_split(score_vec = chop_merge$chop_pred_mod_ep30, 
                target = chop_merge$target01, 
                split_vec = chop_merge$Laterality.of.hydro, 
                   n_it=500)</code></pre>
 <pre><code>## $Left
 ## $Left$auprc
-## [1] 0.9664436
+## [1] 0.9622092
 ## 
 ## $Left$auprc_ci
 ##      2.5%     97.5% 
-## 0.9520023 0.9756470 
+## 0.9418403 0.9746295 
 ## 
 ## $Left$auroc
-## [1] 0.9736842
+## [1] 0.9545455
 ## 
 ## $Left$auroc_ci
-##     2.5%    97.5% 
-## 0.931482 1.000000 
+##      2.5%     97.5% 
+## 0.8997488 1.0000000 
 ## 
 ## 
 ## $Right
 ## $Right$auprc
-## [1] 0.8574357
+## [1] 0.8614776
 ## 
 ## $Right$auprc_ci
 ##      2.5%     97.5% 
-## 0.7153957 0.9385891 
+## 0.7302160 0.9405758 
 ## 
 ## $Right$auroc
-## [1] 0.8717949
+## [1] 0.8803419
 ## 
 ## $Right$auroc_ci
 ##      2.5%     97.5% 
-## 0.7386752 0.9830568 
+## 0.7520833 0.9826923 
 ## 
 ## 
 ## $Bilateral
@@ -4725,11 +4770,11 @@ saveRDS(object = nocov_list, file = paste0(results_wd,&quot;/nocov_model_list_re
 <pre><code>## $Left
 ## $Left$specificity
 ## $Left$specificity$est
-## [1] 0.9090909
+## [1] 0.8181818
 ## 
 ## $Left$specificity$ci
 ##      2.5%     97.5% 
-## 0.6765625 1.0000000 
+## 0.5770833 1.0000000 
 ## 
 ## 
 ## $Left$sensitivity
@@ -4745,11 +4790,11 @@ saveRDS(object = nocov_list, file = paste0(results_wd,&quot;/nocov_model_list_re
 ## $Right
 ## $Right$specificity
 ## $Right$specificity$est
-## [1] 0.8461538
+## [1] 0.7692308
 ## 
 ## $Right$specificity$ci
-##      2.5%     97.5% 
-## 0.6394481 1.0000000 
+##  2.5% 97.5% 
+##   0.5   1.0 
 ## 
 ## 
 ## $Right$sensitivity
@@ -4801,41 +4846,41 @@ saveRDS(object = nocov_list, file = paste0(results_wd,&quot;/nocov_model_list_re
 ##    NA    NA</code></pre>
 </div>
 <div id="by-kidney-side-2" class="section level5">
-<h5><span class="header-section-number">2.0.4.1.4</span> By Kidney side</h5>
+<h5><span class="header-section-number">5.0.0.1.4</span> By Kidney side</h5>
 <pre class="r"><code>auroc_auprc_split(score_vec = chop_merge$chop_pred_mod_ep30, 
                target = chop_merge$target01, 
                split_vec = chop_merge$kidney_side, 
                n_it = 500)</code></pre>
 <pre><code>## $L
 ## $L$auprc
-## [1] 0.9459345
+## [1] 0.9494537
 ## 
 ## $L$auprc_ci
 ##      2.5%     97.5% 
-## 0.9015609 0.9738190 
+## 0.9182038 0.9717017 
 ## 
 ## $L$auroc
-## [1] 0.9407895
+## [1] 0.9375
 ## 
 ## $L$auroc_ci
 ##      2.5%     97.5% 
-## 0.8775066 0.9954325 
+## 0.8769231 0.9895329 
 ## 
 ## 
 ## $R
 ## $R$auprc
-## [1] 0.8693424
+## [1] 0.8729285
 ## 
 ## $R$auprc_ci
 ##      2.5%     97.5% 
-## 0.7411242 0.9389359 
+## 0.7568654 0.9389460 
 ## 
 ## $R$auroc
-## [1] 0.8785425
+## [1] 0.8866397
 ## 
 ## $R$auroc_ci
 ##      2.5%     97.5% 
-## 0.7451593 0.9753720</code></pre>
+## 0.7495335 0.9763375</code></pre>
 <pre class="r"><code>sen_spec_split(score_vec = chop_merge$chop_pred_mod_ep30, 
                target = chop_merge$target01, 
                split_vec = chop_merge$kidney_side, 
@@ -4844,11 +4889,11 @@ saveRDS(object = nocov_list, file = paste0(results_wd,&quot;/nocov_model_list_re
 <pre><code>## $L
 ## $L$specificity
 ## $L$specificity$est
-## [1] 0.8125
+## [1] 0.75
 ## 
 ## $L$specificity$ci
-##  2.5% 97.5% 
-## 0.625 1.000 
+##      2.5%     97.5% 
+## 0.5277864 0.9773810 
 ## 
 ## 
 ## $L$sensitivity
@@ -4864,11 +4909,11 @@ saveRDS(object = nocov_list, file = paste0(results_wd,&quot;/nocov_model_list_re
 ## $R
 ## $R$specificity
 ## $R$specificity$est
-## [1] 0.8461538
+## [1] 0.7692308
 ## 
 ## $R$specificity$ci
-##  2.5% 97.5% 
-## 0.625 1.000 
+##   2.5%  97.5% 
+## 0.5000 0.9375 
 ## 
 ## 
 ## $R$sensitivity
@@ -4880,41 +4925,41 @@ saveRDS(object = nocov_list, file = paste0(results_wd,&quot;/nocov_model_list_re
 ## 0.5390909 0.9285714</code></pre>
 </div>
 <div id="by-age-group-1" class="section level5">
-<h5><span class="header-section-number">2.0.4.1.5</span> By Age Group</h5>
+<h5><span class="header-section-number">5.0.0.1.5</span> By Age Group</h5>
 <pre class="r"><code>auroc_auprc_split(score_vec = chop_merge$chop_pred_mod_ep30, 
                target = chop_merge$target01, 
                split_vec = chop_merge$age_grp, 
                   n_it=500)</code></pre>
 <pre><code>## $under2
 ## $under2$auprc
-## [1] 0.9158163
+## [1] 0.9255582
 ## 
 ## $under2$auprc_ci
 ##      2.5%     97.5% 
-## 0.8352582 0.9583333 
+## 0.8636990 0.9583333 
 ## 
 ## $under2$auroc
-## [1] 0.9649123
+## [1] 0.9719298
 ## 
 ## $under2$auroc_ci
 ##      2.5%     97.5% 
-## 0.8890715 1.0000000 
+## 0.9113668 1.0000000 
 ## 
 ## 
 ## $over5
 ## $over5$auprc
-## [1] 0.9335581
+## [1] 0.9244227
 ## 
 ## $over5$auprc_ci
 ##      2.5%     97.5% 
-## 0.8816474 0.9632594 
+## 0.8655831 0.9607484 
 ## 
 ## $over5$auroc
-## [1] 0.8653199
+## [1] 0.8350168
 ## 
 ## $over5$auroc_ci
 ##      2.5%     97.5% 
-## 0.7506419 0.9626915 
+## 0.7071726 0.9438592 
 ## 
 ## 
 ## $age2to5
@@ -4939,11 +4984,11 @@ saveRDS(object = nocov_list, file = paste0(results_wd,&quot;/nocov_model_list_re
 <pre><code>## $under2
 ## $under2$specificity
 ## $under2$specificity$est
-## [1] 0.9333333
+## [1] 0.8666667
 ## 
 ## $under2$specificity$ci
-##      2.5%     97.5% 
-## 0.7857143 1.0000000 
+##     2.5%    97.5% 
+## 0.685773 1.000000 
 ## 
 ## 
 ## $under2$sensitivity
@@ -4959,11 +5004,11 @@ saveRDS(object = nocov_list, file = paste0(results_wd,&quot;/nocov_model_list_re
 ## $over5
 ## $over5$specificity
 ## $over5$specificity$est
-## [1] 0.6666667
+## [1] 0.5555556
 ## 
 ## $over5$specificity$ci
 ##      2.5%     97.5% 
-## 0.3333333 1.0000000 
+## 0.2307692 0.8665179 
 ## 
 ## 
 ## $over5$sensitivity
@@ -4993,7 +5038,6 @@ saveRDS(object = nocov_list, file = paste0(results_wd,&quot;/nocov_model_list_re
 ## $age2to5$sensitivity$ci
 ##  2.5% 97.5% 
 ##     1     1</code></pre>
-</div>
 </div>
 </div>
 </div>

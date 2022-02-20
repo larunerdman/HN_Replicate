@@ -4898,7 +4898,7 @@ original_model_list[[&quot;stan_40test_origmod&quot;]][[&quot;sen_spec&quot;]] =
 table(ui_merge$target)</code></pre>
 <pre><code>## 
 ## no Obstruction    Obstruction 
-##             20             56</code></pre>
+##             41             56</code></pre>
 <pre class="r"><code>## Age group
 table(ui_merge$age_grp)</code></pre>
 <pre><code>## 
@@ -4914,27 +4914,28 @@ table(ui_merge$age_grp)</code></pre>
 table(ui_merge$Gender)</code></pre>
 <pre><code>## 
 ##  F  M 
-## 17 59</code></pre>
+## 17 80</code></pre>
 <pre class="r"><code>table(ui_merge$Gender, ui_merge$target)</code></pre>
 <pre><code>##    
 ##     no Obstruction Obstruction
 ##   F              3          14
-##   M             17          42</code></pre>
+##   M             38          42</code></pre>
 <pre class="r"><code>## HN side
 table(ui_merge$U.B)</code></pre>
 <pre><code>## 
-##  L  R 
-## 46 30</code></pre>
+##  B  L  R 
+## 12 53 32</code></pre>
 <pre class="r"><code>table(ui_merge$U.B, ui_merge$target)</code></pre>
 <pre><code>##    
 ##     no Obstruction Obstruction
-##   L             14          32
-##   R              6          24</code></pre>
+##   B             12           0
+##   L             21          32
+##   R              8          24</code></pre>
 <pre class="r"><code>## 40% Test -- for comparison with fine-tuning and combined-train model performance
 table(ui40_test$target)</code></pre>
 <pre><code>## 
 ## no Obstruction    Obstruction 
-##              7             16</code></pre>
+##             27             16</code></pre>
 </div>
 <div id="model-performance" class="section level4">
 <h4><span class="header-section-number">1.4.0.2</span> Model performance</h4>
@@ -4986,29 +4987,29 @@ original_model_list[[&quot;uiowa_all_origmod&quot;]][[&quot;sen_spec&quot;]] = u
                     target = ui40_test$target01, 
                     n_it = 500))</code></pre>
 <pre><code>## $auprc
-## [1] 0.7507387
+## [1] 0.7325291
 ## 
 ## $auprc_ci
 ##      2.5%     97.5% 
-## 0.5564466 0.9352078 
+## 0.5353627 0.9216721 
 ## 
 ## $auroc
-## [1] 0.7321429
+## [1] 0.912037
 ## 
 ## $auroc_ci
 ##      2.5%     97.5% 
-## 0.4817892 0.9605626</code></pre>
+## 0.8177228 0.9823834</code></pre>
 <pre class="r"><code>(ui_40test_origmod = get_sen_spec_withCI(score_vec = ui40_test$ui_pred_mod_ep30, 
                     target = ui40_test$target01, 
                     threshold = thresh_ep30, 
                     n_it = 500))</code></pre>
 <pre><code>## $specificity
 ## $specificity$est
-## [1] 0.1428571
+## [1] 0.5925926
 ## 
 ## $specificity$ci
-##      2.5%     97.5% 
-## 0.0000000 0.4369048 
+##    2.5%   97.5% 
+## 0.39625 0.76000 
 ## 
 ## 
 ## $sensitivity
@@ -5030,18 +5031,18 @@ original_model_list[[&quot;uiowa_40test_origmod&quot;]][[&quot;sen_spec&quot;]] 
                n_it = 500)</code></pre>
 <pre><code>## $M
 ## $M$auprc
-## [1] 0.9092076
+## [1] 0.8997184
 ## 
 ## $M$auprc_ci
 ##      2.5%     97.5% 
-## 0.8308897 0.9634595 
+## 0.8152207 0.9613613 
 ## 
 ## $M$auroc
-## [1] 0.8613445
+## [1] 0.9185464
 ## 
 ## $M$auroc_ci
 ##      2.5%     97.5% 
-## 0.7509807 0.9535512 
+## 0.8524251 0.9793673 
 ## 
 ## 
 ## $F
@@ -5066,11 +5067,11 @@ original_model_list[[&quot;uiowa_40test_origmod&quot;]][[&quot;sen_spec&quot;]] 
 <pre><code>## $M
 ## $M$specificity
 ## $M$specificity$est
-## [1] 0.2941176
+## [1] 0.5263158
 ## 
 ## $M$specificity$ci
-##       2.5%      97.5% 
-## 0.07692308 0.51750000 
+##      2.5%     97.5% 
+## 0.3715461 0.6756757 
 ## 
 ## 
 ## $M$sensitivity
@@ -5079,7 +5080,7 @@ original_model_list[[&quot;uiowa_40test_origmod&quot;]][[&quot;sen_spec&quot;]] 
 ## 
 ## $M$sensitivity$ci
 ##      2.5%     97.5% 
-## 0.9189189 1.0000000 
+## 0.9210526 1.0000000 
 ## 
 ## 
 ## 
@@ -5109,34 +5110,38 @@ original_model_list[[&quot;uiowa_40test_origmod&quot;]][[&quot;sen_spec&quot;]] 
                n_it = 500)</code></pre>
 <pre><code>## $L
 ## $L$auprc
-## [1] 0.8878959
+## [1] 0.8840181
 ## 
 ## $L$auprc_ci
 ##      2.5%     97.5% 
-## 0.7764774 0.9591518 
+## 0.7684638 0.9577869 
 ## 
 ## $L$auroc
-## [1] 0.8549107
+## [1] 0.8943452
 ## 
 ## $L$auroc_ci
 ##      2.5%     97.5% 
-## 0.7108588 0.9716732 
+## 0.7893973 0.9720967 
 ## 
 ## 
 ## $R
 ## $R$auprc
-## [1] 0.9364525
+## [1] 0.9353641
 ## 
 ## $R$auprc_ci
 ##      2.5%     97.5% 
-## 0.8853447 0.9600454 
+## 0.8869719 0.9612433 
 ## 
 ## $R$auroc
-## [1] 0.9027778
+## [1] 0.921875
 ## 
 ## $R$auroc_ci
 ##      2.5%     97.5% 
-## 0.7800725 1.0000000</code></pre>
+## 0.8142062 1.0000000 
+## 
+## 
+## $B
+## [1] NA</code></pre>
 <pre class="r"><code>sen_spec_split(score_vec = ui_merge$ui_pred_mod_ep30, 
                target = ui_merge$target01, 
                split_vec = ui_merge$U.B, 
@@ -5145,11 +5150,11 @@ original_model_list[[&quot;uiowa_40test_origmod&quot;]][[&quot;sen_spec&quot;]] 
 <pre><code>## $L
 ## $L$specificity
 ## $L$specificity$est
-## [1] 0.2857143
+## [1] 0.3333333
 ## 
 ## $L$specificity$ci
-##       2.5%      97.5% 
-## 0.07996795 0.57142857 
+##      2.5%     97.5% 
+## 0.1211397 0.5600000 
 ## 
 ## 
 ## $L$sensitivity
@@ -5165,11 +5170,11 @@ original_model_list[[&quot;uiowa_40test_origmod&quot;]][[&quot;sen_spec&quot;]] 
 ## $R
 ## $R$specificity
 ## $R$specificity$est
-## [1] 0.5
+## [1] 0.625
 ## 
 ## $R$specificity$ci
 ##  2.5% 97.5% 
-##     0     1 
+##  0.25  1.00 
 ## 
 ## 
 ## $R$sensitivity
@@ -5177,8 +5182,28 @@ original_model_list[[&quot;uiowa_40test_origmod&quot;]][[&quot;sen_spec&quot;]] 
 ## [1] 0.9166667
 ## 
 ## $R$sensitivity$ci
+##      2.5%     97.5% 
+## 0.8076923 1.0000000 
+## 
+## 
+## 
+## $B
+## $B$specificity
+## $B$specificity$est
+## [1] 0.8333333
+## 
+## $B$specificity$ci
+##      2.5%     97.5% 
+## 0.5833333 1.0000000 
+## 
+## 
+## $B$sensitivity
+## $B$sensitivity$est
+## [1] NaN
+## 
+## $B$sensitivity$ci
 ##  2.5% 97.5% 
-##   0.8   1.0</code></pre>
+##    NA    NA</code></pre>
 </div>
 <div id="by-age-group" class="section level5">
 <h5><span class="header-section-number">1.4.0.2.5</span> By Age Group</h5>
@@ -5242,6 +5267,26 @@ original_model_list[[&quot;uiowa_40test_origmod&quot;]][[&quot;sen_spec&quot;]] 
 ## $under2$sensitivity$ci
 ##      2.5%     97.5% 
 ## 0.8934556 1.0000000 
+## 
+## 
+## 
+## $&lt;NA&gt;
+## $&lt;NA&gt;$specificity
+## $&lt;NA&gt;$specificity$est
+## [1] NaN
+## 
+## $&lt;NA&gt;$specificity$ci
+##  2.5% 97.5% 
+##    NA    NA 
+## 
+## 
+## $&lt;NA&gt;$sensitivity
+## $&lt;NA&gt;$sensitivity$est
+## [1] NaN
+## 
+## $&lt;NA&gt;$sensitivity$ci
+##  2.5% 97.5% 
+##    NA    NA 
 ## 
 ## 
 ## 
@@ -6008,9 +6053,9 @@ ui_df$pt_id = unlist(lapply(strsplit(as.character(ui_df$id),&quot;_&quot;),funct
 dim(ui_df)</code></pre>
 <pre><code>## [1] 97  5</code></pre>
 <pre class="r"><code>dim(ui_merge)</code></pre>
-<pre><code>## [1] 76 12</code></pre>
+<pre><code>## [1] 97 12</code></pre>
 <pre class="r"><code>dim(ui_merge)</code></pre>
-<pre><code>## [1] 76 12</code></pre>
+<pre><code>## [1] 97 12</code></pre>
 <pre class="r"><code>ui_merge = merge(ui_df, ui_datasheet, by.y = &quot;Name&quot;, by.x = &quot;pt_id&quot;)
 
 ui_train = readRDS(paste0(results_wd, &quot;/Datasheets/UI60%train_ids_20220114.rds&quot;))
@@ -6061,29 +6106,29 @@ ui40_test = ui_merge[!(ui_merge$pt_id %in% ui_train),]</code></pre>
                     target = ui40_test$target01, 
                     n_it = 500)</code></pre>
 <pre><code>## $auprc
-## [1] 0.8887346
+## [1] 0.7378117
 ## 
 ## $auprc_ci
 ##      2.5%     97.5% 
-## 0.8074184 0.9444444 
+## 0.6064194 0.9302991 
 ## 
 ## $auroc
-## [1] 0.9107143
+## [1] 0.9097222
 ## 
 ## $auroc_ci
 ##      2.5%     97.5% 
-## 0.7946875 1.0000000</code></pre>
+## 0.7972853 0.9933221</code></pre>
 <pre class="r"><code>get_sen_spec_withCI(score_vec = ui40_test$ui_pred_mod_ep30, 
                     target = ui40_test$target01, 
                     threshold = thresh_ep30, 
                     n_it = 500)</code></pre>
 <pre><code>## $specificity
 ## $specificity$est
-## [1] 1
+## [1] 0.962963
 ## 
 ## $specificity$ci
-##  2.5% 97.5% 
-##     1     1 
+##      2.5%     97.5% 
+## 0.8745217 1.0000000 
 ## 
 ## 
 ## $sensitivity
@@ -6092,7 +6137,7 @@ ui40_test = ui_merge[!(ui_merge$pt_id %in% ui_train),]</code></pre>
 ## 
 ## $sensitivity$ci
 ##      2.5%     97.5% 
-## 0.5000000 0.9394301</code></pre>
+## 0.5294118 0.9355208</code></pre>
 </div>
 <div id="chop-original-model-performance-1" class="section level3">
 <h3><span class="header-section-number">2.3.1</span> CHOP original model performance</h3>
@@ -6805,9 +6850,9 @@ ui_df$pt_id = unlist(lapply(strsplit(as.character(ui_df$id),&quot;_&quot;),funct
 dim(ui_df)</code></pre>
 <pre><code>## [1] 97  5</code></pre>
 <pre class="r"><code>dim(ui_merge)</code></pre>
-<pre><code>## [1] 23 10</code></pre>
+<pre><code>## [1] 43 10</code></pre>
 <pre class="r"><code>dim(ui_merge)</code></pre>
-<pre><code>## [1] 23 10</code></pre>
+<pre><code>## [1] 43 10</code></pre>
 <pre class="r"><code>ui_merge = merge(ui_df, ui_datasheet, by.y = &quot;Name&quot;, by.x = &quot;pt_id&quot;)
 
 ui_train = readRDS(paste0(results_wd, &quot;/Datasheets/UI60%train_ids_20220114.rds&quot;))
@@ -6856,29 +6901,29 @@ get_auroc_aurpc(score_vec = ui_df$ui_pred_mod_ep30,
                     target = ui40_test$target01, 
                     n_it = 500)</code></pre>
 <pre><code>## $auprc
-## [1] 0.5716091
+## [1] 0.2474076
 ## 
 ## $auprc_ci
 ##      2.5%     97.5% 
-## 0.3787102 0.7891842 
+## 0.1495030 0.3618901 
 ## 
 ## $auroc
-## [1] 0.6607143
+## [1] 0.787037
 ## 
 ## $auroc_ci
 ##      2.5%     97.5% 
-## 0.4062500 0.9666667</code></pre>
+## 0.6349534 0.9088670</code></pre>
 <pre class="r"><code>(ui_overall_stft = get_sen_spec_withCI(score_vec = ui40_test$ui_pred_mod_ep30, 
                     target = ui40_test$target01, 
                     threshold = thresh_ep30, 
                     n_it = 500))</code></pre>
 <pre><code>## $specificity
 ## $specificity$est
-## [1] 1
+## [1] 0.5925926
 ## 
 ## $specificity$ci
-##  2.5% 97.5% 
-##     1     1 
+##      2.5%     97.5% 
+## 0.4113245 0.7586207 
 ## 
 ## 
 ## $sensitivity
@@ -7232,121 +7277,6 @@ get_auroc_aurpc(score_vec = chop_df$chop_pred_mod_ep30,
 ## $sensitivity$ci
 ##      2.5%     97.5% 
 ## 0.1016379 0.4423333</code></pre>
-<!-- ``` -->
-<!-- # Embedding plots (Figure 2) -->
-<!-- ```{r embeddings, echo=FALSE} -->
-<!-- train_embed = read.csv(paste0(results_wd,"/Embeddings/Training_embeddings.csv"), header=FALSE, as.is=TRUE) -->
-<!-- val_embed = read.csv(paste0(results_wd,"/Embeddings/Validation_embeddings.csv"), header=FALSE, as.is=TRUE) -->
-<!-- sitrial_embed = read.csv(paste0(results_wd,"/Embeddings/SilentTrial_embeddings.csv"), header=FALSE, as.is=TRUE) -->
-<!-- stan_embed = read.csv(paste0(results_wd,"/Embeddings/Stanford_embeddings.csv"), header=FALSE, as.is=TRUE) -->
-<!-- uiowa_embed = read.csv(paste0(results_wd,"/Embeddings/UIowa_embeddings.csv"), header=FALSE, as.is=TRUE) -->
-<!-- train_ids = train_embed[,ncol(train_embed)] -->
-<!-- val_ids = val_embed[,ncol(val_embed)] -->
-<!-- sitrial_ids = sitrial_embed[,ncol(sitrial_embed)] -->
-<!-- stan_ids = stan_embed[,ncol(stan_embed)] -->
-<!-- uiowa_ids = uiowa_embed[,ncol(uiowa_embed)] -->
-<!-- all_train_ids = c(train_ids, val_ids) -->
-<!-- # length(unique(all_train_ids)) -->
-<!-- # length(all_train_ids) -->
-<!-- # saveRDS(unique(all_train_ids), file = "C:/Users/lauren erdman/Desktop/kidney_img/HN/SickKids/training_ids_20210803.rds") -->
-<!-- all_dat = rbind(train_embed, val_embed, sitrial_embed,  -->
-<!--                 stan_embed, uiowa_embed) -->
-<!-- all_embed = all_dat[,-ncol(all_dat)] -->
-<!-- all_embed = all_embed[,-1] -->
-<!-- ids = all_dat[,ncol(all_dat)] -->
-<!-- col_vec = rep("blue", length(ids)) -->
-<!-- col_vec[ids %in% val_ids] = "dodgerblue" -->
-<!-- col_vec[ids %in% sitrial_ids] = "deeppink2" -->
-<!-- col_vec[ids %in% stan_ids] = "darkorchid2" -->
-<!-- col_vec[ids %in% uiowa_ids] = "forestgreen" -->
-<!-- col_vec[substr(ids,1,4) == "ORIG"] = "darkturquoise" -->
-<!-- group_vec = rep("TrainingST", length(ids)) -->
-<!-- group_vec[ids %in% val_ids] = "Validation" -->
-<!-- group_vec[ids %in% sitrial_ids] = "SilentTrial" -->
-<!-- group_vec[ids %in% stan_ids] = "Stanford" -->
-<!-- group_vec[ids %in% uiowa_ids] = "UIowa" -->
-<!-- group_vec[substr(ids,1,4) == "ORIG"] = "TrainingOrig" -->
-<!-- # length(group_vec[group_vec == "TrainingOrig"]) -->
-<!-- # length(group_vec[group_vec == "TrainingST"]) -->
-<!--   ## 2  -->
-<!-- group_vec2 = rep("Training", length(ids)) -->
-<!-- group_vec2[ids %in% val_ids] = "Validation" -->
-<!-- group_vec2[ids %in% sitrial_ids] = "SilentTrial" -->
-<!-- group_vec2[ids %in% stan_ids] = "Stanford" -->
-<!-- group_vec2[ids %in% uiowa_ids] = "UIowa" -->
-<!-- group_vec2[substr(ids,1,4) == "ORIG"] = "Training" -->
-<!-- my_umap = umap(all_embed) -->
-<!-- # head(my_umap$layout) -->
-<!-- umap_df = data.frame(cbind(ids,my_umap$layout,col = col_vec, group = group_vec)) -->
-<!-- names(umap_df)[2:3] = c("Dim1","Dim2") -->
-<!-- gg_df = data.frame(cbind(my_umap$layout,group_vec2)) -->
-<!-- names(gg_df)[1:2] = c("Dim1","Dim2") -->
-<!-- gg_df$Dim1 = as.numeric(gg_df$Dim1) -->
-<!-- gg_df$Dim2 = as.numeric(gg_df$Dim2) -->
-<!-- gg_df$DataSet = factor(gg_df$group_vec2, levels = c("Training","Validation","SilentTrial","Stanford","UIowa")) -->
-<!-- ## GGPLOT THIS GRAPH AND FACET GRID IT -->
-<!-- theme_set( -->
-<!--   theme_bw(base_size = 20) -->
-<!-- ) -->
-<!-- ggplot(gg_df, aes(x = Dim1, y = Dim2, col = DataSet)) +  -->
-<!--   geom_point(size = 2, shape = 18) +  -->
-<!--   scale_color_manual(name = "Data Set", -->
-<!--                      values = c("black","orange","skyblue","deeppink1","aquamarine4")) +  -->
-<!--   guides(colour = guide_legend(override.aes = list(size=5)))#+ facet_grid(~group_vec) -->
-<!-- ggplot(gg_df, aes(x = Dim1, y = Dim2, col = DataSet)) +  -->
-<!--   geom_point(size = 2, shape = 18) +  -->
-<!--   scale_color_manual(name = "Data Set", -->
-<!--                      values = c("black","orange","skyblue","deeppink1","aquamarine4")) +  -->
-<!--   guides(colour = guide_legend(override.aes = list(size=5)))+ facet_grid(~DataSet) -->
-<!-- ``` -->
-<!-- ```{r} -->
-<!-- ### color by surgery status  -->
-<!-- training_df = readRDS(file = paste0(results_wd, "/Datasheets/training_details.rds")) -->
-<!-- # head(training_df) -->
-<!-- # head(umap_df) -->
-<!-- umap_train = umap_df[umap_df$ids %in% training_df$full_id,] -->
-<!-- # head(umap_train) -->
-<!-- # dim(umap_train) -->
-<!-- #  -->
-<!-- # dim(umap_df) -->
-<!-- umap_merge = merge(umap_train, training_df, by.x = "ids", by.y = "full_id") -->
-<!-- # head(umap_merge) -->
-<!-- umap_merge$Dim1 = as.numeric(umap_merge$Dim1) -->
-<!-- umap_merge$Dim2 = as.numeric(umap_merge$Dim2) -->
-<!-- umap_merge$Obstruction = factor(umap_merge$surgery, levels = c(0,1), -->
-<!--                                 labels = c("No","Yes")) -->
-<!-- # "blue" -->
-<!-- # "dodgerblue" -->
-<!-- # "deeppink2" -->
-<!-- # "darkorchid2" -->
-<!-- # "forestgreen" -->
-<!-- # "darkturquoise" -->
-<!-- theme_set( -->
-<!--   theme_bw(base_size = 20) -->
-<!-- ) -->
-<!-- ggplot(umap_merge, aes(x = Dim1, y = Dim2, col = Obstruction)) +  -->
-<!--   geom_point()  +  -->
-<!--   geom_point(size = 2, shape = 18) +  -->
-<!--   scale_color_manual(name = "Obstruction", -->
-<!--                      values = c("#009E73","#CC79A7")) +  -->
-<!--   ggtitle("Color by Obstruction") +  -->
-<!--   guides(colour = guide_legend(override.aes = list(size=5, shape=18)))#+ facet_grid(~group_vec) -->
-<!-- ggplot(umap_merge, aes(x = Dim1, y = Dim2, col = group)) +  -->
-<!--   geom_point() #+ facet_grid(~group_vec) -->
-<!-- ggplot(umap_merge, aes(x = Dim1, y = Dim2, col = age_grp)) +  -->
-<!--   geom_point() #+ facet_grid(~group_vec) -->
-<!-- ggplot(umap_merge, aes(x = Dim1, y = Dim2, col = apd_group)) +  -->
-<!--   geom_point() #+ facet_grid(~group_vec) -->
-<!-- ggplot(umap_merge, aes(x = Dim1, y = Dim2, col = USMachine)) +  -->
-<!--   geom_point() #+ facet_grid(~group_vec) -->
-<!-- ggplot(umap_merge, aes(x = Dim1, y = Dim2, col = apd_group)) +  -->
-<!--   geom_point() #+ facet_grid(~group_vec) -->
-<!-- ggplot(umap_merge, aes(x = Dim1, y = Dim2, col = side)) +  -->
-<!--   geom_point() #+ facet_grid(~group_vec) -->
-<!-- ggplot(umap_merge, aes(x = Dim1, y = Dim2, col = set)) +  -->
-<!--   geom_point() +  -->
-<!--   scale_color_manual(values = c("blue","dodgerblue","deeppink2","darkorchid2","forestgreen","darkturquoise")) #+ facet_grid(~group_vec) -->
-<!-- ``` -->
 </div>
 </div>
 </div>

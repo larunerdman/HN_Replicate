@@ -12,7 +12,7 @@
 <meta name="author" content="LaurenErdman" />
 
 
-<title>HN AltModel SideAblation 20220127</title>
+<title>HN AltModel AgeAblation 20220127</title>
 
 <script>/*! jQuery v1.11.3 | (c) 2005, 2015 jQuery Foundation, Inc. | jquery.org/license */
 !function(a,b){"object"==typeof module&&"object"==typeof module.exports?module.exports=a.document?b(a,!0):function(a){if(!a.document)throw new Error("jQuery requires a window with a document");return b(a)}:b(a)}("undefined"!=typeof window?window:this,function(a,b){var c=[],d=c.slice,e=c.concat,f=c.push,g=c.indexOf,h={},i=h.toString,j=h.hasOwnProperty,k={},l="1.11.3",m=function(a,b){return new m.fn.init(a,b)},n=/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g,o=/^-ms-/,p=/-([\da-z])/gi,q=function(a,b){return b.toUpperCase()};m.fn=m.prototype={jquery:l,constructor:m,selector:"",length:0,toArray:function(){return d.call(this)},get:function(a){return null!=a?0>a?this[a+this.length]:this[a]:d.call(this)},pushStack:function(a){var b=m.merge(this.constructor(),a);return b.prevObject=this,b.context=this.context,b},each:function(a,b){return m.each(this,a,b)},map:function(a){return this.pushStack(m.map(this,function(b,c){return a.call(b,c,b)}))},slice:function(){return this.pushStack(d.apply(this,arguments))},first:function(){return this.eq(0)},last:function(){return this.eq(-1)},eq:function(a){var b=this.length,c=+a+(0>a?b:0);return this.pushStack(c>=0&&b>c?[this[c]]:[])},end:function(){return this.prevObject||this.constructor(null)},push:f,sort:c.sort,splice:c.splice},m.extend=m.fn.extend=function(){var a,b,c,d,e,f,g=arguments[0]||{},h=1,i=arguments.length,j=!1;for("boolean"==typeof g&&(j=g,g=arguments[h]||{},h++),"object"==typeof g||m.isFunction(g)||(g={}),h===i&&(g=this,h--);i>h;h++)if(null!=(e=arguments[h]))for(d in e)a=g[d],c=e[d],g!==c&&(j&&c&&(m.isPlainObject(c)||(b=m.isArray(c)))?(b?(b=!1,f=a&&m.isArray(a)?a:[]):f=a&&m.isPlainObject(a)?a:{},g[d]=m.extend(j,f,c)):void 0!==c&&(g[d]=c));return g},m.extend({expando:"jQuery"+(l+Math.random()).replace(/\D/g,""),isReady:!0,error:function(a){throw new Error(a)},noop:function(){},isFunction:function(a){return"function"===m.type(a)},isArray:Array.isArray||function(a){return"array"===m.type(a)},isWindow:function(a){return null!=a&&a==a.window},isNumeric:function(a){return!m.isArray(a)&&a-parseFloat(a)+1>=0},isEmptyObject:function(a){var b;for(b in a)return!1;return!0},isPlainObject:function(a){var b;if(!a||"object"!==m.type(a)||a.nodeType||m.isWindow(a))return!1;try{if(a.constructor&&!j.call(a,"constructor")&&!j.call(a.constructor.prototype,"isPrototypeOf"))return!1}catch(c){return!1}if(k.ownLast)for(b in a)return j.call(a,b);for(b in a);return void 0===b||j.call(a,b)},type:function(a){return null==a?a+"":"object"==typeof a||"function"==typeof a?h[i.call(a)]||"object":typeof a},globalEval:function(b){b&&m.trim(b)&&(a.execScript||function(b){a.eval.call(a,b)})(b)},camelCase:function(a){return a.replace(o,"ms-").replace(p,q)},nodeName:function(a,b){return a.nodeName&&a.nodeName.toLowerCase()===b.toLowerCase()},each:function(a,b,c){var d,e=0,f=a.length,g=r(a);if(c){if(g){for(;f>e;e++)if(d=b.apply(a[e],c),d===!1)break}else for(e in a)if(d=b.apply(a[e],c),d===!1)break}else if(g){for(;f>e;e++)if(d=b.call(a[e],e,a[e]),d===!1)break}else for(e in a)if(d=b.call(a[e],e,a[e]),d===!1)break;return a},trim:function(a){return null==a?"":(a+"").replace(n,"")},makeArray:function(a,b){var c=b||[];return null!=a&&(r(Object(a))?m.merge(c,"string"==typeof a?[a]:a):f.call(c,a)),c},inArray:function(a,b,c){var d;if(b){if(g)return g.call(b,a,c);for(d=b.length,c=c?0>c?Math.max(0,d+c):c:0;d>c;c++)if(c in b&&b[c]===a)return c}return-1},merge:function(a,b){var c=+b.length,d=0,e=a.length;while(c>d)a[e++]=b[d++];if(c!==c)while(void 0!==b[d])a[e++]=b[d++];return a.length=e,a},grep:function(a,b,c){for(var d,e=[],f=0,g=a.length,h=!c;g>f;f++)d=!b(a[f],f),d!==h&&e.push(a[f]);return e},map:function(a,b,c){var d,f=0,g=a.length,h=r(a),i=[];if(h)for(;g>f;f++)d=b(a[f],f,c),null!=d&&i.push(d);else for(f in a)d=b(a[f],f,c),null!=d&&i.push(d);return e.apply([],i)},guid:1,proxy:function(a,b){var c,e,f;return"string"==typeof b&&(f=a[b],b=a,a=f),m.isFunction(a)?(c=d.call(arguments,2),e=function(){return a.apply(b||this,c.concat(d.call(arguments)))},e.guid=a.guid=a.guid||m.guid++,e):void 0},now:function(){return+new Date},support:k}),m.each("Boolean Number String Function Array Date RegExp Object Error".split(" "),function(a,b){h["[object "+b+"]"]=b.toLowerCase()});function r(a){var b="length"in a&&a.length,c=m.type(a);return"function"===c||m.isWindow(a)?!1:1===a.nodeType&&b?!0:"array"===c||0===b||"number"==typeof b&&b>0&&b-1 in a}var s=function(a){var b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u="sizzle"+1*new Date,v=a.document,w=0,x=0,y=ha(),z=ha(),A=ha(),B=function(a,b){return a===b&&(l=!0),0},C=1<<31,D={}.hasOwnProperty,E=[],F=E.pop,G=E.push,H=E.push,I=E.slice,J=function(a,b){for(var c=0,d=a.length;d>c;c++)if(a[c]===b)return c;return-1},K="checked|selected|async|autofocus|autoplay|controls|defer|disabled|hidden|ismap|loop|multiple|open|readonly|required|scoped",L="[\\x20\\t\\r\\n\\f]",M="(?:\\\\.|[\\w-]|[^\\x00-\\xa0])+",N=M.replace("w","w#"),O="\\["+L+"*("+M+")(?:"+L+"*([*^$|!~]?=)"+L+"*(?:'((?:\\\\.|[^\\\\'])*)'|\"((?:\\\\.|[^\\\\\"])*)\"|("+N+"))|)"+L+"*\\]",P=":("+M+")(?:\\((('((?:\\\\.|[^\\\\'])*)'|\"((?:\\\\.|[^\\\\\"])*)\")|((?:\\\\.|[^\\\\()[\\]]|"+O+")*)|.*)\\)|)",Q=new RegExp(L+"+","g"),R=new RegExp("^"+L+"+|((?:^|[^\\\\])(?:\\\\.)*)"+L+"+$","g"),S=new RegExp("^"+L+"*,"+L+"*"),T=new RegExp("^"+L+"*([>+~]|"+L+")"+L+"*"),U=new RegExp("="+L+"*([^\\]'\"]*?)"+L+"*\\]","g"),V=new RegExp(P),W=new RegExp("^"+N+"$"),X={ID:new RegExp("^#("+M+")"),CLASS:new RegExp("^\\.("+M+")"),TAG:new RegExp("^("+M.replace("w","w*")+")"),ATTR:new RegExp("^"+O),PSEUDO:new RegExp("^"+P),CHILD:new RegExp("^:(only|first|last|nth|nth-last)-(child|of-type)(?:\\("+L+"*(even|odd|(([+-]|)(\\d*)n|)"+L+"*(?:([+-]|)"+L+"*(\\d+)|))"+L+"*\\)|)","i"),bool:new RegExp("^(?:"+K+")$","i"),needsContext:new RegExp("^"+L+"*[>+~]|:(even|odd|eq|gt|lt|nth|first|last)(?:\\("+L+"*((?:-\\d)?\\d*)"+L+"*\\)|)(?=[^-]|$)","i")},Y=/^(?:input|select|textarea|button)$/i,Z=/^h\d$/i,$=/^[^{]+\{\s*\[native \w/,_=/^(?:#([\w-]+)|(\w+)|\.([\w-]+))$/,aa=/[+~]/,ba=/'|\\/g,ca=new RegExp("\\\\([\\da-f]{1,6}"+L+"?|("+L+")|.)","ig"),da=function(a,b,c){var d="0x"+b-65536;return d!==d||c?b:0>d?String.fromCharCode(d+65536):String.fromCharCode(d>>10|55296,1023&d|56320)},ea=function(){m()};try{H.apply(E=I.call(v.childNodes),v.childNodes),E[v.childNodes.length].nodeType}catch(fa){H={apply:E.length?function(a,b){G.apply(a,I.call(b))}:function(a,b){var c=a.length,d=0;while(a[c++]=b[d++]);a.length=c-1}}}function ga(a,b,d,e){var f,h,j,k,l,o,r,s,w,x;if((b?b.ownerDocument||b:v)!==n&&m(b),b=b||n,d=d||[],k=b.nodeType,"string"!=typeof a||!a||1!==k&&9!==k&&11!==k)return d;if(!e&&p){if(11!==k&&(f=_.exec(a)))if(j=f[1]){if(9===k){if(h=b.getElementById(j),!h||!h.parentNode)return d;if(h.id===j)return d.push(h),d}else if(b.ownerDocument&&(h=b.ownerDocument.getElementById(j))&&t(b,h)&&h.id===j)return d.push(h),d}else{if(f[2])return H.apply(d,b.getElementsByTagName(a)),d;if((j=f[3])&&c.getElementsByClassName)return H.apply(d,b.getElementsByClassName(j)),d}if(c.qsa&&(!q||!q.test(a))){if(s=r=u,w=b,x=1!==k&&a,1===k&&"object"!==b.nodeName.toLowerCase()){o=g(a),(r=b.getAttribute("id"))?s=r.replace(ba,"\\$&"):b.setAttribute("id",s),s="[id='"+s+"'] ",l=o.length;while(l--)o[l]=s+ra(o[l]);w=aa.test(a)&&pa(b.parentNode)||b,x=o.join(",")}if(x)try{return H.apply(d,w.querySelectorAll(x)),d}catch(y){}finally{r||b.removeAttribute("id")}}}return i(a.replace(R,"$1"),b,d,e)}function ha(){var a=[];function b(c,e){return a.push(c+" ")>d.cacheLength&&delete b[a.shift()],b[c+" "]=e}return b}function ia(a){return a[u]=!0,a}function ja(a){var b=n.createElement("div");try{return!!a(b)}catch(c){return!1}finally{b.parentNode&&b.parentNode.removeChild(b),b=null}}function ka(a,b){var c=a.split("|"),e=a.length;while(e--)d.attrHandle[c[e]]=b}function la(a,b){var c=b&&a,d=c&&1===a.nodeType&&1===b.nodeType&&(~b.sourceIndex||C)-(~a.sourceIndex||C);if(d)return d;if(c)while(c=c.nextSibling)if(c===b)return-1;return a?1:-1}function ma(a){return function(b){var c=b.nodeName.toLowerCase();return"input"===c&&b.type===a}}function na(a){return function(b){var c=b.nodeName.toLowerCase();return("input"===c||"button"===c)&&b.type===a}}function oa(a){return ia(function(b){return b=+b,ia(function(c,d){var e,f=a([],c.length,b),g=f.length;while(g--)c[e=f[g]]&&(c[e]=!(d[e]=c[e]))})})}function pa(a){return a&&"undefined"!=typeof a.getElementsByTagName&&a}c=ga.support={},f=ga.isXML=function(a){var b=a&&(a.ownerDocument||a).documentElement;return b?"HTML"!==b.nodeName:!1},m=ga.setDocument=function(a){var b,e,g=a?a.ownerDocument||a:v;return g!==n&&9===g.nodeType&&g.documentElement?(n=g,o=g.documentElement,e=g.defaultView,e&&e!==e.top&&(e.addEventListener?e.addEventListener("unload",ea,!1):e.attachEvent&&e.attachEvent("onunload",ea)),p=!f(g),c.attributes=ja(function(a){return a.className="i",!a.getAttribute("className")}),c.getElementsByTagName=ja(function(a){return a.appendChild(g.createComment("")),!a.getElementsByTagName("*").length}),c.getElementsByClassName=$.test(g.getElementsByClassName),c.getById=ja(function(a){return o.appendChild(a).id=u,!g.getElementsByName||!g.getElementsByName(u).length}),c.getById?(d.find.ID=function(a,b){if("undefined"!=typeof b.getElementById&&p){var c=b.getElementById(a);return c&&c.parentNode?[c]:[]}},d.filter.ID=function(a){var b=a.replace(ca,da);return function(a){return a.getAttribute("id")===b}}):(delete d.find.ID,d.filter.ID=function(a){var b=a.replace(ca,da);return function(a){var c="undefined"!=typeof a.getAttributeNode&&a.getAttributeNode("id");return c&&c.value===b}}),d.find.TAG=c.getElementsByTagName?function(a,b){return"undefined"!=typeof b.getElementsByTagName?b.getElementsByTagName(a):c.qsa?b.querySelectorAll(a):void 0}:function(a,b){var c,d=[],e=0,f=b.getElementsByTagName(a);if("*"===a){while(c=f[e++])1===c.nodeType&&d.push(c);return d}return f},d.find.CLASS=c.getElementsByClassName&&function(a,b){return p?b.getElementsByClassName(a):void 0},r=[],q=[],(c.qsa=$.test(g.querySelectorAll))&&(ja(function(a){o.appendChild(a).innerHTML="<a id='"+u+"'></a><select id='"+u+"-\f]' msallowcapture=''><option selected=''></option></select>",a.querySelectorAll("[msallowcapture^='']").length&&q.push("[*^$]="+L+"*(?:''|\"\")"),a.querySelectorAll("[selected]").length||q.push("\\["+L+"*(?:value|"+K+")"),a.querySelectorAll("[id~="+u+"-]").length||q.push("~="),a.querySelectorAll(":checked").length||q.push(":checked"),a.querySelectorAll("a#"+u+"+*").length||q.push(".#.+[+~]")}),ja(function(a){var b=g.createElement("input");b.setAttribute("type","hidden"),a.appendChild(b).setAttribute("name","D"),a.querySelectorAll("[name=d]").length&&q.push("name"+L+"*[*^$|!~]?="),a.querySelectorAll(":enabled").length||q.push(":enabled",":disabled"),a.querySelectorAll("*,:x"),q.push(",.*:")})),(c.matchesSelector=$.test(s=o.matches||o.webkitMatchesSelector||o.mozMatchesSelector||o.oMatchesSelector||o.msMatchesSelector))&&ja(function(a){c.disconnectedMatch=s.call(a,"div"),s.call(a,"[s!='']:x"),r.push("!=",P)}),q=q.length&&new RegExp(q.join("|")),r=r.length&&new RegExp(r.join("|")),b=$.test(o.compareDocumentPosition),t=b||$.test(o.contains)?function(a,b){var c=9===a.nodeType?a.documentElement:a,d=b&&b.parentNode;return a===d||!(!d||1!==d.nodeType||!(c.contains?c.contains(d):a.compareDocumentPosition&&16&a.compareDocumentPosition(d)))}:function(a,b){if(b)while(b=b.parentNode)if(b===a)return!0;return!1},B=b?function(a,b){if(a===b)return l=!0,0;var d=!a.compareDocumentPosition-!b.compareDocumentPosition;return d?d:(d=(a.ownerDocument||a)===(b.ownerDocument||b)?a.compareDocumentPosition(b):1,1&d||!c.sortDetached&&b.compareDocumentPosition(a)===d?a===g||a.ownerDocument===v&&t(v,a)?-1:b===g||b.ownerDocument===v&&t(v,b)?1:k?J(k,a)-J(k,b):0:4&d?-1:1)}:function(a,b){if(a===b)return l=!0,0;var c,d=0,e=a.parentNode,f=b.parentNode,h=[a],i=[b];if(!e||!f)return a===g?-1:b===g?1:e?-1:f?1:k?J(k,a)-J(k,b):0;if(e===f)return la(a,b);c=a;while(c=c.parentNode)h.unshift(c);c=b;while(c=c.parentNode)i.unshift(c);while(h[d]===i[d])d++;return d?la(h[d],i[d]):h[d]===v?-1:i[d]===v?1:0},g):n},ga.matches=function(a,b){return ga(a,null,null,b)},ga.matchesSelector=function(a,b){if((a.ownerDocument||a)!==n&&m(a),b=b.replace(U,"='$1']"),!(!c.matchesSelector||!p||r&&r.test(b)||q&&q.test(b)))try{var d=s.call(a,b);if(d||c.disconnectedMatch||a.document&&11!==a.document.nodeType)return d}catch(e){}return ga(b,n,null,[a]).length>0},ga.contains=function(a,b){return(a.ownerDocument||a)!==n&&m(a),t(a,b)},ga.attr=function(a,b){(a.ownerDocument||a)!==n&&m(a);var e=d.attrHandle[b.toLowerCase()],f=e&&D.call(d.attrHandle,b.toLowerCase())?e(a,b,!p):void 0;return void 0!==f?f:c.attributes||!p?a.getAttribute(b):(f=a.getAttributeNode(b))&&f.specified?f.value:null},ga.error=function(a){throw new Error("Syntax error, unrecognized expression: "+a)},ga.uniqueSort=function(a){var b,d=[],e=0,f=0;if(l=!c.detectDuplicates,k=!c.sortStable&&a.slice(0),a.sort(B),l){while(b=a[f++])b===a[f]&&(e=d.push(f));while(e--)a.splice(d[e],1)}return k=null,a},e=ga.getText=function(a){var b,c="",d=0,f=a.nodeType;if(f){if(1===f||9===f||11===f){if("string"==typeof a.textContent)return a.textContent;for(a=a.firstChild;a;a=a.nextSibling)c+=e(a)}else if(3===f||4===f)return a.nodeValue}else while(b=a[d++])c+=e(b);return c},d=ga.selectors={cacheLength:50,createPseudo:ia,match:X,attrHandle:{},find:{},relative:{">":{dir:"parentNode",first:!0}," ":{dir:"parentNode"},"+":{dir:"previousSibling",first:!0},"~":{dir:"previousSibling"}},preFilter:{ATTR:function(a){return a[1]=a[1].replace(ca,da),a[3]=(a[3]||a[4]||a[5]||"").replace(ca,da),"~="===a[2]&&(a[3]=" "+a[3]+" "),a.slice(0,4)},CHILD:function(a){return a[1]=a[1].toLowerCase(),"nth"===a[1].slice(0,3)?(a[3]||ga.error(a[0]),a[4]=+(a[4]?a[5]+(a[6]||1):2*("even"===a[3]||"odd"===a[3])),a[5]=+(a[7]+a[8]||"odd"===a[3])):a[3]&&ga.error(a[0]),a},PSEUDO:function(a){var b,c=!a[6]&&a[2];return X.CHILD.test(a[0])?null:(a[3]?a[2]=a[4]||a[5]||"":c&&V.test(c)&&(b=g(c,!0))&&(b=c.indexOf(")",c.length-b)-c.length)&&(a[0]=a[0].slice(0,b),a[2]=c.slice(0,b)),a.slice(0,3))}},filter:{TAG:function(a){var b=a.replace(ca,da).toLowerCase();return"*"===a?function(){return!0}:function(a){return a.nodeName&&a.nodeName.toLowerCase()===b}},CLASS:function(a){var b=y[a+" "];return b||(b=new RegExp("(^|"+L+")"+a+"("+L+"|$)"))&&y(a,function(a){return b.test("string"==typeof a.className&&a.className||"undefined"!=typeof a.getAttribute&&a.getAttribute("class")||"")})},ATTR:function(a,b,c){return function(d){var e=ga.attr(d,a);return null==e?"!="===b:b?(e+="","="===b?e===c:"!="===b?e!==c:"^="===b?c&&0===e.indexOf(c):"*="===b?c&&e.indexOf(c)>-1:"$="===b?c&&e.slice(-c.length)===c:"~="===b?(" "+e.replace(Q," ")+" ").indexOf(c)>-1:"|="===b?e===c||e.slice(0,c.length+1)===c+"-":!1):!0}},CHILD:function(a,b,c,d,e){var f="nth"!==a.slice(0,3),g="last"!==a.slice(-4),h="of-type"===b;return 1===d&&0===e?function(a){return!!a.parentNode}:function(b,c,i){var j,k,l,m,n,o,p=f!==g?"nextSibling":"previousSibling",q=b.parentNode,r=h&&b.nodeName.toLowerCase(),s=!i&&!h;if(q){if(f){while(p){l=b;while(l=l[p])if(h?l.nodeName.toLowerCase()===r:1===l.nodeType)return!1;o=p="only"===a&&!o&&"nextSibling"}return!0}if(o=[g?q.firstChild:q.lastChild],g&&s){k=q[u]||(q[u]={}),j=k[a]||[],n=j[0]===w&&j[1],m=j[0]===w&&j[2],l=n&&q.childNodes[n];while(l=++n&&l&&l[p]||(m=n=0)||o.pop())if(1===l.nodeType&&++m&&l===b){k[a]=[w,n,m];break}}else if(s&&(j=(b[u]||(b[u]={}))[a])&&j[0]===w)m=j[1];else while(l=++n&&l&&l[p]||(m=n=0)||o.pop())if((h?l.nodeName.toLowerCase()===r:1===l.nodeType)&&++m&&(s&&((l[u]||(l[u]={}))[a]=[w,m]),l===b))break;return m-=e,m===d||m%d===0&&m/d>=0}}},PSEUDO:function(a,b){var c,e=d.pseudos[a]||d.setFilters[a.toLowerCase()]||ga.error("unsupported pseudo: "+a);return e[u]?e(b):e.length>1?(c=[a,a,"",b],d.setFilters.hasOwnProperty(a.toLowerCase())?ia(function(a,c){var d,f=e(a,b),g=f.length;while(g--)d=J(a,f[g]),a[d]=!(c[d]=f[g])}):function(a){return e(a,0,c)}):e}},pseudos:{not:ia(function(a){var b=[],c=[],d=h(a.replace(R,"$1"));return d[u]?ia(function(a,b,c,e){var f,g=d(a,null,e,[]),h=a.length;while(h--)(f=g[h])&&(a[h]=!(b[h]=f))}):function(a,e,f){return b[0]=a,d(b,null,f,c),b[0]=null,!c.pop()}}),has:ia(function(a){return function(b){return ga(a,b).length>0}}),contains:ia(function(a){return a=a.replace(ca,da),function(b){return(b.textContent||b.innerText||e(b)).indexOf(a)>-1}}),lang:ia(function(a){return W.test(a||"")||ga.error("unsupported lang: "+a),a=a.replace(ca,da).toLowerCase(),function(b){var c;do if(c=p?b.lang:b.getAttribute("xml:lang")||b.getAttribute("lang"))return c=c.toLowerCase(),c===a||0===c.indexOf(a+"-");while((b=b.parentNode)&&1===b.nodeType);return!1}}),target:function(b){var c=a.location&&a.location.hash;return c&&c.slice(1)===b.id},root:function(a){return a===o},focus:function(a){return a===n.activeElement&&(!n.hasFocus||n.hasFocus())&&!!(a.type||a.href||~a.tabIndex)},enabled:function(a){return a.disabled===!1},disabled:function(a){return a.disabled===!0},checked:function(a){var b=a.nodeName.toLowerCase();return"input"===b&&!!a.checked||"option"===b&&!!a.selected},selected:function(a){return a.parentNode&&a.parentNode.selectedIndex,a.selected===!0},empty:function(a){for(a=a.firstChild;a;a=a.nextSibling)if(a.nodeType<6)return!1;return!0},parent:function(a){return!d.pseudos.empty(a)},header:function(a){return Z.test(a.nodeName)},input:function(a){return Y.test(a.nodeName)},button:function(a){var b=a.nodeName.toLowerCase();return"input"===b&&"button"===a.type||"button"===b},text:function(a){var b;return"input"===a.nodeName.toLowerCase()&&"text"===a.type&&(null==(b=a.getAttribute("type"))||"text"===b.toLowerCase())},first:oa(function(){return[0]}),last:oa(function(a,b){return[b-1]}),eq:oa(function(a,b,c){return[0>c?c+b:c]}),even:oa(function(a,b){for(var c=0;b>c;c+=2)a.push(c);return a}),odd:oa(function(a,b){for(var c=1;b>c;c+=2)a.push(c);return a}),lt:oa(function(a,b,c){for(var d=0>c?c+b:c;--d>=0;)a.push(d);return a}),gt:oa(function(a,b,c){for(var d=0>c?c+b:c;++d<b;)a.push(d);return a})}},d.pseudos.nth=d.pseudos.eq;for(b in{radio:!0,checkbox:!0,file:!0,password:!0,image:!0})d.pseudos[b]=ma(b);for(b in{submit:!0,reset:!0})d.pseudos[b]=na(b);function qa(){}qa.prototype=d.filters=d.pseudos,d.setFilters=new qa,g=ga.tokenize=function(a,b){var c,e,f,g,h,i,j,k=z[a+" "];if(k)return b?0:k.slice(0);h=a,i=[],j=d.preFilter;while(h){(!c||(e=S.exec(h)))&&(e&&(h=h.slice(e[0].length)||h),i.push(f=[])),c=!1,(e=T.exec(h))&&(c=e.shift(),f.push({value:c,type:e[0].replace(R," ")}),h=h.slice(c.length));for(g in d.filter)!(e=X[g].exec(h))||j[g]&&!(e=j[g](e))||(c=e.shift(),f.push({value:c,type:g,matches:e}),h=h.slice(c.length));if(!c)break}return b?h.length:h?ga.error(a):z(a,i).slice(0)};function ra(a){for(var b=0,c=a.length,d="";c>b;b++)d+=a[b].value;return d}function sa(a,b,c){var d=b.dir,e=c&&"parentNode"===d,f=x++;return b.first?function(b,c,f){while(b=b[d])if(1===b.nodeType||e)return a(b,c,f)}:function(b,c,g){var h,i,j=[w,f];if(g){while(b=b[d])if((1===b.nodeType||e)&&a(b,c,g))return!0}else while(b=b[d])if(1===b.nodeType||e){if(i=b[u]||(b[u]={}),(h=i[d])&&h[0]===w&&h[1]===f)return j[2]=h[2];if(i[d]=j,j[2]=a(b,c,g))return!0}}}function ta(a){return a.length>1?function(b,c,d){var e=a.length;while(e--)if(!a[e](b,c,d))return!1;return!0}:a[0]}function ua(a,b,c){for(var d=0,e=b.length;e>d;d++)ga(a,b[d],c);return c}function va(a,b,c,d,e){for(var f,g=[],h=0,i=a.length,j=null!=b;i>h;h++)(f=a[h])&&(!c||c(f,d,e))&&(g.push(f),j&&b.push(h));return g}function wa(a,b,c,d,e,f){return d&&!d[u]&&(d=wa(d)),e&&!e[u]&&(e=wa(e,f)),ia(function(f,g,h,i){var j,k,l,m=[],n=[],o=g.length,p=f||ua(b||"*",h.nodeType?[h]:h,[]),q=!a||!f&&b?p:va(p,m,a,h,i),r=c?e||(f?a:o||d)?[]:g:q;if(c&&c(q,r,h,i),d){j=va(r,n),d(j,[],h,i),k=j.length;while(k--)(l=j[k])&&(r[n[k]]=!(q[n[k]]=l))}if(f){if(e||a){if(e){j=[],k=r.length;while(k--)(l=r[k])&&j.push(q[k]=l);e(null,r=[],j,i)}k=r.length;while(k--)(l=r[k])&&(j=e?J(f,l):m[k])>-1&&(f[j]=!(g[j]=l))}}else r=va(r===g?r.splice(o,r.length):r),e?e(null,g,r,i):H.apply(g,r)})}function xa(a){for(var b,c,e,f=a.length,g=d.relative[a[0].type],h=g||d.relative[" "],i=g?1:0,k=sa(function(a){return a===b},h,!0),l=sa(function(a){return J(b,a)>-1},h,!0),m=[function(a,c,d){var e=!g&&(d||c!==j)||((b=c).nodeType?k(a,c,d):l(a,c,d));return b=null,e}];f>i;i++)if(c=d.relative[a[i].type])m=[sa(ta(m),c)];else{if(c=d.filter[a[i].type].apply(null,a[i].matches),c[u]){for(e=++i;f>e;e++)if(d.relative[a[e].type])break;return wa(i>1&&ta(m),i>1&&ra(a.slice(0,i-1).concat({value:" "===a[i-2].type?"*":""})).replace(R,"$1"),c,e>i&&xa(a.slice(i,e)),f>e&&xa(a=a.slice(e)),f>e&&ra(a))}m.push(c)}return ta(m)}function ya(a,b){var c=b.length>0,e=a.length>0,f=function(f,g,h,i,k){var l,m,o,p=0,q="0",r=f&&[],s=[],t=j,u=f||e&&d.find.TAG("*",k),v=w+=null==t?1:Math.random()||.1,x=u.length;for(k&&(j=g!==n&&g);q!==x&&null!=(l=u[q]);q++){if(e&&l){m=0;while(o=a[m++])if(o(l,g,h)){i.push(l);break}k&&(w=v)}c&&((l=!o&&l)&&p--,f&&r.push(l))}if(p+=q,c&&q!==p){m=0;while(o=b[m++])o(r,s,g,h);if(f){if(p>0)while(q--)r[q]||s[q]||(s[q]=F.call(i));s=va(s)}H.apply(i,s),k&&!f&&s.length>0&&p+b.length>1&&ga.uniqueSort(i)}return k&&(w=v,j=t),r};return c?ia(f):f}return h=ga.compile=function(a,b){var c,d=[],e=[],f=A[a+" "];if(!f){b||(b=g(a)),c=b.length;while(c--)f=xa(b[c]),f[u]?d.push(f):e.push(f);f=A(a,ya(e,d)),f.selector=a}return f},i=ga.select=function(a,b,e,f){var i,j,k,l,m,n="function"==typeof a&&a,o=!f&&g(a=n.selector||a);if(e=e||[],1===o.length){if(j=o[0]=o[0].slice(0),j.length>2&&"ID"===(k=j[0]).type&&c.getById&&9===b.nodeType&&p&&d.relative[j[1].type]){if(b=(d.find.ID(k.matches[0].replace(ca,da),b)||[])[0],!b)return e;n&&(b=b.parentNode),a=a.slice(j.shift().value.length)}i=X.needsContext.test(a)?0:j.length;while(i--){if(k=j[i],d.relative[l=k.type])break;if((m=d.find[l])&&(f=m(k.matches[0].replace(ca,da),aa.test(j[0].type)&&pa(b.parentNode)||b))){if(j.splice(i,1),a=f.length&&ra(j),!a)return H.apply(e,f),e;break}}}return(n||h(a,o))(f,b,!p,e,aa.test(a)&&pa(b.parentNode)||b),e},c.sortStable=u.split("").sort(B).join("")===u,c.detectDuplicates=!!l,m(),c.sortDetached=ja(function(a){return 1&a.compareDocumentPosition(n.createElement("div"))}),ja(function(a){return a.innerHTML="<a href='#'></a>","#"===a.firstChild.getAttribute("href")})||ka("type|href|height|width",function(a,b,c){return c?void 0:a.getAttribute(b,"type"===b.toLowerCase()?1:2)}),c.attributes&&ja(function(a){return a.innerHTML="<input/>",a.firstChild.setAttribute("value",""),""===a.firstChild.getAttribute("value")})||ka("value",function(a,b,c){return c||"input"!==a.nodeName.toLowerCase()?void 0:a.defaultValue}),ja(function(a){return null==a.getAttribute("disabled")})||ka(K,function(a,b,c){var d;return c?void 0:a[b]===!0?b.toLowerCase():(d=a.getAttributeNode(b))&&d.specified?d.value:null}),ga}(a);m.find=s,m.expr=s.selectors,m.expr[":"]=m.expr.pseudos,m.unique=s.uniqueSort,m.text=s.getText,m.isXMLDoc=s.isXML,m.contains=s.contains;var t=m.expr.match.needsContext,u=/^<(\w+)\s*\/?>(?:<\/\1>|)$/,v=/^.[^:#\[\.,]*$/;function w(a,b,c){if(m.isFunction(b))return m.grep(a,function(a,d){return!!b.call(a,d,a)!==c});if(b.nodeType)return m.grep(a,function(a){return a===b!==c});if("string"==typeof b){if(v.test(b))return m.filter(b,a,c);b=m.filter(b,a)}return m.grep(a,function(a){return m.inArray(a,b)>=0!==c})}m.filter=function(a,b,c){var d=b[0];return c&&(a=":not("+a+")"),1===b.length&&1===d.nodeType?m.find.matchesSelector(d,a)?[d]:[]:m.find.matches(a,m.grep(b,function(a){return 1===a.nodeType}))},m.fn.extend({find:function(a){var b,c=[],d=this,e=d.length;if("string"!=typeof a)return this.pushStack(m(a).filter(function(){for(b=0;e>b;b++)if(m.contains(d[b],this))return!0}));for(b=0;e>b;b++)m.find(a,d[b],c);return c=this.pushStack(e>1?m.unique(c):c),c.selector=this.selector?this.selector+" "+a:a,c},filter:function(a){return this.pushStack(w(this,a||[],!1))},not:function(a){return this.pushStack(w(this,a||[],!0))},is:function(a){return!!w(this,"string"==typeof a&&t.test(a)?m(a):a||[],!1).length}});var x,y=a.document,z=/^(?:\s*(<[\w\W]+>)[^>]*|#([\w-]*))$/,A=m.fn.init=function(a,b){var c,d;if(!a)return this;if("string"==typeof a){if(c="<"===a.charAt(0)&&">"===a.charAt(a.length-1)&&a.length>=3?[null,a,null]:z.exec(a),!c||!c[1]&&b)return!b||b.jquery?(b||x).find(a):this.constructor(b).find(a);if(c[1]){if(b=b instanceof m?b[0]:b,m.merge(this,m.parseHTML(c[1],b&&b.nodeType?b.ownerDocument||b:y,!0)),u.test(c[1])&&m.isPlainObject(b))for(c in b)m.isFunction(this[c])?this[c](b[c]):this.attr(c,b[c]);return this}if(d=y.getElementById(c[2]),d&&d.parentNode){if(d.id!==c[2])return x.find(a);this.length=1,this[0]=d}return this.context=y,this.selector=a,this}return a.nodeType?(this.context=this[0]=a,this.length=1,this):m.isFunction(a)?"undefined"!=typeof x.ready?x.ready(a):a(m):(void 0!==a.selector&&(this.selector=a.selector,this.context=a.context),m.makeArray(a,this))};A.prototype=m.fn,x=m(y);var B=/^(?:parents|prev(?:Until|All))/,C={children:!0,contents:!0,next:!0,prev:!0};m.extend({dir:function(a,b,c){var d=[],e=a[b];while(e&&9!==e.nodeType&&(void 0===c||1!==e.nodeType||!m(e).is(c)))1===e.nodeType&&d.push(e),e=e[b];return d},sibling:function(a,b){for(var c=[];a;a=a.nextSibling)1===a.nodeType&&a!==b&&c.push(a);return c}}),m.fn.extend({has:function(a){var b,c=m(a,this),d=c.length;return this.filter(function(){for(b=0;d>b;b++)if(m.contains(this,c[b]))return!0})},closest:function(a,b){for(var c,d=0,e=this.length,f=[],g=t.test(a)||"string"!=typeof a?m(a,b||this.context):0;e>d;d++)for(c=this[d];c&&c!==b;c=c.parentNode)if(c.nodeType<11&&(g?g.index(c)>-1:1===c.nodeType&&m.find.matchesSelector(c,a))){f.push(c);break}return this.pushStack(f.length>1?m.unique(f):f)},index:function(a){return a?"string"==typeof a?m.inArray(this[0],m(a)):m.inArray(a.jquery?a[0]:a,this):this[0]&&this[0].parentNode?this.first().prevAll().length:-1},add:function(a,b){return this.pushStack(m.unique(m.merge(this.get(),m(a,b))))},addBack:function(a){return this.add(null==a?this.prevObject:this.prevObject.filter(a))}});function D(a,b){do a=a[b];while(a&&1!==a.nodeType);return a}m.each({parent:function(a){var b=a.parentNode;return b&&11!==b.nodeType?b:null},parents:function(a){return m.dir(a,"parentNode")},parentsUntil:function(a,b,c){return m.dir(a,"parentNode",c)},next:function(a){return D(a,"nextSibling")},prev:function(a){return D(a,"previousSibling")},nextAll:function(a){return m.dir(a,"nextSibling")},prevAll:function(a){return m.dir(a,"previousSibling")},nextUntil:function(a,b,c){return m.dir(a,"nextSibling",c)},prevUntil:function(a,b,c){return m.dir(a,"previousSibling",c)},siblings:function(a){return m.sibling((a.parentNode||{}).firstChild,a)},children:function(a){return m.sibling(a.firstChild)},contents:function(a){return m.nodeName(a,"iframe")?a.contentDocument||a.contentWindow.document:m.merge([],a.childNodes)}},function(a,b){m.fn[a]=function(c,d){var e=m.map(this,b,c);return"Until"!==a.slice(-5)&&(d=c),d&&"string"==typeof d&&(e=m.filter(d,e)),this.length>1&&(C[a]||(e=m.unique(e)),B.test(a)&&(e=e.reverse())),this.pushStack(e)}});var E=/\S+/g,F={};function G(a){var b=F[a]={};return m.each(a.match(E)||[],function(a,c){b[c]=!0}),b}m.Callbacks=function(a){a="string"==typeof a?F[a]||G(a):m.extend({},a);var b,c,d,e,f,g,h=[],i=!a.once&&[],j=function(l){for(c=a.memory&&l,d=!0,f=g||0,g=0,e=h.length,b=!0;h&&e>f;f++)if(h[f].apply(l[0],l[1])===!1&&a.stopOnFalse){c=!1;break}b=!1,h&&(i?i.length&&j(i.shift()):c?h=[]:k.disable())},k={add:function(){if(h){var d=h.length;!function f(b){m.each(b,function(b,c){var d=m.type(c);"function"===d?a.unique&&k.has(c)||h.push(c):c&&c.length&&"string"!==d&&f(c)})}(arguments),b?e=h.length:c&&(g=d,j(c))}return this},remove:function(){return h&&m.each(arguments,function(a,c){var d;while((d=m.inArray(c,h,d))>-1)h.splice(d,1),b&&(e>=d&&e--,f>=d&&f--)}),this},has:function(a){return a?m.inArray(a,h)>-1:!(!h||!h.length)},empty:function(){return h=[],e=0,this},disable:function(){return h=i=c=void 0,this},disabled:function(){return!h},lock:function(){return i=void 0,c||k.disable(),this},locked:function(){return!i},fireWith:function(a,c){return!h||d&&!i||(c=c||[],c=[a,c.slice?c.slice():c],b?i.push(c):j(c)),this},fire:function(){return k.fireWith(this,arguments),this},fired:function(){return!!d}};return k},m.extend({Deferred:function(a){var b=[["resolve","done",m.Callbacks("once memory"),"resolved"],["reject","fail",m.Callbacks("once memory"),"rejected"],["notify","progress",m.Callbacks("memory")]],c="pending",d={state:function(){return c},always:function(){return e.done(arguments).fail(arguments),this},then:function(){var a=arguments;return m.Deferred(function(c){m.each(b,function(b,f){var g=m.isFunction(a[b])&&a[b];e[f[1]](function(){var a=g&&g.apply(this,arguments);a&&m.isFunction(a.promise)?a.promise().done(c.resolve).fail(c.reject).progress(c.notify):c[f[0]+"With"](this===d?c.promise():this,g?[a]:arguments)})}),a=null}).promise()},promise:function(a){return null!=a?m.extend(a,d):d}},e={};return d.pipe=d.then,m.each(b,function(a,f){var g=f[2],h=f[3];d[f[1]]=g.add,h&&g.add(function(){c=h},b[1^a][2].disable,b[2][2].lock),e[f[0]]=function(){return e[f[0]+"With"](this===e?d:this,arguments),this},e[f[0]+"With"]=g.fireWith}),d.promise(e),a&&a.call(e,e),e},when:function(a){var b=0,c=d.call(arguments),e=c.length,f=1!==e||a&&m.isFunction(a.promise)?e:0,g=1===f?a:m.Deferred(),h=function(a,b,c){return function(e){b[a]=this,c[a]=arguments.length>1?d.call(arguments):e,c===i?g.notifyWith(b,c):--f||g.resolveWith(b,c)}},i,j,k;if(e>1)for(i=new Array(e),j=new Array(e),k=new Array(e);e>b;b++)c[b]&&m.isFunction(c[b].promise)?c[b].promise().done(h(b,k,c)).fail(g.reject).progress(h(b,j,i)):--f;return f||g.resolveWith(k,c),g.promise()}});var H;m.fn.ready=function(a){return m.ready.promise().done(a),this},m.extend({isReady:!1,readyWait:1,holdReady:function(a){a?m.readyWait++:m.ready(!0)},ready:function(a){if(a===!0?!--m.readyWait:!m.isReady){if(!y.body)return setTimeout(m.ready);m.isReady=!0,a!==!0&&--m.readyWait>0||(H.resolveWith(y,[m]),m.fn.triggerHandler&&(m(y).triggerHandler("ready"),m(y).off("ready")))}}});function I(){y.addEventListener?(y.removeEventListener("DOMContentLoaded",J,!1),a.removeEventListener("load",J,!1)):(y.detachEvent("onreadystatechange",J),a.detachEvent("onload",J))}function J(){(y.addEventListener||"load"===event.type||"complete"===y.readyState)&&(I(),m.ready())}m.ready.promise=function(b){if(!H)if(H=m.Deferred(),"complete"===y.readyState)setTimeout(m.ready);else if(y.addEventListener)y.addEventListener("DOMContentLoaded",J,!1),a.addEventListener("load",J,!1);else{y.attachEvent("onreadystatechange",J),a.attachEvent("onload",J);var c=!1;try{c=null==a.frameElement&&y.documentElement}catch(d){}c&&c.doScroll&&!function e(){if(!m.isReady){try{c.doScroll("left")}catch(a){return setTimeout(e,50)}I(),m.ready()}}()}return H.promise(b)};var K="undefined",L;for(L in m(k))break;k.ownLast="0"!==L,k.inlineBlockNeedsLayout=!1,m(function(){var a,b,c,d;c=y.getElementsByTagName("body")[0],c&&c.style&&(b=y.createElement("div"),d=y.createElement("div"),d.style.cssText="position:absolute;border:0;width:0;height:0;top:0;left:-9999px",c.appendChild(d).appendChild(b),typeof b.style.zoom!==K&&(b.style.cssText="display:inline;margin:0;border:0;padding:1px;width:1px;zoom:1",k.inlineBlockNeedsLayout=a=3===b.offsetWidth,a&&(c.style.zoom=1)),c.removeChild(d))}),function(){var a=y.createElement("div");if(null==k.deleteExpando){k.deleteExpando=!0;try{delete a.test}catch(b){k.deleteExpando=!1}}a=null}(),m.acceptData=function(a){var b=m.noData[(a.nodeName+" ").toLowerCase()],c=+a.nodeType||1;return 1!==c&&9!==c?!1:!b||b!==!0&&a.getAttribute("classid")===b};var M=/^(?:\{[\w\W]*\}|\[[\w\W]*\])$/,N=/([A-Z])/g;function O(a,b,c){if(void 0===c&&1===a.nodeType){var d="data-"+b.replace(N,"-$1").toLowerCase();if(c=a.getAttribute(d),"string"==typeof c){try{c="true"===c?!0:"false"===c?!1:"null"===c?null:+c+""===c?+c:M.test(c)?m.parseJSON(c):c}catch(e){}m.data(a,b,c)}else c=void 0}return c}function P(a){var b;for(b in a)if(("data"!==b||!m.isEmptyObject(a[b]))&&"toJSON"!==b)return!1;
@@ -1579,20 +1579,20 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">HN AltModel SideAblation 20220127</h1>
+<h1 class="title toc-ignore">HN AltModel AgeAblation 20220127</h1>
 <h4 class="author">LaurenErdman</h4>
 <h4 class="date">27/01/2022</h4>
 
 </div>
 
 
-<div id="alternative-model" class="section level1">
-<h1><span class="header-section-number">1</span> Alternative model</h1>
+<div id="alternative-model-age-ablation" class="section level1">
+<h1><span class="header-section-number">1</span> Alternative model, Age-ablation</h1>
 <pre class="r"><code>print(results_wd)</code></pre>
 <pre><code>## [1] &quot;C:/Users/lauren erdman/OneDrive - SickKids/HNReplicateData_20220218/Results_20220126/&quot;</code></pre>
 </div>
-<div id="original-sickkids-model" class="section level1">
-<h1><span class="header-section-number">2</span> Original SickKids model</h1>
+<div id="sickkids-data" class="section level1">
+<h1><span class="header-section-number">2</span> SickKids data</h1>
 <div id="sickkids-silent-trial-data-all-visits" class="section level3">
 <h3><span class="header-section-number">2.0.1</span> SickKids silent trial data: All visits</h3>
 <div id="model-performance" class="section level4">
@@ -1617,38 +1617,38 @@ cat(&quot;All silent trial participant ultrasounds overall model performance&quo
 ## 
 ##     cov, smooth, var</code></pre>
 <pre><code>## $auprc
-## [1] 0.5610413
+## [1] 0.591399
 ## 
 ## $auprc_ci
 ##      2.5%     97.5% 
-## 0.4487770 0.6825303 
+## 0.4730789 0.7048755 
 ## 
 ## $auroc
-## [1] 0.937044
+## [1] 0.9356184
 ## 
 ## $auroc_ci
 ##      2.5%     97.5% 
-## 0.9157662 0.9578401</code></pre>
+## 0.9114588 0.9571796</code></pre>
 <pre class="r"><code>(st_overall_origmod = get_sen_spec_withCI(score_vec = st_hn_only$st_pred_mod_ep30, 
                                          target = st_hn_only$target01, 
                                          threshold = thresh_ep30, 
                                          n_it = 500, out_vecs = FALSE))</code></pre>
 <pre><code>## $specificity
 ## $specificity$est
-## [1] 0.6006289
+## [1] 0.7248428
 ## 
 ## $specificity$ci
 ##      2.5%     97.5% 
-## 0.5626438 0.6373679 
+## 0.6868072 0.7588746 
 ## 
 ## 
 ## $sensitivity
 ## $sensitivity$est
-## [1] 0.9866667
+## [1] 0.9733333
 ## 
 ## $sensitivity$ci
 ##      2.5%     97.5% 
-## 0.9548677 1.0000000</code></pre>
+## 0.9356803 1.0000000</code></pre>
 </div>
 <div id="by-preparation" class="section level5">
 <h5><span class="header-section-number">2.0.1.1.2</span> By preparation</h5>
@@ -1660,11 +1660,11 @@ cat(&quot;All silent trial participant ultrasounds overall model performance&quo
 <pre><code>## $prep1
 ## $prep1$specificity
 ## $prep1$specificity$est
-## [1] 0.5910781
+## [1] 0.7360595
 ## 
 ## $prep1$specificity$ci
 ##      2.5%     97.5% 
-## 0.5288167 0.6507924 
+## 0.6807630 0.7842462 
 ## 
 ## 
 ## $prep1$sensitivity
@@ -1680,20 +1680,20 @@ cat(&quot;All silent trial participant ultrasounds overall model performance&quo
 ## $prep2
 ## $prep2$specificity
 ## $prep2$specificity$est
-## [1] 0.6076294
+## [1] 0.7166213
 ## 
 ## $prep2$specificity$ci
 ##      2.5%     97.5% 
-## 0.5546448 0.6580239 
+## 0.6712068 0.7615252 
 ## 
 ## 
 ## $prep2$sensitivity
 ## $prep2$sensitivity$est
-## [1] 1
+## [1] 0.972973
 ## 
 ## $prep2$sensitivity$ci
-##  2.5% 97.5% 
-##     1     1</code></pre>
+##      2.5%     97.5% 
+## 0.9145745 1.0000000</code></pre>
 </div>
 </div>
 <div id="by-apd" class="section level4">
@@ -1706,11 +1706,11 @@ cat(&quot;All silent trial participant ultrasounds overall model performance&quo
 <pre><code>## $apd_9_to_14
 ## $apd_9_to_14$specificity
 ## $apd_9_to_14$specificity$est
-## [1] 0.3587786
+## [1] 0.5572519
 ## 
 ## $apd_9_to_14$specificity$ci
 ##      2.5%     97.5% 
-## 0.2856634 0.4402985 
+## 0.4730315 0.6387955 
 ## 
 ## 
 ## $apd_9_to_14$sensitivity
@@ -1726,31 +1726,31 @@ cat(&quot;All silent trial participant ultrasounds overall model performance&quo
 ## $apd_6_to_9
 ## $apd_6_to_9$specificity
 ## $apd_6_to_9$specificity$est
-## [1] 0.6333333
+## [1] 0.8066667
 ## 
 ## $apd_6_to_9$specificity$ci
 ##      2.5%     97.5% 
-## 0.5535441 0.7039474 
+## 0.7440892 0.8662416 
 ## 
 ## 
 ## $apd_6_to_9$sensitivity
 ## $apd_6_to_9$sensitivity$est
-## [1] 0.8
+## [1] 0.6
 ## 
 ## $apd_6_to_9$sensitivity$ci
-##      2.5%     97.5% 
-## 0.3333333 1.0000000 
+##  2.5% 97.5% 
+##     0     1 
 ## 
 ## 
 ## 
 ## $over_14
 ## $over_14$specificity
 ## $over_14$specificity$est
-## [1] 0.1142857
+## [1] 0.1571429
 ## 
 ## $over_14$specificity$ci
 ##       2.5%      97.5% 
-## 0.04254024 0.18447183 
+## 0.07296995 0.24342516 
 ## 
 ## 
 ## $over_14$sensitivity
@@ -1766,11 +1766,11 @@ cat(&quot;All silent trial participant ultrasounds overall model performance&quo
 ## $under_6
 ## $under_6$specificity
 ## $under_6$specificity$est
-## [1] 0.8169014
+## [1] 0.9014085
 ## 
 ## $under_6$specificity$ci
 ##      2.5%     97.5% 
-## 0.7692782 0.8591549 
+## 0.8626761 0.9366197 
 ## 
 ## 
 ## $under_6$sensitivity
@@ -1811,31 +1811,31 @@ cat(&quot;All silent trial participant ultrasounds overall model performance&quo
 <pre><code>## [[1]]
 ## [[1]]$specificity
 ## [[1]]$specificity$est
-## [1] 0.5127273
+## [1] 0.6436364
 ## 
 ## [[1]]$specificity$ci
 ##      2.5%     97.5% 
-## 0.4555120 0.5696136 
+## 0.5871532 0.6982312 
 ## 
 ## 
 ## [[1]]$sensitivity
 ## [[1]]$sensitivity$est
-## [1] 0.9836066
+## [1] 0.9672131
 ## 
 ## [[1]]$sensitivity$ci
 ##      2.5%     97.5% 
-## 0.9459172 1.0000000 
+## 0.9181917 1.0000000 
 ## 
 ## 
 ## 
 ## [[2]]
 ## [[2]]$specificity
 ## [[2]]$specificity$est
-## [1] 0.7831325
+## [1] 0.8072289
 ## 
 ## [[2]]$specificity$ci
 ##      2.5%     97.5% 
-## 0.6878856 0.8613071 
+## 0.7167683 0.8909381 
 ## 
 ## 
 ## [[2]]$sensitivity
@@ -1851,11 +1851,11 @@ cat(&quot;All silent trial participant ultrasounds overall model performance&quo
 ## [[3]]
 ## [[3]]$specificity
 ## [[3]]$specificity$est
-## [1] 0.6330935
+## [1] 0.7805755
 ## 
 ## [[3]]$specificity$ci
 ##      2.5%     97.5% 
-## 0.5776173 0.6876392 
+## 0.7275986 0.8264166 
 ## 
 ## 
 ## [[3]]$sensitivity
@@ -1876,31 +1876,31 @@ cat(&quot;All silent trial participant ultrasounds overall model performance&quo
 <pre><code>## $Left
 ## $Left$specificity
 ## $Left$specificity$est
-## [1] 0.5
+## [1] 0.6545894
 ## 
 ## $Left$specificity$ci
 ##      2.5%     97.5% 
-## 0.4481791 0.5484650 
+## 0.6098383 0.7057277 
 ## 
 ## 
 ## $Left$sensitivity
 ## $Left$sensitivity$est
-## [1] 0.9836066
+## [1] 0.9672131
 ## 
 ## $Left$sensitivity$ci
 ##      2.5%     97.5% 
-## 0.9453238 1.0000000 
+## 0.9160505 1.0000000 
 ## 
 ## 
 ## 
 ## $Right
 ## $Right$specificity
 ## $Right$specificity$est
-## [1] 0.7882883
+## [1] 0.8558559
 ## 
 ## $Right$specificity$ci
 ##      2.5%     97.5% 
-## 0.7355480 0.8431904 
+## 0.8108108 0.9052196 
 ## 
 ## 
 ## $Right$sensitivity
@@ -1921,31 +1921,31 @@ cat(&quot;All silent trial participant ultrasounds overall model performance&quo
 <pre><code>## $under2
 ## $under2$specificity
 ## $under2$specificity$est
-## [1] 0.6114082
+## [1] 0.7308378
 ## 
 ## $under2$specificity$ci
 ##      2.5%     97.5% 
-## 0.5719454 0.6494476 
+## 0.6941279 0.7645617 
 ## 
 ## 
 ## $under2$sensitivity
 ## $under2$sensitivity$est
-## [1] 0.9859155
+## [1] 0.971831
 ## 
 ## $under2$sensitivity$ci
 ##      2.5%     97.5% 
-## 0.9551805 1.0000000 
+## 0.9275362 1.0000000 
 ## 
 ## 
 ## 
 ## $age2to5
 ## $age2to5$specificity
 ## $age2to5$specificity$est
-## [1] 0.5138889
+## [1] 0.6805556
 ## 
 ## $age2to5$specificity$ci
 ##      2.5%     97.5% 
-## 0.3888889 0.6111111 
+## 0.5694444 0.7777778 
 ## 
 ## 
 ## $age2to5$sensitivity
@@ -2006,11 +2006,11 @@ cat(&quot;All silent trial participant ultrasounds overall model performance&quo
 <pre><code>## $M
 ## $M$specificity
 ## $M$specificity$est
-## [1] 0.5582822
+## [1] 0.7055215
 ## 
 ## $M$specificity$ci
 ##      2.5%     97.5% 
-## 0.5089540 0.6108298 
+## 0.6563411 0.7538491 
 ## 
 ## 
 ## $M$sensitivity
@@ -2026,31 +2026,31 @@ cat(&quot;All silent trial participant ultrasounds overall model performance&quo
 ## $L
 ## $L$specificity
 ## $L$specificity$est
-## [1] 0.6433566
+## [1] 0.7482517
 ## 
 ## $L$specificity$ci
 ##      2.5%     97.5% 
-## 0.5920732 0.7014827 
+## 0.6942941 0.8021949 
 ## 
 ## 
 ## $L$sensitivity
 ## $L$sensitivity$est
-## [1] 0.9772727
+## [1] 0.9545455
 ## 
 ## $L$sensitivity$ci
 ##      2.5%     97.5% 
-## 0.9230769 1.0000000 
+## 0.8837209 1.0000000 
 ## 
 ## 
 ## 
 ## $P
 ## $P$specificity
 ## $P$specificity$est
-## [1] 0.4285714
+## [1] 0.5714286
 ## 
 ## $P$specificity$ci
 ##      2.5%     97.5% 
-## 0.1111111 0.8000000 
+## 0.2354167 0.8888889 
 ## 
 ## 
 ## $P$sensitivity
@@ -2131,31 +2131,31 @@ cat(&quot;All silent trial participant ultrasounds overall model performance&quo
 <pre><code>## $`1`
 ## $`1`$specificity
 ## $`1`$specificity$est
-## [1] 0.5794393
+## [1] 0.6869159
 ## 
 ## $`1`$specificity$ci
 ##      2.5%     97.5% 
-## 0.5185953 0.6420358 
+## 0.6203895 0.7428571 
 ## 
 ## 
 ## $`1`$sensitivity
 ## $`1`$sensitivity$est
-## [1] 1
+## [1] 0.9642857
 ## 
 ## $`1`$sensitivity$ci
 ##  2.5% 97.5% 
-##     1     1 
+## 0.875 1.000 
 ## 
 ## 
 ## 
 ## $`2`
 ## $`2`$specificity
 ## $`2`$specificity$est
-## [1] 0.6141304
+## [1] 0.7391304
 ## 
 ## $`2`$specificity$ci
 ##      2.5%     97.5% 
-## 0.5468610 0.6791444 
+## 0.6799560 0.8021978 
 ## 
 ## 
 ## $`2`$sensitivity
@@ -2171,11 +2171,11 @@ cat(&quot;All silent trial participant ultrasounds overall model performance&quo
 ## $`3`
 ## $`3`$specificity
 ## $`3`$specificity$est
-## [1] 0.6461538
+## [1] 0.7769231
 ## 
 ## $`3`$specificity$ci
 ##      2.5%     97.5% 
-## 0.5653633 0.7310706 
+## 0.7000000 0.8470651 
 ## 
 ## 
 ## $`3`$sensitivity
@@ -2191,11 +2191,11 @@ cat(&quot;All silent trial participant ultrasounds overall model performance&quo
 ## $`4`
 ## $`4`$specificity
 ## $`4`$specificity$est
-## [1] 0.6031746
+## [1] 0.7142857
 ## 
 ## $`4`$specificity$ci
 ##      2.5%     97.5% 
-## 0.4918033 0.7222383 
+## 0.6076349 0.8253968 
 ## 
 ## 
 ## $`4`$sensitivity
@@ -2211,11 +2211,11 @@ cat(&quot;All silent trial participant ultrasounds overall model performance&quo
 ## $`5`
 ## $`5`$specificity
 ## $`5`$specificity$est
-## [1] 0.46875
+## [1] 0.6875
 ## 
 ## $`5`$specificity$ci
 ##      2.5%     97.5% 
-## 0.2941176 0.6451613 
+## 0.5156158 0.8413558 
 ## 
 ## 
 ## $`5`$sensitivity
@@ -2231,11 +2231,11 @@ cat(&quot;All silent trial participant ultrasounds overall model performance&quo
 ## $`6`
 ## $`6`$specificity
 ## $`6`$specificity$est
-## [1] 0.6
+## [1] 0.8
 ## 
 ## $`6`$specificity$ci
 ##      2.5%     97.5% 
-## 0.3158333 0.9000000 
+## 0.5215909 1.0000000 
 ## 
 ## 
 ## $`6`$sensitivity
@@ -2296,11 +2296,11 @@ cat(&quot;All silent trial participant ultrasounds overall model performance&quo
 <pre><code>## $Toshiba
 ## $Toshiba$specificity
 ## $Toshiba$specificity$est
-## [1] 0.6340058
+## [1] 0.7608069
 ## 
 ## $Toshiba$specificity$ci
 ##      2.5%     97.5% 
-## 0.5855445 0.6826367 
+## 0.7130417 0.8043654 
 ## 
 ## 
 ## $Toshiba$sensitivity
@@ -2316,31 +2316,31 @@ cat(&quot;All silent trial participant ultrasounds overall model performance&quo
 ## $Philips
 ## $Philips$specificity
 ## $Philips$specificity$est
-## [1] 0.5612903
+## [1] 0.6903226
 ## 
 ## $Philips$specificity$ci
 ##      2.5%     97.5% 
-## 0.4856790 0.6372905 
+## 0.6229907 0.7611554 
 ## 
 ## 
 ## $Philips$sensitivity
 ## $Philips$sensitivity$est
-## [1] 1
+## [1] 0.9565217
 ## 
 ## $Philips$sensitivity$ci
-##  2.5% 97.5% 
-##     1     1 
+##      2.5%     97.5% 
+## 0.8467349 1.0000000 
 ## 
 ## 
 ## 
 ## $Samsung
 ## $Samsung$specificity
 ## $Samsung$specificity$est
-## [1] 0.56
+## [1] 0.68
 ## 
 ## $Samsung$specificity$ci
 ##      2.5%     97.5% 
-## 0.4771488 0.6385633 
+## 0.5952381 0.7540366 
 ## 
 ## 
 ## $Samsung$sensitivity
@@ -2414,8 +2414,8 @@ cat(&quot;All silent trial participant ultrasounds overall model performance&quo
 </div>
 <div id="sickkids-silent-trial-data-most-recent-visits-only" class="section level3">
 <h3><span class="header-section-number">2.0.2</span> SickKids silent trial data: Most recent visits only</h3>
-<div id="model-performance-most-recent-observations-only-table-2-and-stable-3" class="section level4">
-<h4><span class="header-section-number">2.0.2.1</span> Model performance: Most recent observations only (Table 2 and STable 3)</h4>
+<div id="model-performance-most-recent-observations-only" class="section level4">
+<h4><span class="header-section-number">2.0.2.1</span> Model performance: Most recent observations only</h4>
 <div id="overall-1" class="section level5">
 <h5><span class="header-section-number">2.0.2.1.1</span> Overall</h5>
 <pre class="r"><code>####
@@ -2425,29 +2425,29 @@ cat(&quot;All silent trial participant ultrasounds overall model performance&quo
 get_auroc_aurpc(score_vec = hn_only_most_recent$st_pred_mod_ep30, 
                            target = hn_only_most_recent$target01)</code></pre>
 <pre><code>## $auprc
-## [1] 0.6339244
+## [1] 0.664373
 ## 
 ## $auprc_ci
 ##      2.5%     97.5% 
-## 0.4460355 0.8132914 
+## 0.4661579 0.8156294 
 ## 
 ## $auroc
-## [1] 0.9328818
+## [1] 0.9320608
 ## 
 ## $auroc_ci
 ##      2.5%     97.5% 
-## 0.8806832 0.9707666</code></pre>
+## 0.8789705 0.9704304</code></pre>
 <pre class="r"><code>(st_mostrec_origmod = get_sen_spec_withCI(score_vec = hn_only_most_recent$st_pred_mod_ep30, 
                                          target = hn_only_most_recent$target01, 
                                          threshold = thresh_ep30, 
                                          n_it = 500, out_vecs = FALSE))</code></pre>
 <pre><code>## $specificity
 ## $specificity$est
-## [1] 0.6034483
+## [1] 0.7643678
 ## 
 ## $specificity$ci
 ##      2.5%     97.5% 
-## 0.5386803 0.6851744 
+## 0.6994370 0.8270912 
 ## 
 ## 
 ## $sensitivity
@@ -2466,34 +2466,34 @@ get_auroc_aurpc(score_vec = hn_only_most_recent$st_pred_mod_ep30,
                   n_it=500)</code></pre>
 <pre><code>## $prep1
 ## $prep1$auprc
-## [1] 0.697111
+## [1] 0.6778352
 ## 
 ## $prep1$auprc_ci
 ##      2.5%     97.5% 
-## 0.4018385 0.8763433 
+## 0.3799799 0.8777658 
 ## 
 ## $prep1$auroc
-## [1] 0.9273504
+## [1] 0.9262821
 ## 
 ## $prep1$auroc_ci
 ##      2.5%     97.5% 
-## 0.8291762 0.9912281 
+## 0.8219363 0.9893864 
 ## 
 ## 
 ## $prep2
 ## $prep2$auprc
-## [1] 0.5733067
+## [1] 0.597407
 ## 
 ## $prep2$auprc_ci
 ##      2.5%     97.5% 
-## 0.3612732 0.8036998 
+## 0.3696439 0.8239644 
 ## 
 ## $prep2$auroc
-## [1] 0.9411765
+## [1] 0.9385621
 ## 
 ## $prep2$auroc_ci
 ##      2.5%     97.5% 
-## 0.8899174 0.9803680</code></pre>
+## 0.8877453 0.9773272</code></pre>
 <pre class="r"><code>sen_spec_split(score_vec = hn_only_most_recent$st_pred_mod_ep30, 
                target = hn_only_most_recent$target01, 
                split_vec = hn_only_most_recent$prep, 
@@ -2502,11 +2502,11 @@ get_auroc_aurpc(score_vec = hn_only_most_recent$st_pred_mod_ep30,
 <pre><code>## $prep1
 ## $prep1$specificity
 ## $prep1$specificity$est
-## [1] 0.6111111
+## [1] 0.7777778
 ## 
 ## $prep1$specificity$ci
 ##      2.5%     97.5% 
-## 0.5131579 0.7267029 
+## 0.6826381 0.8740575 
 ## 
 ## 
 ## $prep1$sensitivity
@@ -2522,11 +2522,11 @@ get_auroc_aurpc(score_vec = hn_only_most_recent$st_pred_mod_ep30,
 ## $prep2
 ## $prep2$specificity
 ## $prep2$specificity$est
-## [1] 0.5980392
+## [1] 0.754902
 ## 
 ## $prep2$specificity$ci
 ##      2.5%     97.5% 
-## 0.5000000 0.6954555 
+## 0.6646604 0.8309733 
 ## 
 ## 
 ## $prep2$sensitivity
@@ -2545,34 +2545,34 @@ get_auroc_aurpc(score_vec = hn_only_most_recent$st_pred_mod_ep30,
                   n_it=500)</code></pre>
 <pre><code>## $male
 ## $male$auprc
-## [1] 0.6627728
+## [1] 0.7076962
 ## 
 ## $male$auprc_ci
 ##      2.5%     97.5% 
-## 0.4618137 0.8433635 
+## 0.4941501 0.8588497 
 ## 
 ## $male$auroc
-## [1] 0.9355509
+## [1] 0.9371102
 ## 
 ## $male$auroc_ci
 ##      2.5%     97.5% 
-## 0.8785459 0.9740290 
+## 0.8815755 0.9760683 
 ## 
 ## 
 ## $female
 ## $female$auprc
-## [1] 0.2916667
+## [1] 0.1333333
 ## 
 ## $female$auprc_ci
-##       2.5%      97.5% 
-## 0.06607143 0.66666667 
+##      2.5%     97.5% 
+## 0.0000000 0.6679861 
 ## 
 ## $female$auroc
 ## [1] 0.9230769
 ## 
 ## $female$auroc_ci
 ##      2.5%     97.5% 
-## 0.8071154 1.0000000</code></pre>
+## 0.7407407 1.0000000</code></pre>
 <pre class="r"><code>sen_spec_split(score_vec = hn_only_most_recent$st_pred_mod_ep30, 
                target = hn_only_most_recent$target01, 
                split_vec = hn_only_most_recent$sex, 
@@ -2581,11 +2581,11 @@ get_auroc_aurpc(score_vec = hn_only_most_recent$st_pred_mod_ep30,
 <pre><code>## $male
 ## $male$specificity
 ## $male$specificity$est
-## [1] 0.6283784
+## [1] 0.7702703
 ## 
 ## $male$specificity$ci
 ##      2.5%     97.5% 
-## 0.5448116 0.7033426 
+## 0.7062047 0.8344410 
 ## 
 ## 
 ## $male$sensitivity
@@ -2601,11 +2601,11 @@ get_auroc_aurpc(score_vec = hn_only_most_recent$st_pred_mod_ep30,
 ## $female
 ## $female$specificity
 ## $female$specificity$est
-## [1] 0.4615385
+## [1] 0.7307692
 ## 
 ## $female$specificity$ci
 ##      2.5%     97.5% 
-## 0.2692308 0.6400000 
+## 0.5769231 0.8846154 
 ## 
 ## 
 ## $female$sensitivity
@@ -2624,34 +2624,34 @@ get_auroc_aurpc(score_vec = hn_only_most_recent$st_pred_mod_ep30,
                   n_it=500)</code></pre>
 <pre><code>## $apd_6_to_9
 ## $apd_6_to_9$auprc
-## [1] 0.1190917
+## [1] 0.193035
 ## 
 ## $apd_6_to_9$auprc_ci
-##      2.5%     97.5% 
-## 0.0000000 0.6093651 
+##       2.5%      97.5% 
+## 0.01650538 0.51472222 
 ## 
 ## $apd_6_to_9$auroc
-## [1] 0.7583333
+## [1] 0.7416667
 ## 
 ## $apd_6_to_9$auroc_ci
-##  2.5% 97.5% 
-##   0.4   1.0 
+##      2.5%     97.5% 
+## 0.3910088 0.9761905 
 ## 
 ## 
 ## $over_14
 ## $over_14$auprc
-## [1] 0.6821326
+## [1] 0.7294383
 ## 
 ## $over_14$auprc_ci
 ##      2.5%     97.5% 
-## 0.4909103 0.8747911 
+## 0.5329692 0.8956940 
 ## 
 ## $over_14$auroc
-## [1] 0.7083333
+## [1] 0.7407407
 ## 
 ## $over_14$auroc_ci
 ##      2.5%     97.5% 
-## 0.5247059 0.8570626 
+## 0.5679545 0.8975155 
 ## 
 ## 
 ## $under_6
@@ -2682,11 +2682,11 @@ get_auroc_aurpc(score_vec = hn_only_most_recent$st_pred_mod_ep30,
 <pre><code>## $apd_6_to_9
 ## $apd_6_to_9$specificity
 ## $apd_6_to_9$specificity$est
-## [1] 0.625
+## [1] 0.8
 ## 
 ## $apd_6_to_9$specificity$ci
 ##      2.5%     97.5% 
-## 0.4871795 0.7631579 
+## 0.6865128 0.9069767 
 ## 
 ## 
 ## $apd_6_to_9$sensitivity
@@ -2702,11 +2702,11 @@ get_auroc_aurpc(score_vec = hn_only_most_recent$st_pred_mod_ep30,
 ## $over_14
 ## $over_14$specificity
 ## $over_14$specificity$est
-## [1] 0.1111111
+## [1] 0.1666667
 ## 
 ## $over_14$specificity$ci
 ##      2.5%     97.5% 
-## 0.0000000 0.2631579 
+## 0.0000000 0.3529412 
 ## 
 ## 
 ## $over_14$sensitivity
@@ -2722,11 +2722,11 @@ get_auroc_aurpc(score_vec = hn_only_most_recent$st_pred_mod_ep30,
 ## $under_6
 ## $under_6$specificity
 ## $under_6$specificity$est
-## [1] 0.7804878
+## [1] 0.9268293
 ## 
 ## $under_6$specificity$ci
 ##      2.5%     97.5% 
-## 0.6951220 0.8780488 
+## 0.8658537 0.9756098 
 ## 
 ## 
 ## $under_6$sensitivity
@@ -2742,11 +2742,11 @@ get_auroc_aurpc(score_vec = hn_only_most_recent$st_pred_mod_ep30,
 ## $apd_9_to_14
 ## $apd_9_to_14$specificity
 ## $apd_9_to_14$specificity$est
-## [1] 0.4242424
+## [1] 0.6666667
 ## 
 ## $apd_9_to_14$specificity$ci
 ##      2.5%     97.5% 
-## 0.2424242 0.5757576 
+## 0.5151515 0.8181818 
 ## 
 ## 
 ## $apd_9_to_14$sensitivity
@@ -2785,34 +2785,34 @@ get_auroc_aurpc(score_vec = hn_only_most_recent$st_pred_mod_ep30,
                   n_it=500)</code></pre>
 <pre><code>## [[1]]
 ## [[1]]$auprc
-## [1] 0.6878092
+## [1] 0.7066758
 ## 
 ## [[1]]$auprc_ci
 ##      2.5%     97.5% 
-## 0.4971657 0.8599523 
+## 0.5161641 0.8531791 
 ## 
 ## [[1]]$auroc
-## [1] 0.9223301
+## [1] 0.9152692
 ## 
 ## [[1]]$auroc_ci
 ##      2.5%     97.5% 
-## 0.8542060 0.9747949 
+## 0.8425575 0.9701188 
 ## 
 ## 
 ## [[2]]
 ## [[2]]$auprc
-## [1] 0.6214286
+## [1] 0.6630952
 ## 
 ## [[2]]$auprc_ci
 ##  2.5% 97.5% 
 ## 0.300 0.895 
 ## 
 ## [[2]]$auroc
-## [1] 0.9712644
+## [1] 0.9655172
 ## 
 ## [[2]]$auroc_ci
 ##      2.5%     97.5% 
-## 0.8965517 1.0000000 
+## 0.8846154 1.0000000 
 ## 
 ## 
 ## [[3]]
@@ -2825,11 +2825,11 @@ get_auroc_aurpc(score_vec = hn_only_most_recent$st_pred_mod_ep30,
 <pre><code>## [[1]]
 ## [[1]]$specificity
 ## [[1]]$specificity$est
-## [1] 0.592233
+## [1] 0.7281553
 ## 
 ## [[1]]$specificity$ci
 ##      2.5%     97.5% 
-## 0.5097049 0.6867550 
+## 0.6459043 0.8040277 
 ## 
 ## 
 ## [[1]]$sensitivity
@@ -2845,11 +2845,11 @@ get_auroc_aurpc(score_vec = hn_only_most_recent$st_pred_mod_ep30,
 ## [[2]]
 ## [[2]]$specificity
 ## [[2]]$specificity$est
-## [1] 0.8275862
+## [1] 0.9310345
 ## 
 ## [[2]]$specificity$ci
 ##      2.5%     97.5% 
-## 0.6774194 0.9375000 
+## 0.8358871 1.0000000 
 ## 
 ## 
 ## [[2]]$sensitivity
@@ -2865,11 +2865,11 @@ get_auroc_aurpc(score_vec = hn_only_most_recent$st_pred_mod_ep30,
 ## [[3]]
 ## [[3]]$specificity
 ## [[3]]$specificity$est
-## [1] 0.4761905
+## [1] 0.7380952
 ## 
 ## [[3]]$specificity$ci
 ##      2.5%     97.5% 
-## 0.3333333 0.6190476 
+## 0.5952381 0.8809524 
 ## 
 ## 
 ## [[3]]$sensitivity
@@ -2888,34 +2888,34 @@ get_auroc_aurpc(score_vec = hn_only_most_recent$st_pred_mod_ep30,
                   n_it=500)</code></pre>
 <pre><code>## $Left
 ## $Left$auprc
-## [1] 0.5999211
+## [1] 0.6402961
 ## 
 ## $Left$auprc_ci
 ##      2.5%     97.5% 
-## 0.4083884 0.8069068 
+## 0.4423417 0.8107977 
 ## 
 ## $Left$auroc
-## [1] 0.9179293
+## [1] 0.9144571
 ## 
 ## $Left$auroc_ci
 ##      2.5%     97.5% 
-## 0.8497909 0.9681878 
+## 0.8476357 0.9663369 
 ## 
 ## 
 ## $Right
 ## $Right$auprc
-## [1] 0.6214286
+## [1] 0.6630952
 ## 
 ## $Right$auprc_ci
 ##      2.5%     97.5% 
-## 0.3013393 0.8888889 
+## 0.3029762 0.8888889 
 ## 
 ## $Right$auroc
-## [1] 0.9722222
+## [1] 0.9666667
 ## 
 ## $Right$auroc_ci
 ##      2.5%     97.5% 
-## 0.9014516 1.0000000</code></pre>
+## 0.8865385 1.0000000</code></pre>
 <pre class="r"><code>sen_spec_split(score_vec = hn_only_most_recent$st_pred_mod_ep30, 
                target = hn_only_most_recent$target01, 
                split_vec = hn_only_most_recent$view_side, 
@@ -2924,11 +2924,11 @@ get_auroc_aurpc(score_vec = hn_only_most_recent$st_pred_mod_ep30,
 <pre><code>## $Left
 ## $Left$specificity
 ## $Left$specificity$est
-## [1] 0.5555556
+## [1] 0.7291667
 ## 
 ## $Left$specificity$ci
 ##      2.5%     97.5% 
-## 0.4756586 0.6404656 
+## 0.6537027 0.7986356 
 ## 
 ## 
 ## $Left$sensitivity
@@ -2944,11 +2944,11 @@ get_auroc_aurpc(score_vec = hn_only_most_recent$st_pred_mod_ep30,
 ## $Right
 ## $Right$specificity
 ## $Right$specificity$est
-## [1] 0.8333333
+## [1] 0.9333333
 ## 
 ## $Right$specificity$ci
 ##      2.5%     97.5% 
-## 0.6785714 0.9393939 
+## 0.8387097 1.0000000 
 ## 
 ## 
 ## $Right$sensitivity
@@ -2967,18 +2967,18 @@ get_auroc_aurpc(score_vec = hn_only_most_recent$st_pred_mod_ep30,
                   n_it=500)</code></pre>
 <pre><code>## $under2
 ## $under2$auprc
-## [1] 0.6419417
+## [1] 0.6802937
 ## 
 ## $under2$auprc_ci
 ##      2.5%     97.5% 
-## 0.4416149 0.8245111 
+## 0.4828643 0.8404158 
 ## 
 ## $under2$auroc
-## [1] 0.9325
+## [1] 0.935
 ## 
 ## $under2$auroc_ci
 ##      2.5%     97.5% 
-## 0.8758287 0.9748635 
+## 0.8767880 0.9773394 
 ## 
 ## 
 ## $age2to5
@@ -2986,18 +2986,18 @@ get_auroc_aurpc(score_vec = hn_only_most_recent$st_pred_mod_ep30,
 ## 
 ## $over5
 ## $over5$auprc
-## [1] 0.5
+## [1] 0.2916667
 ## 
 ## $over5$auprc_ci
 ##      2.5%     97.5% 
 ## 0.0000000 0.6666667 
 ## 
 ## $over5$auroc
-## [1] 1
+## [1] 0.75
 ## 
 ## $over5$auroc_ci
 ##  2.5% 97.5% 
-##     1     1</code></pre>
+##   0.5   1.0</code></pre>
 <pre class="r"><code>sen_spec_split(score_vec = hn_only_most_recent$st_pred_mod_ep30, 
                target = hn_only_most_recent$target01, 
                split_vec = hn_only_most_recent$age_grps_fac, 
@@ -3006,11 +3006,11 @@ get_auroc_aurpc(score_vec = hn_only_most_recent$st_pred_mod_ep30,
 <pre><code>## $under2
 ## $under2$specificity
 ## $under2$specificity$est
-## [1] 0.6388889
+## [1] 0.7777778
 ## 
 ## $under2$specificity$ci
 ##      2.5%     97.5% 
-## 0.5613364 0.7188365 
+## 0.7123713 0.8425000 
 ## 
 ## 
 ## $under2$sensitivity
@@ -3026,11 +3026,11 @@ get_auroc_aurpc(score_vec = hn_only_most_recent$st_pred_mod_ep30,
 ## $age2to5
 ## $age2to5$specificity
 ## $age2to5$specificity$est
-## [1] 0.4285714
+## [1] 0.7142857
 ## 
 ## $age2to5$specificity$ci
 ##      2.5%     97.5% 
-## 0.2500000 0.6071429 
+## 0.5357143 0.8571429 
 ## 
 ## 
 ## $age2to5$sensitivity
@@ -3089,34 +3089,34 @@ get_auroc_aurpc(score_vec = hn_only_most_recent$st_pred_mod_ep30,
                   n_it=500)</code></pre>
 <pre><code>## $M
 ## $M$auprc
-## [1] 0.6310374
+## [1] 0.7138158
 ## 
 ## $M$auprc_ci
 ##      2.5%     97.5% 
-## 0.1915365 0.8678030 
+## 0.1581200 0.8825036 
 ## 
 ## $M$auroc
 ## [1] 0.9741824
 ## 
 ## $M$auroc_ci
 ##      2.5%     97.5% 
-## 0.9343106 1.0000000 
+## 0.9223375 1.0000000 
 ## 
 ## 
 ## $L
 ## $L$auprc
-## [1] 0.5890573
+## [1] 0.5909367
 ## 
 ## $L$auprc_ci
 ##      2.5%     97.5% 
-## 0.3653227 0.8407189 
+## 0.3647325 0.8261625 
 ## 
 ## $L$auroc
-## [1] 0.9047988
+## [1] 0.9055728
 ## 
 ## $L$auroc_ci
 ##      2.5%     97.5% 
-## 0.8083286 0.9721353 
+## 0.8186553 0.9694046 
 ## 
 ## 
 ## $P
@@ -3161,11 +3161,11 @@ get_auroc_aurpc(score_vec = hn_only_most_recent$st_pred_mod_ep30,
 <pre><code>## $M
 ## $M$specificity
 ## $M$specificity$est
-## [1] 0.6024096
+## [1] 0.8072289
 ## 
 ## $M$specificity$ci
 ##      2.5%     97.5% 
-## 0.5059497 0.7101114 
+## 0.7151235 0.8916159 
 ## 
 ## 
 ## $M$sensitivity
@@ -3181,11 +3181,11 @@ get_auroc_aurpc(score_vec = hn_only_most_recent$st_pred_mod_ep30,
 ## $L
 ## $L$specificity
 ## $L$specificity$est
-## [1] 0.6052632
+## [1] 0.7368421
 ## 
 ## $L$specificity$ci
 ##      2.5%     97.5% 
-## 0.4938272 0.7083333 
+## 0.6486486 0.8411053 
 ## 
 ## 
 ## $L$sensitivity
@@ -3201,11 +3201,11 @@ get_auroc_aurpc(score_vec = hn_only_most_recent$st_pred_mod_ep30,
 ## $P
 ## $P$specificity
 ## $P$specificity$est
-## [1] 0.4
+## [1] 0.6
 ## 
 ## $P$specificity$ci
 ##  2.5% 97.5% 
-##   0.0   0.8 
+##   0.2   1.0 
 ## 
 ## 
 ## $P$sensitivity
@@ -3284,82 +3284,82 @@ get_auroc_aurpc(score_vec = hn_only_most_recent$st_pred_mod_ep30,
                   n_it=500)</code></pre>
 <pre><code>## $`3`
 ## $`3`$auprc
-## [1] 0.2740079
+## [1] 0.265873
 ## 
 ## $`3`$auprc_ci
-##       2.5%      97.5% 
-## 0.07142857 0.62791497 
+##  2.5% 97.5% 
+##  0.00  0.75 
 ## 
 ## $`3`$auroc
-## [1] 0.9393939
+## [1] 0.9636364
 ## 
 ## $`3`$auroc_ci
 ##      2.5%     97.5% 
-## 0.8666667 0.9936160 
+## 0.8947368 1.0000000 
 ## 
 ## 
 ## $`2`
 ## $`2`$auprc
-## [1] 0.6151266
+## [1] 0.627238
 ## 
 ## $`2`$auprc_ci
 ##      2.5%     97.5% 
-## 0.3885847 0.8934377 
+## 0.3830427 0.8831525 
 ## 
 ## $`2`$auroc
-## [1] 0.9294872
+## [1] 0.9310897
 ## 
 ## $`2`$auroc_ci
 ##      2.5%     97.5% 
-## 0.8595659 0.9867661 
+## 0.8619784 0.9867723 
 ## 
 ## 
 ## $`1`
 ## $`1`$auprc
-## [1] 0.6583333
+## [1] 0.6160714
 ## 
 ## $`1`$auprc_ci
 ##      2.5%     97.5% 
-## 0.0000000 0.8547487 
+## 0.0000000 0.8333333 
 ## 
 ## $`1`$auroc
-## [1] 0.9807692
+## [1] 0.9615385
 ## 
 ## $`1`$auroc_ci
 ##      2.5%     97.5% 
-## 0.9259259 1.0000000 
+## 0.8571429 1.0000000 
 ## 
 ## 
 ## $`4`
 ## $`4`$auprc
-## [1] 0.7135965
+## [1] 0.7092352
 ## 
 ## $`4`$auprc_ci
 ##      2.5%     97.5% 
-## 0.3037954 0.8750000 
+## 0.2988946 0.8750000 
 ## 
 ## $`4`$auroc
-## [1] 0.8985507
+## [1] 0.884058
 ## 
 ## $`4`$auroc_ci
 ##  2.5% 97.5% 
-##  0.62  1.00 
+##  0.58  1.00 
 ## 
 ## 
 ## $`5`
 ## $`5`$auprc
-## [1] 0.25
+## [1] 0.1666667
 ## 
 ## $`5`$auprc_ci
 ##      2.5%     97.5% 
-## 0.0000000 0.6666667 
+## 0.0000000 0.5138889 
 ## 
 ## $`5`$auroc
-## [1] 0.9333333
+## [1] 0.8666667
 ## 
 ## $`5`$auroc_ci
 ##      2.5%     97.5% 
-## 0.7692308 1.0000000 
+## 0.6666667 1.0000000 
 ## 
 ## 
 ## $`8`
@@ -3370,11 +3370,11 @@ get_auroc_aurpc(score_vec = hn_only_most_recent$st_pred_mod_ep30,
 ## 
 ## $`7`
 ## $`7`$auprc
-## [1] 0
+## [1] 0.25
 ## 
 ## $`7`$auprc_ci
 ##  2.5% 97.5% 
-##     0     0 
+##  0.25  0.25 
 ## 
 ## $`7`$auroc
 ## [1] 1
@@ -3390,11 +3390,11 @@ get_auroc_aurpc(score_vec = hn_only_most_recent$st_pred_mod_ep30,
 <pre><code>## $`3`
 ## $`3`$specificity
 ## $`3`$specificity$est
-## [1] 0.6545455
+## [1] 0.8
 ## 
 ## $`3`$specificity$ci
 ##      2.5%     97.5% 
-## 0.5185185 0.7678571 
+## 0.6942651 0.9003813 
 ## 
 ## 
 ## $`3`$sensitivity
@@ -3410,11 +3410,11 @@ get_auroc_aurpc(score_vec = hn_only_most_recent$st_pred_mod_ep30,
 ## $`2`
 ## $`2`$specificity
 ## $`2`$specificity$est
-## [1] 0.5833333
+## [1] 0.7708333
 ## 
 ## $`2`$specificity$ci
 ##      2.5%     97.5% 
-## 0.4255319 0.7187609 
+## 0.6458333 0.8855332 
 ## 
 ## 
 ## $`2`$sensitivity
@@ -3430,11 +3430,11 @@ get_auroc_aurpc(score_vec = hn_only_most_recent$st_pred_mod_ep30,
 ## $`1`
 ## $`1`$specificity
 ## $`1`$specificity$est
-## [1] 0.7307692
+## [1] 0.7692308
 ## 
 ## $`1`$specificity$ci
-##      2.5%     97.5% 
-## 0.5576667 0.8846154 
+##  2.5% 97.5% 
+## 0.625 0.920 
 ## 
 ## 
 ## $`1`$sensitivity
@@ -3450,11 +3450,11 @@ get_auroc_aurpc(score_vec = hn_only_most_recent$st_pred_mod_ep30,
 ## $`4`
 ## $`4`$specificity
 ## $`4`$specificity$est
-## [1] 0.6521739
+## [1] 0.7826087
 ## 
 ## $`4`$specificity$ci
 ##      2.5%     97.5% 
-## 0.4521591 0.8298913 
+## 0.5952273 0.9523810 
 ## 
 ## 
 ## $`4`$sensitivity
@@ -3470,11 +3470,11 @@ get_auroc_aurpc(score_vec = hn_only_most_recent$st_pred_mod_ep30,
 ## $`5`
 ## $`5`$specificity
 ## $`5`$specificity$est
-## [1] 0.3333333
+## [1] 0.6666667
 ## 
 ## $`5`$specificity$ci
-##      2.5%     97.5% 
-## 0.1250000 0.6204327 
+##   2.5%  97.5% 
+## 0.4375 0.8750 
 ## 
 ## 
 ## $`5`$sensitivity
@@ -3510,11 +3510,11 @@ get_auroc_aurpc(score_vec = hn_only_most_recent$st_pred_mod_ep30,
 ## $`6`
 ## $`6`$specificity
 ## $`6`$specificity$est
-## [1] 0.2
+## [1] 0.6
 ## 
 ## $`6`$specificity$ci
 ##  2.5% 97.5% 
-##   0.0   0.6 
+##   0.2   1.0 
 ## 
 ## 
 ## $`6`$sensitivity
@@ -3553,50 +3553,50 @@ get_auroc_aurpc(score_vec = hn_only_most_recent$st_pred_mod_ep30,
                   n_it=500)</code></pre>
 <pre><code>## $Toshiba
 ## $Toshiba$auprc
-## [1] 0.5657531
+## [1] 0.5959843
 ## 
 ## $Toshiba$auprc_ci
 ##      2.5%     97.5% 
-## 0.2577240 0.8571429 
+## 0.2115303 0.8571429 
 ## 
 ## $Toshiba$auroc
-## [1] 0.9214876
+## [1] 0.9225207
 ## 
 ## $Toshiba$auroc_ci
 ##      2.5%     97.5% 
-## 0.7763171 1.0000000 
+## 0.7768595 1.0000000 
 ## 
 ## 
 ## $Philips
 ## $Philips$auprc
-## [1] 0.7495942
+## [1] 0.697362
 ## 
 ## $Philips$auprc_ci
 ##      2.5%     97.5% 
-## 0.4203704 0.8904545 
+## 0.3222222 0.8775720 
 ## 
 ## $Philips$auroc
-## [1] 0.94375
+## [1] 0.91875
 ## 
 ## $Philips$auroc_ci
 ##      2.5%     97.5% 
-## 0.8577652 1.0000000 
+## 0.7975439 1.0000000 
 ## 
 ## 
 ## $Samsung
 ## $Samsung$auprc
-## [1] 0.6564774
+## [1] 0.6364598
 ## 
 ## $Samsung$auprc_ci
 ##      2.5%     97.5% 
-## 0.3613800 0.8935584 
+## 0.3612568 0.9078977 
 ## 
 ## $Samsung$auroc
 ## [1] 0.9142857
 ## 
 ## $Samsung$auroc_ci
 ##      2.5%     97.5% 
-## 0.8085623 0.9898873 
+## 0.8030992 0.9965647 
 ## 
 ## 
 ## $GE
@@ -3627,11 +3627,11 @@ get_auroc_aurpc(score_vec = hn_only_most_recent$st_pred_mod_ep30,
 <pre><code>## $Toshiba
 ## $Toshiba$specificity
 ## $Toshiba$specificity$est
-## [1] 0.6363636
+## [1] 0.8181818
 ## 
 ## $Toshiba$specificity$ci
 ##      2.5%     97.5% 
-## 0.5536893 0.7148955 
+## 0.7489329 0.8842975 
 ## 
 ## 
 ## $Toshiba$sensitivity
@@ -3647,11 +3647,11 @@ get_auroc_aurpc(score_vec = hn_only_most_recent$st_pred_mod_ep30,
 ## $Philips
 ## $Philips$specificity
 ## $Philips$specificity$est
-## [1] 0.55
+## [1] 0.8
 ## 
 ## $Philips$specificity$ci
 ##      2.5%     97.5% 
-## 0.3333333 0.7727273 
+## 0.6148810 0.9535173 
 ## 
 ## 
 ## $Philips$sensitivity
@@ -3667,11 +3667,11 @@ get_auroc_aurpc(score_vec = hn_only_most_recent$st_pred_mod_ep30,
 ## $Samsung
 ## $Samsung$specificity
 ## $Samsung$specificity$est
-## [1] 0.5
+## [1] 0.5357143
 ## 
 ## $Samsung$specificity$ci
 ##      2.5%     97.5% 
-## 0.3206786 0.6963462 
+## 0.3585000 0.7321154 
 ## 
 ## 
 ## $Samsung$sensitivity
@@ -3744,36 +3744,37 @@ get_auroc_aurpc(score_vec = hn_only_most_recent$st_pred_mod_ep30,
 </div>
 </div>
 </div>
-<div id="stanford-original-model-performance" class="section level3">
-<h3><span class="header-section-number">2.0.3</span> Stanford original model performance</h3>
+</div>
+<div id="stanford-data" class="section level1">
+<h1><span class="header-section-number">3</span> Stanford data</h1>
 <div id="model-performance-1" class="section level4">
-<h4><span class="header-section-number">2.0.3.1</span> Model performance</h4>
+<h4><span class="header-section-number">3.0.0.1</span> Model performance</h4>
 <pre class="r"><code>get_auroc_aurpc(score_vec = stan_df$stan_pred_mod_ep30, 
                     target = stan_preds$target01)</code></pre>
 <pre><code>## $auprc
-## [1] 0.5788691
+## [1] 0.63954
 ## 
 ## $auprc_ci
 ##      2.5%     97.5% 
-## 0.3701418 0.7782255 
+## 0.4252812 0.8153824 
 ## 
 ## $auroc
-## [1] 0.9009259
+## [1] 0.9059117
 ## 
 ## $auroc_ci
 ##      2.5%     97.5% 
-## 0.7990927 0.9774997</code></pre>
+## 0.8029809 0.9825363</code></pre>
 <pre class="r"><code>(stan_all_origmod = get_sen_spec_withCI(score_vec = stan_df$stan_pred_mod_ep30, 
                     target = stan_preds$target01, 
                     threshold = thresh_ep30, 
                     n_it = 500))</code></pre>
 <pre><code>## $specificity
 ## $specificity$est
-## [1] 0.7557692
+## [1] 0.7653846
 ## 
 ## $specificity$ci
 ##      2.5%     97.5% 
-## 0.7199183 0.7878391 
+## 0.7310230 0.7988642 
 ## 
 ## 
 ## $sensitivity
@@ -3783,32 +3784,34 @@ get_auroc_aurpc(score_vec = hn_only_most_recent$st_pred_mod_ep30,
 ## $sensitivity$ci
 ##      2.5%     97.5% 
 ## 0.6956522 0.9696970</code></pre>
+<div id="test" class="section level5">
+<h5><span class="header-section-number">3.0.0.1.1</span> 40% test</h5>
 <pre class="r"><code>get_auroc_aurpc(score_vec = stan40_test$stan_pred_mod_ep30, 
                     target = stan40_test$target01)</code></pre>
 <pre><code>## $auprc
-## [1] 0.5186354
+## [1] 0.600824
 ## 
 ## $auprc_ci
 ##      2.5%     97.5% 
-## 0.2060238 0.7533672 
+## 0.2923710 0.8074046 
 ## 
 ## $auroc
-## [1] 0.7602041
+## [1] 0.7738095
 ## 
 ## $auroc_ci
 ##      2.5%     97.5% 
-## 0.4846343 0.9267342</code></pre>
+## 0.5610630 0.9507393</code></pre>
 <pre class="r"><code>(stan_40test_origmod = get_sen_spec_withCI(score_vec = stan40_test$stan_pred_mod_ep30, 
                     target = stan40_test$target01, 
                     threshold = thresh_ep30, 
                     n_it = 500))</code></pre>
 <pre><code>## $specificity
 ## $specificity$est
-## [1] 0.5119048
+## [1] 0.6071429
 ## 
 ## $specificity$ci
 ##      2.5%     97.5% 
-## 0.4043388 0.6168675 
+## 0.4939651 0.7094320 
 ## 
 ## 
 ## $sensitivity
@@ -3818,42 +3821,43 @@ get_auroc_aurpc(score_vec = hn_only_most_recent$st_pred_mod_ep30,
 ## $sensitivity$ci
 ##      2.5%     97.5% 
 ## 0.4639744 0.9355208</code></pre>
+</div>
 <div id="by-sex-1" class="section level5">
-<h5><span class="header-section-number">2.0.3.1.1</span> By sex</h5>
+<h5><span class="header-section-number">3.0.0.1.2</span> By sex</h5>
 <pre class="r"><code>auroc_auprc_split(score_vec = stan_merge$stan_pred_mod_ep30, 
                target = stan_merge$target01, 
                split_vec = stan_merge$sex, 
                   n_it=500)</code></pre>
 <pre><code>## $F
 ## $F$auprc
-## [1] 0.4305556
+## [1] 0.5138889
 ## 
 ## $F$auprc_ci
 ##      2.5%     97.5% 
 ## 0.0000000 0.8333333 
 ## 
 ## $F$auroc
-## [1] 0.989899
+## [1] 0.9848485
 ## 
 ## $F$auroc_ci
-##      2.5%     97.5% 
-## 0.9595031 1.0000000 
+##     2.5%    97.5% 
+## 0.953125 1.000000 
 ## 
 ## 
 ## $M
 ## $M$auprc
-## [1] 0.6404717
+## [1] 0.6869212
 ## 
 ## $M$auprc_ci
 ##      2.5%     97.5% 
-## 0.4383940 0.8116971 
+## 0.4866009 0.8398719 
 ## 
 ## $M$auroc
-## [1] 0.8599537
+## [1] 0.8694444
 ## 
 ## $M$auroc_ci
 ##      2.5%     97.5% 
-## 0.7391720 0.9546278</code></pre>
+## 0.7484080 0.9626756</code></pre>
 <pre class="r"><code>sen_spec_split(score_vec = stan_merge$stan_pred_mod_ep30, 
                target = stan_merge$target01, 
                split_vec = stan_merge$sex, 
@@ -3862,11 +3866,11 @@ get_auroc_aurpc(score_vec = hn_only_most_recent$st_pred_mod_ep30,
 <pre><code>## $F
 ## $F$specificity
 ## $F$specificity$est
-## [1] 0.6969697
+## [1] 0.7121212
 ## 
 ## $F$specificity$ci
 ##      2.5%     97.5% 
-## 0.5820896 0.8031607 
+## 0.6088535 0.8153846 
 ## 
 ## 
 ## $F$sensitivity
@@ -3882,11 +3886,11 @@ get_auroc_aurpc(score_vec = hn_only_most_recent$st_pred_mod_ep30,
 ## $M
 ## $M$specificity
 ## $M$specificity$est
-## [1] 0.5611111
+## [1] 0.6
 ## 
 ## $M$specificity$ci
 ##      2.5%     97.5% 
-## 0.4888233 0.6359025 
+## 0.5284091 0.6734444 
 ## 
 ## 
 ## $M$sensitivity
@@ -3898,41 +3902,41 @@ get_auroc_aurpc(score_vec = hn_only_most_recent$st_pred_mod_ep30,
 ## 0.659058 0.960000</code></pre>
 </div>
 <div id="by-side" class="section level5">
-<h5><span class="header-section-number">2.0.3.1.2</span> By side</h5>
+<h5><span class="header-section-number">3.0.0.1.3</span> By side</h5>
 <pre class="r"><code>auroc_auprc_split(score_vec = stan_merge$stan_pred_mod_ep30, 
                target = stan_merge$target01, 
                split_vec = stan_merge$`side of hydronephrosis`, 
                   n_it=500)</code></pre>
 <pre><code>## $Right
 ## $Right$auprc
-## [1] 0.4067745
+## [1] 0.3922998
 ## 
 ## $Right$auprc_ci
 ##       2.5%      97.5% 
-## 0.02237337 0.74306360 
+## 0.02025005 0.73707461 
 ## 
 ## $Right$auroc
-## [1] 0.7211538
+## [1] 0.6730769
 ## 
 ## $Right$auroc_ci
 ##      2.5%     97.5% 
-## 0.4316128 1.0000000 
+## 0.3922202 1.0000000 
 ## 
 ## 
 ## $Left
 ## $Left$auprc
-## [1] 0.7303571
+## [1] 0.7628386
 ## 
 ## $Left$auprc_ci
 ##      2.5%     97.5% 
-## 0.5362906 0.8848752 
+## 0.5536125 0.8956611 
 ## 
 ## $Left$auroc
-## [1] 0.9531173
+## [1] 0.9631811
 ## 
 ## $Left$auroc_ci
 ##      2.5%     97.5% 
-## 0.8881275 0.9923513</code></pre>
+## 0.9103711 0.9938612</code></pre>
 <pre class="r"><code>sen_spec_split(score_vec = stan_merge$stan_pred_mod_ep30, 
                target = stan_merge$target01, 
                split_vec = stan_merge$`side of hydronephrosis`, 
@@ -3941,11 +3945,11 @@ get_auroc_aurpc(score_vec = hn_only_most_recent$st_pred_mod_ep30,
 <pre><code>## $Right
 ## $Right$specificity
 ## $Right$specificity$est
-## [1] 0.8461538
+## [1] 0.9038462
 ## 
 ## $Right$specificity$ci
 ##      2.5%     97.5% 
-## 0.7450980 0.9394184 
+## 0.8269231 0.9636364 
 ## 
 ## 
 ## $Right$sensitivity
@@ -3961,11 +3965,11 @@ get_auroc_aurpc(score_vec = hn_only_most_recent$st_pred_mod_ep30,
 ## $Left
 ## $Left$specificity
 ## $Left$specificity$est
-## [1] 0.5309278
+## [1] 0.556701
 ## 
 ## $Left$specificity$ci
 ##      2.5%     97.5% 
-## 0.4692221 0.6000481 
+## 0.4894670 0.6211364 
 ## 
 ## 
 ## $Left$sensitivity
@@ -3977,25 +3981,25 @@ get_auroc_aurpc(score_vec = hn_only_most_recent$st_pred_mod_ep30,
 ## 0.84125 1.00000</code></pre>
 </div>
 <div id="by-age-2" class="section level5">
-<h5><span class="header-section-number">2.0.3.1.3</span> By Age</h5>
+<h5><span class="header-section-number">3.0.0.1.4</span> By Age</h5>
 <pre class="r"><code>auroc_auprc_split(score_vec = stan_merge$stan_pred_mod_ep30, 
                target = stan_merge$target01, 
                split_vec = stan_merge$age_grps, 
                   n_it=500)</code></pre>
 <pre><code>## $age2to5
 ## $age2to5$auprc
-## [1] 0.6614754
+## [1] 0.6846899
 ## 
 ## $age2to5$auprc_ci
 ##      2.5%     97.5% 
-## 0.4504666 0.8124926 
+## 0.4762529 0.8206798 
 ## 
 ## $age2to5$auroc
-## [1] 0.8770492
+## [1] 0.8822101
 ## 
 ## $age2to5$auroc_ci
 ##      2.5%     97.5% 
-## 0.7525331 0.9602799 
+## 0.7585649 0.9668956 
 ## 
 ## 
 ## $over5
@@ -4008,11 +4012,11 @@ get_auroc_aurpc(score_vec = hn_only_most_recent$st_pred_mod_ep30,
 <pre><code>## $age2to5
 ## $age2to5$specificity
 ## $age2to5$specificity$est
-## [1] 0.5942623
+## [1] 0.6311475
 ## 
 ## $age2to5$specificity$ci
 ##      2.5%     97.5% 
-## 0.5379849 0.6533101 
+## 0.5766844 0.6923190 
 ## 
 ## 
 ## $age2to5$sensitivity
@@ -4028,11 +4032,11 @@ get_auroc_aurpc(score_vec = hn_only_most_recent$st_pred_mod_ep30,
 ## $over5
 ## $over5$specificity
 ## $over5$specificity$est
-## [1] 1
+## [1] 0.5
 ## 
 ## $over5$specificity$ci
 ##  2.5% 97.5% 
-##     1     1 
+##     0     1 
 ## 
 ## 
 ## $over5$sensitivity
@@ -4045,75 +4049,75 @@ get_auroc_aurpc(score_vec = hn_only_most_recent$st_pred_mod_ep30,
 </div>
 </div>
 </div>
-<div id="uiowa-original-model-performance" class="section level3">
-<h3><span class="header-section-number">2.0.4</span> UIowa original model performance</h3>
+<div id="uiowa-data" class="section level1">
+<h1><span class="header-section-number">4</span> UIowa data</h1>
 <div id="model-performance-2" class="section level4">
-<h4><span class="header-section-number">2.0.4.1</span> Model performance</h4>
+<h4><span class="header-section-number">4.0.0.1</span> Model performance</h4>
 <div id="overall-2" class="section level5">
-<h5><span class="header-section-number">2.0.4.1.1</span> Overall</h5>
+<h5><span class="header-section-number">4.0.0.1.1</span> Overall</h5>
 <pre class="r"><code>get_auroc_aurpc(score_vec = ui_df$ui_pred_mod_ep30, 
                     target = ui_df$target01)</code></pre>
 <pre><code>## $auprc
-## [1] 0.9262375
+## [1] 0.9318084
 ## 
 ## $auprc_ci
 ##      2.5%     97.5% 
-## 0.8722629 0.9649806 
+## 0.8821623 0.9669490 
 ## 
 ## $auroc
-## [1] 0.9233449
+## [1] 0.9320557
 ## 
 ## $auroc_ci
 ##      2.5%     97.5% 
-## 0.8606447 0.9718777</code></pre>
+## 0.8747863 0.9750215</code></pre>
 <pre class="r"><code>(ui_all_origmod = get_sen_spec_withCI(score_vec = ui_df$ui_pred_mod_ep30, 
                     target = ui_df$target01, 
                     threshold = thresh_ep30, 
                     n_it = 500))</code></pre>
 <pre><code>## $specificity
 ## $specificity$est
-## [1] 0.3902439
+## [1] 0.5121951
 ## 
 ## $specificity$ci
 ##      2.5%     97.5% 
-## 0.2460227 0.5326596 
+## 0.3488372 0.6511628 
 ## 
 ## 
 ## $sensitivity
 ## $sensitivity$est
-## [1] 0.9821429
+## [1] 0.9642857
 ## 
 ## $sensitivity$ci
 ##      2.5%     97.5% 
-## 0.9438941 1.0000000</code></pre>
-<div id="test" class="section level6">
-<h6><span class="header-section-number">2.0.4.1.1.1</span> 40% Test</h6>
+## 0.9064902 1.0000000</code></pre>
+<div id="test-1" class="section level6">
+<h6><span class="header-section-number">4.0.0.1.1.1</span> 40% Test</h6>
 <pre class="r"><code>get_auroc_aurpc(score_vec = ui40_test$ui_pred_mod_ep30, 
                     target = ui40_test$target01)</code></pre>
 <pre><code>## $auprc
-## [1] 0.8274681
+## [1] 0.8301815
 ## 
 ## $auprc_ci
 ##      2.5%     97.5% 
-## 0.6159513 0.9356373 
+## 0.6570984 0.9407746 
 ## 
 ## $auroc
-## [1] 0.7857143
+## [1] 0.9444444
 ## 
 ## $auroc_ci
 ##      2.5%     97.5% 
-## 0.5332353 0.9667424</code></pre>
+## 0.8673732 0.9955556</code></pre>
 <pre class="r"><code>(ui_40test_origmod = get_sen_spec_withCI(score_vec = ui40_test$ui_pred_mod_ep30, 
                     target = ui40_test$target01, 
                     threshold = thresh_ep30, 
                     n_it = 500))</code></pre>
 <pre><code>## $specificity
 ## $specificity$est
-## [1] 0.1428571
+## [1] 0.5555556
 ## 
 ## $specificity$ci
 ##      2.5%     97.5% 
-## 0.0000000 0.4369048 
+## 0.3725694 0.7380435 
 ## 
 ## 
 ## $sensitivity
@@ -4126,41 +4130,41 @@ get_auroc_aurpc(score_vec = hn_only_most_recent$st_pred_mod_ep30,
 </div>
 </div>
 <div id="by-sex-2" class="section level5">
-<h5><span class="header-section-number">2.0.4.1.2</span> By Sex</h5>
+<h5><span class="header-section-number">4.0.0.1.2</span> By Sex</h5>
 <pre class="r"><code>auroc_auprc_split(score_vec = ui_merge$ui_pred_mod_ep30, 
                target = ui_merge$target01, 
                split_vec = ui_merge$Gender, 
                   n_it=500)</code></pre>
 <pre><code>## $M
 ## $M$auprc
-## [1] 0.9193209
+## [1] 0.9213873
 ## 
 ## $M$auprc_ci
 ##      2.5%     97.5% 
-## 0.8509792 0.9676053 
+## 0.8551628 0.9637270 
 ## 
 ## $M$auroc
-## [1] 0.8781513
+## [1] 0.9385965
 ## 
 ## $M$auroc_ci
 ##      2.5%     97.5% 
-## 0.7835982 0.9690530 
+## 0.8811905 0.9860391 
 ## 
 ## 
 ## $F
 ## $F$auprc
-## [1] 0.9183412
+## [1] 0.9126177
 ## 
 ## $F$auprc_ci
-##    2.5%   97.5% 
-## 0.86052 0.93750 
+##      2.5%     97.5% 
+## 0.8429274 0.9375000 
 ## 
 ## $F$auroc
-## [1] 0.952381
+## [1] 0.9285714
 ## 
 ## $F$auroc_ci
-##  2.5% 97.5% 
-##   0.8   1.0</code></pre>
+##      2.5%     97.5% 
+## 0.7120879 1.0000000</code></pre>
 <pre class="r"><code>sen_spec_split(score_vec = ui_merge$ui_pred_mod_ep30, 
                target = ui_merge$target01, 
                split_vec = ui_merge$Gender, 
@@ -4169,11 +4173,11 @@ get_auroc_aurpc(score_vec = hn_only_most_recent$st_pred_mod_ep30,
 <pre><code>## $M
 ## $M$specificity
 ## $M$specificity$est
-## [1] 0.1764706
+## [1] 0.5
 ## 
 ## $M$specificity$ci
 ##      2.5%     97.5% 
-## 0.0000000 0.3695701 
+## 0.3529412 0.6461575 
 ## 
 ## 
 ## $M$sensitivity
@@ -4182,7 +4186,7 @@ get_auroc_aurpc(score_vec = hn_only_most_recent$st_pred_mod_ep30,
 ## 
 ## $M$sensitivity$ci
 ##      2.5%     97.5% 
-## 0.9189189 1.0000000 
+## 0.9210526 1.0000000 
 ## 
 ## 
 ## 
@@ -4198,48 +4202,52 @@ get_auroc_aurpc(score_vec = hn_only_most_recent$st_pred_mod_ep30,
 ## 
 ## $F$sensitivity
 ## $F$sensitivity$est
-## [1] 1
+## [1] 0.9285714
 ## 
 ## $F$sensitivity$ci
-##  2.5% 97.5% 
-##     1     1</code></pre>
+##      2.5%     97.5% 
+## 0.7569853 1.0000000</code></pre>
 </div>
 <div id="by-hn-side-2" class="section level5">
-<h5><span class="header-section-number">2.0.4.1.3</span> By HN Side</h5>
+<h5><span class="header-section-number">4.0.0.1.3</span> By HN Side</h5>
 <pre class="r"><code>auroc_auprc_split(score_vec = ui_merge$ui_pred_mod_ep30, 
                target = ui_merge$target01, 
                split_vec = ui_merge$U.B, 
                   n_it=500)</code></pre>
 <pre><code>## $L
 ## $L$auprc
-## [1] 0.9051148
+## [1] 0.9113473
 ## 
 ## $L$auprc_ci
 ##      2.5%     97.5% 
-## 0.8076268 0.9623328 
+## 0.8280105 0.9647725 
 ## 
 ## $L$auroc
-## [1] 0.875
+## [1] 0.9255952
 ## 
 ## $L$auroc_ci
 ##      2.5%     97.5% 
-## 0.7347715 0.9742008 
+## 0.8330767 0.9909007 
 ## 
 ## 
 ## $R
 ## $R$auprc
-## [1] 0.938078
+## [1] 0.9369896
 ## 
 ## $R$auprc_ci
 ##      2.5%     97.5% 
-## 0.8957339 0.9600000 
+## 0.8916621 0.9603745 
 ## 
 ## $R$auroc
-## [1] 0.9097222
+## [1] 0.9270833
 ## 
 ## $R$auroc_ci
 ##      2.5%     97.5% 
-## 0.7984877 1.0000000</code></pre>
+## 0.8181818 1.0000000 
+## 
+## 
+## $B
+## [1] NA</code></pre>
 <pre class="r"><code>sen_spec_split(score_vec = ui_merge$ui_pred_mod_ep30, 
                target = ui_merge$target01, 
                split_vec = ui_merge$U.B, 
@@ -4248,11 +4256,11 @@ get_auroc_aurpc(score_vec = hn_only_most_recent$st_pred_mod_ep30,
 <pre><code>## $L
 ## $L$specificity
 ## $L$specificity$est
-## [1] 0.2142857
+## [1] 0.3809524
 ## 
 ## $L$specificity$ci
 ##      2.5%     97.5% 
-## 0.0000000 0.4666667 
+## 0.1751279 0.6000000 
 ## 
 ## 
 ## $L$sensitivity
@@ -4268,41 +4276,61 @@ get_auroc_aurpc(score_vec = hn_only_most_recent$st_pred_mod_ep30,
 ## $R
 ## $R$specificity
 ## $R$specificity$est
-## [1] 0.3333333
+## [1] 0.625
 ## 
 ## $R$specificity$ci
 ##  2.5% 97.5% 
-##  0.00  0.75 
+##  0.25  1.00 
 ## 
 ## 
 ## $R$sensitivity
 ## $R$sensitivity$est
-## [1] 0.9583333
+## [1] 0.9166667
 ## 
 ## $R$sensitivity$ci
 ##      2.5%     97.5% 
-## 0.8664526 1.0000000</code></pre>
+## 0.8076923 1.0000000 
+## 
+## 
+## 
+## $B
+## $B$specificity
+## $B$specificity$est
+## [1] 0.6666667
+## 
+## $B$specificity$ci
+##      2.5%     97.5% 
+## 0.4166667 0.9166667 
+## 
+## 
+## $B$sensitivity
+## $B$sensitivity$est
+## [1] NaN
+## 
+## $B$sensitivity$ci
+##  2.5% 97.5% 
+##    NA    NA</code></pre>
 </div>
 <div id="by-age-group" class="section level5">
-<h5><span class="header-section-number">2.0.4.1.4</span> By Age Group</h5>
+<h5><span class="header-section-number">4.0.0.1.4</span> By Age Group</h5>
 <pre class="r"><code>auroc_auprc_split(score_vec = ui_merge$ui_pred_mod_ep30, 
                target = ui_merge$target01, 
                split_vec = ui_merge$age_grp, 
                   n_it=500)</code></pre>
 <pre><code>## $under2
 ## $under2$auprc
-## [1] 0.9370674
+## [1] 0.9364597
 ## 
 ## $under2$auprc_ci
 ##      2.5%     97.5% 
-## 0.8835360 0.9719585 
+## 0.8859708 0.9703201 
 ## 
 ## $under2$auroc
-## [1] 0.8968851
+## [1] 0.8947368
 ## 
 ## $under2$auroc_ci
 ##      2.5%     97.5% 
-## 0.8033884 0.9710803 
+## 0.8132904 0.9641226 
 ## 
 ## 
 ## $age2to5
@@ -4331,20 +4359,40 @@ get_auroc_aurpc(score_vec = hn_only_most_recent$st_pred_mod_ep30,
 <pre><code>## $under2
 ## $under2$specificity
 ## $under2$specificity$est
-## [1] 0.2105263
+## [1] 0.3684211
 ## 
 ## $under2$specificity$ci
-##       2.5%      97.5% 
-## 0.04761364 0.38685897 
+##      2.5%     97.5% 
+## 0.1751279 0.5753759 
 ## 
 ## 
 ## $under2$sensitivity
 ## $under2$sensitivity$est
-## [1] 0.9795918
+## [1] 0.9591837
 ## 
 ## $under2$sensitivity$ci
 ##      2.5%     97.5% 
-## 0.9333333 1.0000000 
+## 0.8934556 1.0000000 
+## 
+## 
+## 
+## $&lt;NA&gt;
+## $&lt;NA&gt;$specificity
+## $&lt;NA&gt;$specificity$est
+## [1] NaN
+## 
+## $&lt;NA&gt;$specificity$ci
+##  2.5% 97.5% 
+##    NA    NA 
+## 
+## 
+## $&lt;NA&gt;$sensitivity
+## $&lt;NA&gt;$sensitivity$est
+## [1] NaN
+## 
+## $&lt;NA&gt;$sensitivity$ci
+##  2.5% 97.5% 
+##    NA    NA 
 ## 
 ## 
 ## 
@@ -4388,8 +4436,8 @@ get_auroc_aurpc(score_vec = hn_only_most_recent$st_pred_mod_ep30,
 </div>
 </div>
 </div>
-<div id="chop-original-model-performance" class="section level3">
-<h3><span class="header-section-number">2.0.5</span> CHOP original model performance</h3>
+<div id="chop-data" class="section level1">
+<h1><span class="header-section-number">5</span> CHOP data</h1>
 <pre class="r"><code>chop_preds = data.frame(chop_pred_mod_ep30 = st_stan_test$chop[[1]][[30]]$pred_scaled,
                         id = st_stan_test$chop[[1]][[30]]$id,
                         target = st_stan_test$chop[[1]][[30]]$target)
@@ -4418,24 +4466,24 @@ chop_train = sub(pattern = &quot;CHOP&quot;,replacement = &quot;&quot;,x = chop_
 
 chop40_test = chop_merge[!(chop_merge$pt_id %in% chop_train),]</code></pre>
 <div id="model-performance-3" class="section level4">
-<h4><span class="header-section-number">2.0.5.1</span> Model performance</h4>
+<h4><span class="header-section-number">5.0.0.1</span> Model performance</h4>
 <div id="overall-3" class="section level5">
-<h5><span class="header-section-number">2.0.5.1.1</span> Overall</h5>
+<h5><span class="header-section-number">5.0.0.1.1</span> Overall</h5>
 <pre class="r"><code>get_auroc_aurpc(score_vec = chop_df$chop_pred_mod_ep30, 
                     target = chop_df$target01)</code></pre>
 <pre><code>## $auprc
-## [1] 0.8859128
+## [1] 0.9337334
 ## 
 ## $auprc_ci
 ##      2.5%     97.5% 
-## 0.8218170 0.9336103 
+## 0.8908669 0.9652861 
 ## 
 ## $auroc
-## [1] 0.7850575
+## [1] 0.8965517
 ## 
 ## $auroc_ci
 ##      2.5%     97.5% 
-## 0.6881041 0.8687744</code></pre>
+## 0.8230449 0.9537829</code></pre>
 <pre class="r"><code>(chop_all_origmod = get_sen_spec_withCI(score_vec = chop_df$chop_pred_mod_ep30, 
                     target = chop_df$target01, 
                     threshold = thresh_ep30, 
@@ -4446,91 +4494,91 @@ chop40_test = chop_merge[!(chop_merge$pt_id %in% chop_train),]</code></pre>
 ## 
 ## $specificity$ci
 ##      2.5%     97.5% 
-## 0.6785714 0.9555830 
+## 0.6666667 0.9622863 
 ## 
 ## 
 ## $sensitivity
 ## $sensitivity$est
-## [1] 0.7166667
+## [1] 0.8166667
 ## 
 ## $sensitivity$ci
 ##      2.5%     97.5% 
-## 0.5984328 0.8220334</code></pre>
-<div id="test-1" class="section level6">
-<h6><span class="header-section-number">2.0.5.1.1.1</span> 40% Test</h6>
+## 0.7119864 0.9105877</code></pre>
+<div id="test-2" class="section level6">
+<h6><span class="header-section-number">5.0.0.1.1.1</span> 40% Test</h6>
 <pre class="r"><code>get_auroc_aurpc(score_vec = chop40_test$chop_pred_mod_ep30, 
                     target = chop40_test$target01)</code></pre>
 <pre><code>## $auprc
-## [1] 0.900053
+## [1] 0.9416012
 ## 
 ## $auprc_ci
 ##      2.5%     97.5% 
-## 0.8173311 0.9505033 
+## 0.8964855 0.9629630 
 ## 
 ## $auroc
-## [1] 0.8222222
+## [1] 0.9422222
 ## 
 ## $auroc_ci
 ##      2.5%     97.5% 
-## 0.6702381 0.9470899</code></pre>
+## 0.8452246 1.0000000</code></pre>
 <pre class="r"><code>(chop_40test_origmod = get_sen_spec_withCI(score_vec = chop40_test$chop_pred_mod_ep30, 
                     target = chop40_test$target01, 
                     threshold = thresh_ep30, 
                     n_it = 500))</code></pre>
 <pre><code>## $specificity
 ## $specificity$est
-## [1] 0.7777778
+## [1] 1
 ## 
 ## $specificity$ci
 ##  2.5% 97.5% 
-##   0.5   1.0 
+##     1     1 
 ## 
 ## 
 ## $sensitivity
 ## $sensitivity$est
-## [1] 0.76
+## [1] 0.84
 ## 
 ## $sensitivity$ci
 ##      2.5%     97.5% 
-## 0.5799679 0.9166667</code></pre>
+## 0.6868007 0.9666852</code></pre>
 </div>
 </div>
 <div id="by-sex-3" class="section level5">
-<h5><span class="header-section-number">2.0.5.1.2</span> By Sex</h5>
+<h5><span class="header-section-number">5.0.0.1.2</span> By Sex</h5>
 <pre class="r"><code>auroc_auprc_split(score_vec = chop_merge$chop_pred_mod_ep30, 
                target = chop_merge$target01, 
                split_vec = chop_merge$Sex, 
                   n_it=500)</code></pre>
 <pre><code>## $M
 ## $M$auprc
-## [1] 0.8740264
+## [1] 0.9174937
 ## 
 ## $M$auprc_ci
 ##      2.5%     97.5% 
-## 0.7759889 0.9452783 
+## 0.8543235 0.9585283 
 ## 
 ## $M$auroc
-## [1] 0.7901431
+## [1] 0.8807631
 ## 
 ## $M$auroc_ci
 ##      2.5%     97.5% 
-## 0.6717110 0.8963711 
+## 0.7866281 0.9583799 
 ## 
 ## 
 ## $F
 ## $F$auprc
-## [1] 0.8424738
+## [1] 0.9089242
 ## 
 ## $F$auprc_ci
 ##      2.5%     97.5% 
-## 0.7066517 0.9162142 
+## 0.8252936 0.9478710 
 ## 
 ## $F$auroc
-## [1] 0.7833333
+## [1] 0.9083333
 ## 
 ## $F$auroc_ci
 ##      2.5%     97.5% 
-## 0.5999875 0.9264870</code></pre>
+## 0.7833333 0.9952269</code></pre>
 <pre class="r"><code>sen_spec_split(score_vec = chop_merge$chop_pred_mod_ep30, 
                target = chop_merge$target01, 
                split_vec = chop_merge$Sex, 
@@ -4539,77 +4587,77 @@ chop40_test = chop_merge[!(chop_merge$pt_id %in% chop_train),]</code></pre>
 <pre><code>## $M
 ## $M$specificity
 ## $M$specificity$est
-## [1] 0.7647059
+## [1] 0.7058824
 ## 
 ## $M$specificity$ci
 ##      2.5%     97.5% 
-## 0.5625000 0.9444444 
+## 0.4639744 0.9230769 
 ## 
 ## 
 ## $M$sensitivity
 ## $M$sensitivity$est
-## [1] 0.7567568
+## [1] 0.8108108
 ## 
 ## $M$sensitivity$ci
 ##      2.5%     97.5% 
-## 0.6315789 0.8816877 
+## 0.7000000 0.9210526 
 ## 
 ## 
 ## 
 ## $F
 ## $F$specificity
 ## $F$specificity$est
-## [1] 0.9166667
+## [1] 1
 ## 
 ## $F$specificity$ci
-##      2.5%     97.5% 
-## 0.7272727 1.0000000 
+##  2.5% 97.5% 
+##     1     1 
 ## 
 ## 
 ## $F$sensitivity
 ## $F$sensitivity$est
-## [1] 0.65
+## [1] 0.85
 ## 
 ## $F$sensitivity$ci
 ##      2.5%     97.5% 
-## 0.4375000 0.8421053</code></pre>
+## 0.6818182 0.9600000</code></pre>
 </div>
 <div id="by-hn-side-3" class="section level5">
-<h5><span class="header-section-number">2.0.5.1.3</span> By HN Side</h5>
+<h5><span class="header-section-number">5.0.0.1.3</span> By HN Side</h5>
 <pre class="r"><code>auroc_auprc_split(score_vec = chop_merge$chop_pred_mod_ep30, 
                target = chop_merge$target01, 
                split_vec = chop_merge$Laterality.of.hydro, 
                   n_it=500)</code></pre>
 <pre><code>## $Left
 ## $Left$auprc
-## [1] 0.9153402
+## [1] 0.9608392
 ## 
 ## $Left$auprc_ci
 ##      2.5%     97.5% 
-## 0.8623568 0.9558453 
+## 0.9388403 0.9744196 
 ## 
 ## $Left$auroc
-## [1] 0.784689
+## [1] 0.9521531
 ## 
 ## $Left$auroc_ci
 ##      2.5%     97.5% 
-## 0.6457791 0.9031778 
+## 0.8945833 0.9960024 
 ## 
 ## 
 ## $Right
 ## $Right$auprc
-## [1] 0.7965579
+## [1] 0.8261276
 ## 
 ## $Right$auprc_ci
 ##      2.5%     97.5% 
-## 0.6214589 0.9106085 
+## 0.6636210 0.9327714 
 ## 
 ## $Right$auroc
-## [1] 0.7521368
+## [1] 0.8290598
 ## 
 ## $Right$auroc_ci
 ##      2.5%     97.5% 
-## 0.5703040 0.9227273 
+## 0.6822230 0.9641667 
 ## 
 ## 
 ## $Bilateral
@@ -4634,31 +4682,31 @@ chop40_test = chop_merge[!(chop_merge$pt_id %in% chop_train),]</code></pre>
 <pre><code>## $Left
 ## $Left$specificity
 ## $Left$specificity$est
-## [1] 0.7272727
+## [1] 0.9090909
 ## 
 ## $Left$specificity$ci
 ##      2.5%     97.5% 
-## 0.4444444 1.0000000 
+## 0.6765625 1.0000000 
 ## 
 ## 
 ## $Left$sensitivity
 ## $Left$sensitivity$est
-## [1] 0.7368421
+## [1] 0.8947368
 ## 
 ## $Left$sensitivity$ci
 ##      2.5%     97.5% 
-## 0.5945946 0.8734776 
+## 0.7973077 1.0000000 
 ## 
 ## 
 ## 
 ## $Right
 ## $Right$specificity
 ## $Right$specificity$est
-## [1] 0.9230769
+## [1] 0.8461538
 ## 
 ## $Right$specificity$ci
-##  2.5% 97.5% 
-##   0.8   1.0 
+##      2.5%     97.5% 
+## 0.6394481 1.0000000 
 ## 
 ## 
 ## $Right$sensitivity
@@ -4667,18 +4715,18 @@ chop40_test = chop_merge[!(chop_merge$pt_id %in% chop_train),]</code></pre>
 ## 
 ## $Right$sensitivity$ci
 ##      2.5%     97.5% 
-## 0.4685294 0.8750000 
+## 0.4639744 0.8750000 
 ## 
 ## 
 ## 
 ## $Bilateral
 ## $Bilateral$specificity
 ## $Bilateral$specificity$est
-## [1] 0.75
+## [1] 0.5
 ## 
 ## $Bilateral$specificity$ci
 ##  2.5% 97.5% 
-##  0.25  1.00 
+##     0     1 
 ## 
 ## 
 ## $Bilateral$sensitivity
@@ -4710,41 +4758,41 @@ chop40_test = chop_merge[!(chop_merge$pt_id %in% chop_train),]</code></pre>
 ##    NA    NA</code></pre>
 </div>
 <div id="by-age-group-1" class="section level5">
-<h5><span class="header-section-number">2.0.5.1.4</span> By Age Group</h5>
+<h5><span class="header-section-number">5.0.0.1.4</span> By Age Group</h5>
 <pre class="r"><code>auroc_auprc_split(score_vec = chop_merge$chop_pred_mod_ep30, 
                target = chop_merge$target01, 
                split_vec = chop_merge$age_grp, 
                   n_it=500)</code></pre>
 <pre><code>## $under2
 ## $under2$auprc
-## [1] 0.9089431
+## [1] 0.9092175
 ## 
 ## $under2$auprc_ci
 ##      2.5%     97.5% 
-## 0.8241419 0.9565796 
+## 0.8119813 0.9583333 
 ## 
 ## $under2$auroc
-## [1] 0.954386
+## [1] 0.9578947
 ## 
 ## $under2$auroc_ci
 ##      2.5%     97.5% 
-## 0.8679876 1.0000000 
+## 0.8833464 1.0000000 
 ## 
 ## 
 ## $over5
 ## $over5$auprc
-## [1] 0.9019148
+## [1] 0.9172407
 ## 
 ## $over5$auprc_ci
 ##      2.5%     97.5% 
-## 0.8277632 0.9541103 
+## 0.8425666 0.9568904 
 ## 
 ## $over5$auroc
-## [1] 0.7575758
+## [1] 0.8148148
 ## 
 ## $over5$auroc_ci
 ##      2.5%     97.5% 
-## 0.5977297 0.8962819 
+## 0.6764706 0.9305556 
 ## 
 ## 
 ## $age2to5
@@ -4769,40 +4817,40 @@ chop40_test = chop_merge[!(chop_merge$pt_id %in% chop_train),]</code></pre>
 <pre><code>## $under2
 ## $under2$specificity
 ## $under2$specificity$est
-## [1] 0.7333333
+## [1] 0.9333333
 ## 
 ## $under2$specificity$ci
 ##      2.5%     97.5% 
-## 0.5000000 0.9333333 
+## 0.7857143 1.0000000 
 ## 
 ## 
 ## $under2$sensitivity
 ## $under2$sensitivity$est
-## [1] 0.9473684
+## [1] 0.8947368
 ## 
 ## $under2$sensitivity$ci
 ##      2.5%     97.5% 
-## 0.8281863 1.0000000 
+## 0.7272727 1.0000000 
 ## 
 ## 
 ## 
 ## $over5
 ## $over5$specificity
 ## $over5$specificity$est
-## [1] 1
+## [1] 0.6666667
 ## 
 ## $over5$specificity$ci
-##  2.5% 97.5% 
-##     1     1 
+##      2.5%     97.5% 
+## 0.3333333 1.0000000 
 ## 
 ## 
 ## $over5$sensitivity
 ## $over5$sensitivity$est
-## [1] 0.5454545
+## [1] 0.7575758
 ## 
 ## $over5$sensitivity$ci
 ##      2.5%     97.5% 
-## 0.3807556 0.6969697 
+## 0.6164593 0.8873810 
 ## 
 ## 
 ## 
@@ -4823,7 +4871,6 @@ chop40_test = chop_merge[!(chop_merge$pt_id %in% chop_train),]</code></pre>
 ## $age2to5$sensitivity$ci
 ##  2.5% 97.5% 
 ##     1     1</code></pre>
-</div>
 </div>
 </div>
 </div>

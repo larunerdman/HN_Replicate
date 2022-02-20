@@ -1589,8 +1589,8 @@ div.tocify {
 
 <pre class="r"><code>print(results_wd)</code></pre>
 <pre><code>## [1] &quot;C:/Users/lauren erdman/OneDrive - SickKids/HNReplicateData_20220218/Results_20220126/&quot;</code></pre>
-<div id="original-sickkids-model" class="section level1">
-<h1><span class="header-section-number">1</span> Original SickKids model</h1>
+<div id="sickkids-data" class="section level1">
+<h1><span class="header-section-number">1</span> SickKids data</h1>
 <div id="model-performance" class="section level4">
 <h4><span class="header-section-number">1.0.0.1</span> Model performance</h4>
 <div id="overall" class="section level5">
@@ -4211,10 +4211,11 @@ side_ablation_list[[&quot;st_mostrec&quot;]][[&quot;sen_spec&quot;]] = st_mostre
 </div>
 </div>
 </div>
-<div id="stanford-original-model-performance" class="section level3">
-<h3><span class="header-section-number">1.0.2</span> Stanford original model performance</h3>
+</div>
+<div id="stanford-data" class="section level1">
+<h1><span class="header-section-number">2</span> Stanford data</h1>
 <div id="model-performance-1" class="section level4">
-<h4><span class="header-section-number">1.0.2.1</span> Model performance</h4>
+<h4><span class="header-section-number">2.0.0.1</span> Model performance</h4>
 <pre class="r"><code>(stan_all_origmod_auc = get_auroc_aurpc(score_vec = stan_df$stan_pred_mod_ep30, 
                     target = stan_preds$target01, 
                     n_it = 500))</code></pre>
@@ -4291,7 +4292,7 @@ side_ablation_list[[&quot;stan_all&quot;]][[&quot;sen_spec&quot;]] = stan_all_or
 ##      2.5%     97.5% 
 ## 0.4639744 0.9355208</code></pre>
 <div id="by-sex-1" class="section level5">
-<h5><span class="header-section-number">1.0.2.1.1</span> By sex</h5>
+<h5><span class="header-section-number">2.0.0.1.1</span> By sex</h5>
 <pre class="r"><code>auroc_auprc_split(score_vec = stan_merge$stan_pred_mod_ep30, 
                target = stan_merge$target01, 
                split_vec = stan_merge$sex, 
@@ -4370,7 +4371,7 @@ side_ablation_list[[&quot;stan_all&quot;]][[&quot;sen_spec&quot;]] = stan_all_or
 ## 0.659058 0.960000</code></pre>
 </div>
 <div id="by-side" class="section level5">
-<h5><span class="header-section-number">1.0.2.1.2</span> By side</h5>
+<h5><span class="header-section-number">2.0.0.1.2</span> By side</h5>
 <pre class="r"><code>auroc_auprc_split(score_vec = stan_merge$stan_pred_mod_ep30, 
                target = stan_merge$target01, 
                split_vec = stan_merge$`side of hydronephrosis`, 
@@ -4449,7 +4450,7 @@ side_ablation_list[[&quot;stan_all&quot;]][[&quot;sen_spec&quot;]] = stan_all_or
 ## 0.84125 1.00000</code></pre>
 </div>
 <div id="by-age-2" class="section level5">
-<h5><span class="header-section-number">1.0.2.1.3</span> By Age</h5>
+<h5><span class="header-section-number">2.0.0.1.3</span> By Age</h5>
 <pre class="r"><code>auroc_auprc_split(score_vec = stan_merge$stan_pred_mod_ep30, 
                target = stan_merge$target01, 
                split_vec = stan_merge$age_grps, 
@@ -4517,12 +4518,12 @@ side_ablation_list[[&quot;stan_all&quot;]][[&quot;sen_spec&quot;]] = stan_all_or
 </div>
 </div>
 </div>
-<div id="uiowa-original-model-performance" class="section level3">
-<h3><span class="header-section-number">1.0.3</span> UIowa original model performance</h3>
+<div id="uiowa-data" class="section level1">
+<h1><span class="header-section-number">3</span> UIowa data</h1>
 <div id="model-performance-2" class="section level4">
-<h4><span class="header-section-number">1.0.3.1</span> Model performance</h4>
+<h4><span class="header-section-number">3.0.0.1</span> Model performance</h4>
 <div id="overall-2" class="section level5">
-<h5><span class="header-section-number">1.0.3.1.1</span> Overall</h5>
+<h5><span class="header-section-number">3.0.0.1.1</span> Overall</h5>
 <pre class="r"><code>(ui_all_origmod_auc = get_auroc_aurpc(score_vec = ui_df$ui_pred_mod_ep30, 
                     target = ui_df$target01, 
                     n_it = 500))</code></pre>
@@ -4563,34 +4564,34 @@ side_ablation_list[[&quot;stan_all&quot;]][[&quot;sen_spec&quot;]] = stan_all_or
 side_ablation_list[[&quot;ui_all&quot;]][[&quot;aucs&quot;]] = ui_all_origmod_auc
 side_ablation_list[[&quot;ui_all&quot;]][[&quot;sen_spec&quot;]] = ui_all_origmod</code></pre>
 <div id="test" class="section level6">
-<h6><span class="header-section-number">1.0.3.1.1.1</span> 40% Test</h6>
+<h6><span class="header-section-number">3.0.0.1.1.1</span> 40% Test</h6>
 <pre class="r"><code>get_auroc_aurpc(score_vec = ui40_test$ui_pred_mod_ep30, 
                     target = ui40_test$target01, 
                     n_it = 500)</code></pre>
 <pre><code>## $auprc
-## [1] 0.8554716
+## [1] 0.8222532
 ## 
 ## $auprc_ci
 ##      2.5%     97.5% 
-## 0.7038288 0.9288103 
+## 0.6672586 0.9150986 
 ## 
 ## $auroc
-## [1] 0.7946429
+## [1] 0.9143519
 ## 
 ## $auroc_ci
 ##      2.5%     97.5% 
-## 0.4417157 0.9414338</code></pre>
+## 0.8251923 0.9804131</code></pre>
 <pre class="r"><code>(ui_40test_origmod = get_sen_spec_withCI(score_vec = ui40_test$ui_pred_mod_ep30, 
                     target = ui40_test$target01, 
                     threshold = thresh_ep30, 
                     n_it = 500))</code></pre>
 <pre><code>## $specificity
 ## $specificity$est
-## [1] 0.1428571
+## [1] 0.6296296
 ## 
 ## $specificity$ci
 ##      2.5%     97.5% 
-## 0.0000000 0.4369048 
+## 0.4285714 0.8000000 
 ## 
 ## 
 ## $sensitivity
@@ -4603,25 +4604,25 @@ side_ablation_list[[&quot;ui_all&quot;]][[&quot;sen_spec&quot;]] = ui_all_origmo
 </div>
 </div>
 <div id="by-sex-2" class="section level5">
-<h5><span class="header-section-number">1.0.3.1.2</span> By Sex</h5>
+<h5><span class="header-section-number">3.0.0.1.2</span> By Sex</h5>
 <pre class="r"><code>auroc_auprc_split(score_vec = ui_merge$ui_pred_mod_ep30, 
                target = ui_merge$target01, 
                split_vec = ui_merge$Gender, 
                n_it = 500)</code></pre>
 <pre><code>## $M
 ## $M$auprc
-## [1] 0.9262862
+## [1] 0.9148742
 ## 
 ## $M$auprc_ci
 ##      2.5%     97.5% 
-## 0.8705899 0.9616918 
+## 0.8509297 0.9587155 
 ## 
 ## $M$auroc
-## [1] 0.8739496
+## [1] 0.9210526
 ## 
 ## $M$auroc_ci
 ##      2.5%     97.5% 
-## 0.7763395 0.9523810 
+## 0.8517524 0.9739422 
 ## 
 ## 
 ## $F
@@ -4646,11 +4647,11 @@ side_ablation_list[[&quot;ui_all&quot;]][[&quot;sen_spec&quot;]] = ui_all_origmo
 <pre><code>## $M
 ## $M$specificity
 ## $M$specificity$est
-## [1] 0.2352941
+## [1] 0.5263158
 ## 
 ## $M$specificity$ci
-##       2.5%      97.5% 
-## 0.05402047 0.44736111 
+##      2.5%     97.5% 
+## 0.3701652 0.6707364 
 ## 
 ## 
 ## $M$sensitivity
@@ -4659,7 +4660,7 @@ side_ablation_list[[&quot;ui_all&quot;]][[&quot;sen_spec&quot;]] = ui_all_origmo
 ## 
 ## $M$sensitivity$ci
 ##      2.5%     97.5% 
-## 0.8780488 1.0000000 
+## 0.8800933 1.0000000 
 ## 
 ## 
 ## 
@@ -4682,41 +4683,45 @@ side_ablation_list[[&quot;ui_all&quot;]][[&quot;sen_spec&quot;]] = ui_all_origmo
 ## 0.7569853 1.0000000</code></pre>
 </div>
 <div id="by-hn-side-2" class="section level5">
-<h5><span class="header-section-number">1.0.3.1.3</span> By HN Side</h5>
+<h5><span class="header-section-number">3.0.0.1.3</span> By HN Side</h5>
 <pre class="r"><code>auroc_auprc_split(score_vec = ui_merge$ui_pred_mod_ep30, 
                target = ui_merge$target01, 
                split_vec = ui_merge$U.B, 
                n_it = 500)</code></pre>
 <pre><code>## $L
 ## $L$auprc
-## [1] 0.9209078
+## [1] 0.9188224
 ## 
 ## $L$auprc_ci
 ##      2.5%     97.5% 
-## 0.8496528 0.9629925 
+## 0.8493644 0.9630450 
 ## 
 ## $L$auroc
-## [1] 0.8950893
+## [1] 0.9241071
 ## 
 ## $L$auroc_ci
-##     2.5%    97.5% 
-## 0.779869 0.973461 
+##      2.5%     97.5% 
+## 0.8404799 0.9866516 
 ## 
 ## 
 ## $R
 ## $R$auprc
-## [1] 0.9221728
+## [1] 0.9200651
 ## 
 ## $R$auprc_ci
 ##      2.5%     97.5% 
-## 0.8580276 0.9579194 
+## 0.8486546 0.9573764 
 ## 
 ## $R$auroc
-## [1] 0.8541667
+## [1] 0.8802083
 ## 
 ## $R$auroc_ci
 ##      2.5%     97.5% 
-## 0.6923077 0.9760000</code></pre>
+## 0.7306463 0.9807251 
+## 
+## 
+## $B
+## [1] NA</code></pre>
 <pre class="r"><code>sen_spec_split(score_vec = ui_merge$ui_pred_mod_ep30, 
                target = ui_merge$target01, 
                split_vec = ui_merge$U.B, 
@@ -4725,11 +4730,11 @@ side_ablation_list[[&quot;ui_all&quot;]][[&quot;sen_spec&quot;]] = ui_all_origmo
 <pre><code>## $L
 ## $L$specificity
 ## $L$specificity$est
-## [1] 0.2857143
+## [1] 0.3809524
 ## 
 ## $L$specificity$ci
-##       2.5%      97.5% 
-## 0.07996795 0.57142857 
+##      2.5%     97.5% 
+## 0.1588947 0.6190476 
 ## 
 ## 
 ## $L$sensitivity
@@ -4737,19 +4742,19 @@ side_ablation_list[[&quot;ui_all&quot;]][[&quot;sen_spec&quot;]] = ui_all_origmo
 ## [1] 0.96875
 ## 
 ## $L$sensitivity$ci
-##      2.5%     97.5% 
-## 0.8928571 1.0000000 
+##  2.5% 97.5% 
+##   0.9   1.0 
 ## 
 ## 
 ## 
 ## $R
 ## $R$specificity
 ## $R$specificity$est
-## [1] 0.3333333
+## [1] 0.5
 ## 
 ## $R$specificity$ci
-##  2.5% 97.5% 
-##  0.00  0.75 
+##      2.5%     97.5% 
+## 0.1666667 0.8665179 
 ## 
 ## 
 ## $R$sensitivity
@@ -4757,11 +4762,31 @@ side_ablation_list[[&quot;ui_all&quot;]][[&quot;sen_spec&quot;]] = ui_all_origmo
 ## [1] 0.9166667
 ## 
 ## $R$sensitivity$ci
+##      2.5%     97.5% 
+## 0.8076923 1.0000000 
+## 
+## 
+## 
+## $B
+## $B$specificity
+## $B$specificity$est
+## [1] 0.8333333
+## 
+## $B$specificity$ci
+##      2.5%     97.5% 
+## 0.5833333 1.0000000 
+## 
+## 
+## $B$sensitivity
+## $B$sensitivity$est
+## [1] NaN
+## 
+## $B$sensitivity$ci
 ##  2.5% 97.5% 
-##   0.8   1.0</code></pre>
+##    NA    NA</code></pre>
 </div>
 <div id="by-age-group" class="section level5">
-<h5><span class="header-section-number">1.0.3.1.4</span> By Age Group</h5>
+<h5><span class="header-section-number">3.0.0.1.4</span> By Age Group</h5>
 <pre class="r"><code>auroc_auprc_split(score_vec = ui_merge$ui_pred_mod_ep30, 
                target = ui_merge$target01, 
                split_vec = ui_merge$age_grp, 
@@ -4825,6 +4850,26 @@ side_ablation_list[[&quot;ui_all&quot;]][[&quot;sen_spec&quot;]] = ui_all_origmo
 ## 
 ## 
 ## 
+## $&lt;NA&gt;
+## $&lt;NA&gt;$specificity
+## $&lt;NA&gt;$specificity$est
+## [1] NaN
+## 
+## $&lt;NA&gt;$specificity$ci
+##  2.5% 97.5% 
+##    NA    NA 
+## 
+## 
+## $&lt;NA&gt;$sensitivity
+## $&lt;NA&gt;$sensitivity$est
+## [1] NaN
+## 
+## $&lt;NA&gt;$sensitivity$ci
+##  2.5% 97.5% 
+##    NA    NA 
+## 
+## 
+## 
 ## $age2to5
 ## $age2to5$specificity
 ## $age2to5$specificity$est
@@ -4865,8 +4910,8 @@ side_ablation_list[[&quot;ui_all&quot;]][[&quot;sen_spec&quot;]] = ui_all_origmo
 </div>
 </div>
 </div>
-<div id="chop-original-model-performance" class="section level3">
-<h3><span class="header-section-number">1.0.4</span> CHOP original model performance</h3>
+<div id="chop-data" class="section level1">
+<h1><span class="header-section-number">4</span> CHOP data</h1>
 <pre class="r"><code>chop_preds = data.frame(chop_pred_mod_ep30 = st_stan_test$chop[[1]][[30]]$pred_scaled,
                         id = st_stan_test$chop[[1]][[30]]$id,
                         target = st_stan_test$chop[[1]][[30]]$target)
@@ -4895,9 +4940,9 @@ chop_train = sub(pattern = &quot;CHOP&quot;,replacement = &quot;&quot;,x = chop_
 
 chop40_test = chop_merge[!(chop_merge$pt_id %in% chop_train),]</code></pre>
 <div id="model-performance-3" class="section level4">
-<h4><span class="header-section-number">1.0.4.1</span> Model performance</h4>
+<h4><span class="header-section-number">4.0.0.1</span> Model performance</h4>
 <div id="overall-3" class="section level5">
-<h5><span class="header-section-number">1.0.4.1.1</span> Overall</h5>
+<h5><span class="header-section-number">4.0.0.1.1</span> Overall</h5>
 <pre class="r"><code>(chop_all_origmod_auc = get_auroc_aurpc(score_vec = chop_df$chop_pred_mod_ep30, 
                     target = chop_df$target01, 
                     n_it = 500))</code></pre>
@@ -4940,7 +4985,7 @@ side_ablation_list[[&quot;chop_all&quot;]][[&quot;sen_spec&quot;]] = chop_all_or
 
 saveRDS(object = side_ablation_list, file = paste0(results_wd,&quot;/sideablation_model_list_results_20220207.rds&quot;))</code></pre>
 <div id="test-1" class="section level6">
-<h6><span class="header-section-number">1.0.4.1.1.1</span> 40% Test</h6>
+<h6><span class="header-section-number">4.0.0.1.1.1</span> 40% Test</h6>
 <pre class="r"><code>get_auroc_aurpc(score_vec = chop40_test$chop_pred_mod_ep30, 
                     target = chop40_test$target01, 
                     n_it = 500)</code></pre>
@@ -4980,7 +5025,7 @@ saveRDS(object = side_ablation_list, file = paste0(results_wd,&quot;/sideablatio
 </div>
 </div>
 <div id="by-sex-3" class="section level5">
-<h5><span class="header-section-number">1.0.4.1.2</span> By Sex</h5>
+<h5><span class="header-section-number">4.0.0.1.2</span> By Sex</h5>
 <pre class="r"><code>auroc_auprc_split(score_vec = chop_merge$chop_pred_mod_ep30, 
                target = chop_merge$target01, 
                split_vec = chop_merge$Sex, 
@@ -5059,7 +5104,7 @@ saveRDS(object = side_ablation_list, file = paste0(results_wd,&quot;/sideablatio
 ## 0.4444444 0.8298913</code></pre>
 </div>
 <div id="by-hn-side-3" class="section level5">
-<h5><span class="header-section-number">1.0.4.1.3</span> By HN Side</h5>
+<h5><span class="header-section-number">4.0.0.1.3</span> By HN Side</h5>
 <pre class="r"><code>auroc_auprc_split(score_vec = chop_merge$chop_pred_mod_ep30, 
                target = chop_merge$target01, 
                split_vec = chop_merge$Laterality.of.hydro, 
@@ -5194,7 +5239,7 @@ saveRDS(object = side_ablation_list, file = paste0(results_wd,&quot;/sideablatio
 ##    NA    NA</code></pre>
 </div>
 <div id="by-age-group-1" class="section level5">
-<h5><span class="header-section-number">1.0.4.1.4</span> By Age Group</h5>
+<h5><span class="header-section-number">4.0.0.1.4</span> By Age Group</h5>
 <pre class="r"><code>auroc_auprc_split(score_vec = chop_merge$chop_pred_mod_ep30, 
                target = chop_merge$target01, 
                split_vec = chop_merge$age_grp, 
@@ -5307,7 +5352,6 @@ saveRDS(object = side_ablation_list, file = paste0(results_wd,&quot;/sideablatio
 ## $age2to5$sensitivity$ci
 ##  2.5% 97.5% 
 ##     1     1</code></pre>
-</div>
 </div>
 </div>
 </div>

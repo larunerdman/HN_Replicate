@@ -1081,8 +1081,6 @@ original_model_list[["stan_40test_origmod"]][["sen_spec"]] = stan_40test_origmod
 ```
 
 
-
-
 ##### By sex (Table 4)
 ```{r}
 
@@ -1142,7 +1140,7 @@ ui_preds = data.frame(ui_pred_mod_ep30 = st_stan_test$ui[[1]][[30]]$pred_scaled,
 ui_preds$target = factor(ui_preds$target, levels = c(0,1), labels = c("no Obstruction", "Obstruction"))
 ui_df = ui_preds
 
-ui_datasheet = read.csv(paste0(results_wd,"/Datasheets/UIowa_DeID_Datasheet.csv"), header = TRUE, as.is = TRUE)
+ui_datasheet = read.csv(paste0(results_wd,"/Datasheets/UIowa_Datasheet_newdata_20220104_DeID.csv"), header = TRUE, as.is = TRUE)
 names(ui_datasheet)[1] = "Name"
 
 ui_df$pt_id = unlist(lapply(strsplit(as.character(ui_df$id),"_"),function(x){x[1]}))
@@ -2098,6 +2096,7 @@ get_auroc_aurpc(score_vec = ui_df$ui_pred_mod_ep20,
                    threshold = dat_thresh_ep20,
                    n_it = 500))
 ```
+
 ### CHOP 
 ```{r}
 
@@ -2124,165 +2123,4 @@ get_auroc_aurpc(score_vec = chop_df$chop_pred_mod_ep30,
                     threshold = thresh_ep30, 
                     n_it = 500))
 ```
-
-
-<!-- ``` -->
-
-
-<!-- # Embedding plots (Figure 2) -->
-
-<!-- ```{r embeddings, echo=FALSE} -->
-
-<!-- train_embed = read.csv(paste0(results_wd,"/Embeddings/Training_embeddings.csv"), header=FALSE, as.is=TRUE) -->
-<!-- val_embed = read.csv(paste0(results_wd,"/Embeddings/Validation_embeddings.csv"), header=FALSE, as.is=TRUE) -->
-<!-- sitrial_embed = read.csv(paste0(results_wd,"/Embeddings/SilentTrial_embeddings.csv"), header=FALSE, as.is=TRUE) -->
-<!-- stan_embed = read.csv(paste0(results_wd,"/Embeddings/Stanford_embeddings.csv"), header=FALSE, as.is=TRUE) -->
-<!-- uiowa_embed = read.csv(paste0(results_wd,"/Embeddings/UIowa_embeddings.csv"), header=FALSE, as.is=TRUE) -->
-
-<!-- train_ids = train_embed[,ncol(train_embed)] -->
-<!-- val_ids = val_embed[,ncol(val_embed)] -->
-<!-- sitrial_ids = sitrial_embed[,ncol(sitrial_embed)] -->
-<!-- stan_ids = stan_embed[,ncol(stan_embed)] -->
-<!-- uiowa_ids = uiowa_embed[,ncol(uiowa_embed)] -->
-
-<!-- all_train_ids = c(train_ids, val_ids) -->
-<!-- # length(unique(all_train_ids)) -->
-<!-- # length(all_train_ids) -->
-
-<!-- # saveRDS(unique(all_train_ids), file = "C:/Users/lauren erdman/Desktop/kidney_img/HN/SickKids/training_ids_20210803.rds") -->
-
-<!-- all_dat = rbind(train_embed, val_embed, sitrial_embed,  -->
-<!--                 stan_embed, uiowa_embed) -->
-
-<!-- all_embed = all_dat[,-ncol(all_dat)] -->
-<!-- all_embed = all_embed[,-1] -->
-
-<!-- ids = all_dat[,ncol(all_dat)] -->
-<!-- col_vec = rep("blue", length(ids)) -->
-<!-- col_vec[ids %in% val_ids] = "dodgerblue" -->
-<!-- col_vec[ids %in% sitrial_ids] = "deeppink2" -->
-<!-- col_vec[ids %in% stan_ids] = "darkorchid2" -->
-<!-- col_vec[ids %in% uiowa_ids] = "forestgreen" -->
-<!-- col_vec[substr(ids,1,4) == "ORIG"] = "darkturquoise" -->
-
-<!-- group_vec = rep("TrainingST", length(ids)) -->
-<!-- group_vec[ids %in% val_ids] = "Validation" -->
-<!-- group_vec[ids %in% sitrial_ids] = "SilentTrial" -->
-<!-- group_vec[ids %in% stan_ids] = "Stanford" -->
-<!-- group_vec[ids %in% uiowa_ids] = "UIowa" -->
-<!-- group_vec[substr(ids,1,4) == "ORIG"] = "TrainingOrig" -->
-
-<!-- # length(group_vec[group_vec == "TrainingOrig"]) -->
-<!-- # length(group_vec[group_vec == "TrainingST"]) -->
-
-<!--   ## 2  -->
-<!-- group_vec2 = rep("Training", length(ids)) -->
-<!-- group_vec2[ids %in% val_ids] = "Validation" -->
-<!-- group_vec2[ids %in% sitrial_ids] = "SilentTrial" -->
-<!-- group_vec2[ids %in% stan_ids] = "Stanford" -->
-<!-- group_vec2[ids %in% uiowa_ids] = "UIowa" -->
-<!-- group_vec2[substr(ids,1,4) == "ORIG"] = "Training" -->
-
-
-<!-- my_umap = umap(all_embed) -->
-
-<!-- # head(my_umap$layout) -->
-
-
-<!-- umap_df = data.frame(cbind(ids,my_umap$layout,col = col_vec, group = group_vec)) -->
-<!-- names(umap_df)[2:3] = c("Dim1","Dim2") -->
-
-<!-- gg_df = data.frame(cbind(my_umap$layout,group_vec2)) -->
-<!-- names(gg_df)[1:2] = c("Dim1","Dim2") -->
-<!-- gg_df$Dim1 = as.numeric(gg_df$Dim1) -->
-<!-- gg_df$Dim2 = as.numeric(gg_df$Dim2) -->
-
-<!-- gg_df$DataSet = factor(gg_df$group_vec2, levels = c("Training","Validation","SilentTrial","Stanford","UIowa")) -->
-
-<!-- ## GGPLOT THIS GRAPH AND FACET GRID IT -->
-
-<!-- theme_set( -->
-<!--   theme_bw(base_size = 20) -->
-<!-- ) -->
-<!-- ggplot(gg_df, aes(x = Dim1, y = Dim2, col = DataSet)) +  -->
-<!--   geom_point(size = 2, shape = 18) +  -->
-<!--   scale_color_manual(name = "Data Set", -->
-<!--                      values = c("black","orange","skyblue","deeppink1","aquamarine4")) +  -->
-<!--   guides(colour = guide_legend(override.aes = list(size=5)))#+ facet_grid(~group_vec) -->
-
-<!-- ggplot(gg_df, aes(x = Dim1, y = Dim2, col = DataSet)) +  -->
-<!--   geom_point(size = 2, shape = 18) +  -->
-<!--   scale_color_manual(name = "Data Set", -->
-<!--                      values = c("black","orange","skyblue","deeppink1","aquamarine4")) +  -->
-<!--   guides(colour = guide_legend(override.aes = list(size=5)))+ facet_grid(~DataSet) -->
-
-<!-- ``` -->
-
-
-<!-- ```{r} -->
-
-<!-- ### color by surgery status  -->
-
-<!-- training_df = readRDS(file = paste0(results_wd, "/Datasheets/training_details.rds")) -->
-
-<!-- # head(training_df) -->
-<!-- # head(umap_df) -->
-
-<!-- umap_train = umap_df[umap_df$ids %in% training_df$full_id,] -->
-<!-- # head(umap_train) -->
-<!-- # dim(umap_train) -->
-<!-- #  -->
-<!-- # dim(umap_df) -->
-
-<!-- umap_merge = merge(umap_train, training_df, by.x = "ids", by.y = "full_id") -->
-<!-- # head(umap_merge) -->
-<!-- umap_merge$Dim1 = as.numeric(umap_merge$Dim1) -->
-<!-- umap_merge$Dim2 = as.numeric(umap_merge$Dim2) -->
-<!-- umap_merge$Obstruction = factor(umap_merge$surgery, levels = c(0,1), -->
-<!--                                 labels = c("No","Yes")) -->
-
-<!-- # "blue" -->
-<!-- # "dodgerblue" -->
-<!-- # "deeppink2" -->
-<!-- # "darkorchid2" -->
-<!-- # "forestgreen" -->
-<!-- # "darkturquoise" -->
-
-
-<!-- theme_set( -->
-<!--   theme_bw(base_size = 20) -->
-<!-- ) -->
-
-<!-- ggplot(umap_merge, aes(x = Dim1, y = Dim2, col = Obstruction)) +  -->
-<!--   geom_point()  +  -->
-<!--   geom_point(size = 2, shape = 18) +  -->
-<!--   scale_color_manual(name = "Obstruction", -->
-<!--                      values = c("#009E73","#CC79A7")) +  -->
-<!--   ggtitle("Color by Obstruction") +  -->
-<!--   guides(colour = guide_legend(override.aes = list(size=5, shape=18)))#+ facet_grid(~group_vec) -->
-
-<!-- ggplot(umap_merge, aes(x = Dim1, y = Dim2, col = group)) +  -->
-<!--   geom_point() #+ facet_grid(~group_vec) -->
-
-<!-- ggplot(umap_merge, aes(x = Dim1, y = Dim2, col = age_grp)) +  -->
-<!--   geom_point() #+ facet_grid(~group_vec) -->
-
-<!-- ggplot(umap_merge, aes(x = Dim1, y = Dim2, col = apd_group)) +  -->
-<!--   geom_point() #+ facet_grid(~group_vec) -->
-
-<!-- ggplot(umap_merge, aes(x = Dim1, y = Dim2, col = USMachine)) +  -->
-<!--   geom_point() #+ facet_grid(~group_vec) -->
-
-<!-- ggplot(umap_merge, aes(x = Dim1, y = Dim2, col = apd_group)) +  -->
-<!--   geom_point() #+ facet_grid(~group_vec) -->
-
-<!-- ggplot(umap_merge, aes(x = Dim1, y = Dim2, col = side)) +  -->
-<!--   geom_point() #+ facet_grid(~group_vec) -->
-
-<!-- ggplot(umap_merge, aes(x = Dim1, y = Dim2, col = set)) +  -->
-<!--   geom_point() +  -->
-<!--   scale_color_manual(values = c("blue","dodgerblue","deeppink2","darkorchid2","forestgreen","darkturquoise")) #+ facet_grid(~group_vec) -->
-
-
-<!-- ``` -->
 

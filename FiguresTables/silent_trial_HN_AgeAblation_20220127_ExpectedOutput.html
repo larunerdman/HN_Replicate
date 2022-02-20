@@ -1589,12 +1589,15 @@ div.tocify {
 
 <pre class="r"><code>print(results_wd)</code></pre>
 <pre><code>## [1] &quot;C:/Users/lauren erdman/OneDrive - SickKids/HNReplicateData_20220218/Results_20220126/&quot;</code></pre>
-<div id="age-ablated-model" class="section level1">
-<h1><span class="header-section-number">1</span> Age-ablated model</h1>
+<div id="original-model-age-ablated" class="section level1">
+<h1><span class="header-section-number">1</span> Original model, Age-ablated</h1>
+</div>
+<div id="sickkids-data" class="section level1">
+<h1><span class="header-section-number">2</span> SickKids data</h1>
 <div id="model-performance" class="section level4">
-<h4><span class="header-section-number">1.0.0.1</span> Model performance</h4>
+<h4><span class="header-section-number">2.0.0.1</span> Model performance</h4>
 <div id="overall" class="section level5">
-<h5><span class="header-section-number">1.0.0.1.1</span> Overall</h5>
+<h5><span class="header-section-number">2.0.0.1.1</span> Overall</h5>
 <pre class="r"><code>## overall 
 cat(&quot;All silent trial participant ultrasounds overall model performance&quot;)</code></pre>
 <pre><code>## All silent trial participant ultrasounds overall model performance</code></pre>
@@ -1651,7 +1654,7 @@ age_ablation_list[[&quot;st_overall&quot;]][[&quot;aucs&quot;]] = st_overall_ori
 age_ablation_list[[&quot;st_overall&quot;]][[&quot;sen_spec&quot;]] = st_overall_origmod</code></pre>
 </div>
 <div id="by-preparation" class="section level5">
-<h5><span class="header-section-number">1.0.0.1.2</span> By preparation</h5>
+<h5><span class="header-section-number">2.0.0.1.2</span> By preparation</h5>
 <pre class="r"><code>auroc_auprc_split(score_vec = st_hn_only$st_pred_mod_ep30, 
                   target = st_hn_only$target01, 
                   split_vec = st_hn_only$prep, 
@@ -1730,7 +1733,7 @@ age_ablation_list[[&quot;st_overall&quot;]][[&quot;sen_spec&quot;]] = st_overall
 ## 0.9090909 1.0000000</code></pre>
 </div>
 <div id="by-apd" class="section level5">
-<h5><span class="header-section-number">1.0.0.1.3</span> By ApD</h5>
+<h5><span class="header-section-number">2.0.0.1.3</span> By ApD</h5>
 <pre class="r"><code>auroc_auprc_split(score_vec = st_hn_only$st_pred_mod_ep30, 
                   target = st_hn_only$target01, 
                   split_vec = st_hn_only$apd_groups, 
@@ -1904,7 +1907,7 @@ age_ablation_list[[&quot;st_overall&quot;]][[&quot;sen_spec&quot;]] = st_overall
 ##     1     1</code></pre>
 </div>
 <div id="by-hn-side" class="section level5">
-<h5><span class="header-section-number">1.0.0.1.4</span> By HN side</h5>
+<h5><span class="header-section-number">2.0.0.1.4</span> By HN side</h5>
 <pre class="r"><code>auroc_auprc_split(score_vec = st_hn_only$st_pred_mod_ep30, 
                   target = st_hn_only$target01, 
                   split_vec = st_hn_only$Side, 
@@ -2019,7 +2022,7 @@ age_ablation_list[[&quot;st_overall&quot;]][[&quot;sen_spec&quot;]] = st_overall
 ##     1     1</code></pre>
 </div>
 <div id="by-kidney-side" class="section level5">
-<h5><span class="header-section-number">1.0.0.1.5</span> By Kidney side</h5>
+<h5><span class="header-section-number">2.0.0.1.5</span> By Kidney side</h5>
 <pre class="r"><code>auroc_auprc_split(score_vec = st_hn_only$st_pred_mod_ep30, 
                   target = st_hn_only$target01, 
                   split_vec = st_hn_only$view_side, 
@@ -2098,7 +2101,7 @@ age_ablation_list[[&quot;st_overall&quot;]][[&quot;sen_spec&quot;]] = st_overall
 ##     1     1</code></pre>
 </div>
 <div id="by-age" class="section level5">
-<h5><span class="header-section-number">1.0.0.1.6</span> By Age</h5>
+<h5><span class="header-section-number">2.0.0.1.6</span> By Age</h5>
 <pre class="r"><code>auroc_auprc_split(score_vec = st_hn_only$st_pred_mod_ep30, 
                   target = st_hn_only$target01, 
                   split_vec = st_hn_only$age_grps_fac, 
@@ -2220,7 +2223,7 @@ age_ablation_list[[&quot;st_overall&quot;]][[&quot;sen_spec&quot;]] = st_overall
 ##    NA    NA</code></pre>
 </div>
 <div id="by-postal-code" class="section level5">
-<h5><span class="header-section-number">1.0.0.1.7</span> By Postal code</h5>
+<h5><span class="header-section-number">2.0.0.1.7</span> By Postal code</h5>
 <pre class="r"><code>auroc_auprc_split(score_vec = st_hn_only$st_pred_mod_ep30, 
                   target = st_hn_only$target01, 
                   split_vec = st_hn_only$PostalCode, 
@@ -2415,7 +2418,7 @@ age_ablation_list[[&quot;st_overall&quot;]][[&quot;sen_spec&quot;]] = st_overall
 ##    NA    NA</code></pre>
 </div>
 <div id="by-us-number" class="section level5">
-<h5><span class="header-section-number">1.0.0.1.8</span> By US Number</h5>
+<h5><span class="header-section-number">2.0.0.1.8</span> By US Number</h5>
 <pre class="r"><code>auroc_auprc_split(score_vec = st_hn_only$st_pred_mod_ep30, 
                   target = st_hn_only$target01, 
                   split_vec = st_hn_only$USNumber, 
@@ -2698,7 +2701,7 @@ age_ablation_list[[&quot;st_overall&quot;]][[&quot;sen_spec&quot;]] = st_overall
 ##    NA    NA</code></pre>
 </div>
 <div id="by-us-machine" class="section level5">
-<h5><span class="header-section-number">1.0.0.1.9</span> By US machine</h5>
+<h5><span class="header-section-number">2.0.0.1.9</span> By US machine</h5>
 <pre class="r"><code>auroc_auprc_split(score_vec = st_hn_only$st_pred_mod_ep30, 
                   target = st_hn_only$target01, 
                   split_vec = st_hn_only$US_machine, 
@@ -2909,11 +2912,11 @@ age_ablation_list[[&quot;st_overall&quot;]][[&quot;sen_spec&quot;]] = st_overall
 </div>
 </div>
 <div id="sickkids-silent-trial-data-most-recent-visits-only" class="section level3">
-<h3><span class="header-section-number">1.0.1</span> SickKids silent trial data: Most recent visits only</h3>
+<h3><span class="header-section-number">2.0.1</span> SickKids silent trial data: Most recent visits only</h3>
 <div id="model-performance-most-recent-observations-only" class="section level4">
-<h4><span class="header-section-number">1.0.1.1</span> Model performance: Most recent observations only</h4>
+<h4><span class="header-section-number">2.0.1.1</span> Model performance: Most recent observations only</h4>
 <div id="overall-1" class="section level5">
-<h5><span class="header-section-number">1.0.1.1.1</span> Overall</h5>
+<h5><span class="header-section-number">2.0.1.1.1</span> Overall</h5>
 <pre class="r"><code>####
 #### SILENT TRIAL MOST-RECENT ONLY 
 ####
@@ -2960,7 +2963,7 @@ age_ablation_list[[&quot;st_mostrec&quot;]][[&quot;aucs&quot;]] = st_mostrec_ori
 age_ablation_list[[&quot;st_mostrec&quot;]][[&quot;sen_spec&quot;]] = st_mostrec_origmod</code></pre>
 </div>
 <div id="by-prepartion-method" class="section level5">
-<h5><span class="header-section-number">1.0.1.1.2</span> By prepartion method</h5>
+<h5><span class="header-section-number">2.0.1.1.2</span> By prepartion method</h5>
 <pre class="r"><code>sen_spec_split(score_vec = hn_only_most_recent$st_pred_mod_ep30, 
                target = hn_only_most_recent$target01, 
                split_vec = hn_only_most_recent$prep, 
@@ -3005,7 +3008,7 @@ age_ablation_list[[&quot;st_mostrec&quot;]][[&quot;sen_spec&quot;]] = st_mostrec
 ##     1     1</code></pre>
 </div>
 <div id="by-sex" class="section level5">
-<h5><span class="header-section-number">1.0.1.1.3</span> By Sex</h5>
+<h5><span class="header-section-number">2.0.1.1.3</span> By Sex</h5>
 <pre class="r"><code>auroc_auprc_split(score_vec = hn_only_most_recent$st_pred_mod_ep30, 
                target = hn_only_most_recent$target01, 
                split_vec = hn_only_most_recent$sex, 
@@ -3084,7 +3087,7 @@ age_ablation_list[[&quot;st_mostrec&quot;]][[&quot;sen_spec&quot;]] = st_mostrec
 ##     1     1</code></pre>
 </div>
 <div id="by-apd-group" class="section level5">
-<h5><span class="header-section-number">1.0.1.1.4</span> By ApD Group</h5>
+<h5><span class="header-section-number">2.0.1.1.4</span> By ApD Group</h5>
 <pre class="r"><code>auroc_auprc_split(score_vec = hn_only_most_recent$st_pred_mod_ep30, 
                target = hn_only_most_recent$target01, 
                split_vec = hn_only_most_recent$apd_groups, 
@@ -3245,7 +3248,7 @@ age_ablation_list[[&quot;st_mostrec&quot;]][[&quot;sen_spec&quot;]] = st_mostrec
 ##     1     1</code></pre>
 </div>
 <div id="by-hn-side-1" class="section level5">
-<h5><span class="header-section-number">1.0.1.1.5</span> By HN side</h5>
+<h5><span class="header-section-number">2.0.1.1.5</span> By HN side</h5>
 <pre class="r"><code>auroc_auprc_split(score_vec = hn_only_most_recent$st_pred_mod_ep30, 
                target = hn_only_most_recent$target01, 
                split_vec = hn_only_most_recent$Side, 
@@ -3348,7 +3351,7 @@ age_ablation_list[[&quot;st_mostrec&quot;]][[&quot;sen_spec&quot;]] = st_mostrec
 ##    NA    NA</code></pre>
 </div>
 <div id="by-kidney-side-1" class="section level5">
-<h5><span class="header-section-number">1.0.1.1.6</span> By Kidney side</h5>
+<h5><span class="header-section-number">2.0.1.1.6</span> By Kidney side</h5>
 <pre class="r"><code>auroc_auprc_split(score_vec = hn_only_most_recent$st_pred_mod_ep30, 
                target = hn_only_most_recent$target01, 
                split_vec = hn_only_most_recent$view_side, 
@@ -3427,7 +3430,7 @@ age_ablation_list[[&quot;st_mostrec&quot;]][[&quot;sen_spec&quot;]] = st_mostrec
 ##     1     1</code></pre>
 </div>
 <div id="by-age-1" class="section level5">
-<h5><span class="header-section-number">1.0.1.1.7</span> By Age</h5>
+<h5><span class="header-section-number">2.0.1.1.7</span> By Age</h5>
 <pre class="r"><code>auroc_auprc_split(score_vec = hn_only_most_recent$st_pred_mod_ep30, 
                target = hn_only_most_recent$target01, 
                split_vec = hn_only_most_recent$age_grps_fac, 
@@ -3549,7 +3552,7 @@ age_ablation_list[[&quot;st_mostrec&quot;]][[&quot;sen_spec&quot;]] = st_mostrec
 ##    NA    NA</code></pre>
 </div>
 <div id="by-postal-code-1" class="section level5">
-<h5><span class="header-section-number">1.0.1.1.8</span> By Postal code</h5>
+<h5><span class="header-section-number">2.0.1.1.8</span> By Postal code</h5>
 <pre class="r"><code>auroc_auprc_split(score_vec = hn_only_most_recent$st_pred_mod_ep30, 
                target = hn_only_most_recent$target01, 
                split_vec = hn_only_most_recent$PostalCode, 
@@ -3744,7 +3747,7 @@ age_ablation_list[[&quot;st_mostrec&quot;]][[&quot;sen_spec&quot;]] = st_mostrec
 ##    NA    NA</code></pre>
 </div>
 <div id="by-ultrasound-number" class="section level5">
-<h5><span class="header-section-number">1.0.1.1.9</span> By Ultrasound number</h5>
+<h5><span class="header-section-number">2.0.1.1.9</span> By Ultrasound number</h5>
 <pre class="r"><code>auroc_auprc_split(score_vec = hn_only_most_recent$st_pred_mod_ep30, 
                target = hn_only_most_recent$target01, 
                split_vec = hn_only_most_recent$USNumber, 
@@ -4013,7 +4016,7 @@ age_ablation_list[[&quot;st_mostrec&quot;]][[&quot;sen_spec&quot;]] = st_mostrec
 ##     1     1</code></pre>
 </div>
 <div id="by-ultrasound-machine" class="section level5">
-<h5><span class="header-section-number">1.0.1.1.10</span> By Ultrasound machine</h5>
+<h5><span class="header-section-number">2.0.1.1.10</span> By Ultrasound machine</h5>
 <pre class="r"><code>auroc_auprc_split(score_vec = hn_only_most_recent$st_pred_mod_ep30, 
                target = hn_only_most_recent$target01, 
                split_vec = hn_only_most_recent$US_machine, 
@@ -4211,10 +4214,11 @@ age_ablation_list[[&quot;st_mostrec&quot;]][[&quot;sen_spec&quot;]] = st_mostrec
 </div>
 </div>
 </div>
-<div id="stanford-original-model-performance" class="section level3">
-<h3><span class="header-section-number">1.0.2</span> Stanford original model performance</h3>
+</div>
+<div id="stanford-data" class="section level1">
+<h1><span class="header-section-number">3</span> Stanford data</h1>
 <div id="model-performance-1" class="section level4">
-<h4><span class="header-section-number">1.0.2.1</span> Model performance</h4>
+<h4><span class="header-section-number">3.0.0.1</span> Model performance</h4>
 <pre class="r"><code>(stan_all_origmod_auc = get_auroc_aurpc(score_vec = stan_df$stan_pred_mod_ep30, 
                     target = stan_preds$target01, 
                     n_it = 500))</code></pre>
@@ -4291,7 +4295,7 @@ age_ablation_list[[&quot;stan_all&quot;]][[&quot;sen_spec&quot;]] = stan_all_ori
 ##      2.5%     97.5% 
 ## 0.5139706 1.0000000</code></pre>
 <div id="by-sex-1" class="section level5">
-<h5><span class="header-section-number">1.0.2.1.1</span> By sex</h5>
+<h5><span class="header-section-number">3.0.0.1.1</span> By sex</h5>
 <pre class="r"><code>auroc_auprc_split(score_vec = stan_merge$stan_pred_mod_ep30, 
                target = stan_merge$target01, 
                split_vec = stan_merge$sex, 
@@ -4370,7 +4374,7 @@ age_ablation_list[[&quot;stan_all&quot;]][[&quot;sen_spec&quot;]] = stan_all_ori
 ## 0.7210556 1.0000000</code></pre>
 </div>
 <div id="by-side" class="section level5">
-<h5><span class="header-section-number">1.0.2.1.2</span> By side</h5>
+<h5><span class="header-section-number">3.0.0.1.2</span> By side</h5>
 <pre class="r"><code>auroc_auprc_split(score_vec = stan_merge$stan_pred_mod_ep30, 
                target = stan_merge$target01, 
                split_vec = stan_merge$`side of hydronephrosis`, 
@@ -4449,7 +4453,7 @@ age_ablation_list[[&quot;stan_all&quot;]][[&quot;sen_spec&quot;]] = stan_all_ori
 ##     1     1</code></pre>
 </div>
 <div id="by-age-2" class="section level5">
-<h5><span class="header-section-number">1.0.2.1.3</span> By Age</h5>
+<h5><span class="header-section-number">3.0.0.1.3</span> By Age</h5>
 <pre class="r"><code>auroc_auprc_split(score_vec = stan_merge$stan_pred_mod_ep30, 
                target = stan_merge$target01, 
                split_vec = stan_merge$age_grps, 
@@ -4517,12 +4521,12 @@ age_ablation_list[[&quot;stan_all&quot;]][[&quot;sen_spec&quot;]] = stan_all_ori
 </div>
 </div>
 </div>
-<div id="uiowa-original-model-performance" class="section level3">
-<h3><span class="header-section-number">1.0.3</span> UIowa original model performance</h3>
+<div id="uiowa-data" class="section level1">
+<h1><span class="header-section-number">4</span> UIowa data</h1>
 <div id="model-performance-2" class="section level4">
-<h4><span class="header-section-number">1.0.3.1</span> Model performance</h4>
+<h4><span class="header-section-number">4.0.0.1</span> Model performance</h4>
 <div id="overall-2" class="section level5">
-<h5><span class="header-section-number">1.0.3.1.1</span> Overall</h5>
+<h5><span class="header-section-number">4.0.0.1.1</span> Overall</h5>
 <pre class="r"><code>(ui_all_origmod_auc = get_auroc_aurpc(score_vec = ui_df$ui_pred_mod_ep30, 
                     target = ui_df$target01, 
                     n_it = 500))</code></pre>
@@ -4563,34 +4567,34 @@ age_ablation_list[[&quot;stan_all&quot;]][[&quot;sen_spec&quot;]] = stan_all_ori
 age_ablation_list[[&quot;ui_all&quot;]][[&quot;aucs&quot;]] = ui_all_origmod_auc
 age_ablation_list[[&quot;ui_all&quot;]][[&quot;sen_spec&quot;]] = ui_all_origmod</code></pre>
 <div id="test" class="section level6">
-<h6><span class="header-section-number">1.0.3.1.1.1</span> 40% Test</h6>
+<h6><span class="header-section-number">4.0.0.1.1.1</span> 40% Test</h6>
 <pre class="r"><code>get_auroc_aurpc(score_vec = ui40_test$ui_pred_mod_ep30, 
                     target = ui40_test$target01, 
                     n_it = 500)</code></pre>
 <pre><code>## $auprc
-## [1] 0.8913477
+## [1] 0.8701885
 ## 
 ## $auprc_ci
 ##      2.5%     97.5% 
-## 0.7753053 0.9473684 
+## 0.7520248 0.9417606 
 ## 
 ## $auroc
-## [1] 0.9017857
+## [1] 0.9606481
 ## 
 ## $auroc_ci
-##      2.5%     97.5% 
-## 0.7586161 1.0000000</code></pre>
+##  2.5% 97.5% 
+##   0.9   1.0</code></pre>
 <pre class="r"><code>(ui_40test_origmod = get_sen_spec_withCI(score_vec = ui40_test$ui_pred_mod_ep30, 
                     target = ui40_test$target01, 
                     threshold = thresh_ep30, 
                     n_it = 500))</code></pre>
 <pre><code>## $specificity
 ## $specificity$est
-## [1] 0.2857143
+## [1] 0.6296296
 ## 
 ## $specificity$ci
-##  2.5% 97.5% 
-## 0.000 0.625 
+##      2.5%     97.5% 
+## 0.4372609 0.7936359 
 ## 
 ## 
 ## $sensitivity
@@ -4603,25 +4607,25 @@ age_ablation_list[[&quot;ui_all&quot;]][[&quot;sen_spec&quot;]] = ui_all_origmod
 </div>
 </div>
 <div id="by-sex-2" class="section level5">
-<h5><span class="header-section-number">1.0.3.1.2</span> By Sex</h5>
+<h5><span class="header-section-number">4.0.0.1.2</span> By Sex</h5>
 <pre class="r"><code>auroc_auprc_split(score_vec = ui_merge$ui_pred_mod_ep30, 
                target = ui_merge$target01, 
                split_vec = ui_merge$Gender, 
                n_it = 500)</code></pre>
 <pre><code>## $M
 ## $M$auprc
-## [1] 0.9292329
+## [1] 0.9187662
 ## 
 ## $M$auprc_ci
 ##      2.5%     97.5% 
-## 0.8772641 0.9660704 
+## 0.8564919 0.9617327 
 ## 
 ## $M$auroc
-## [1] 0.8893557
+## [1] 0.9304511
 ## 
 ## $M$auroc_ci
 ##      2.5%     97.5% 
-## 0.8018972 0.9668590 
+## 0.8626485 0.9829756 
 ## 
 ## 
 ## $F
@@ -4646,11 +4650,11 @@ age_ablation_list[[&quot;ui_all&quot;]][[&quot;sen_spec&quot;]] = ui_all_origmod
 <pre><code>## $M
 ## $M$specificity
 ## $M$specificity$est
-## [1] 0.2941176
+## [1] 0.5263158
 ## 
 ## $M$specificity$ci
-##       2.5%      97.5% 
-## 0.06892857 0.54451923 
+##      2.5%     97.5% 
+## 0.3734738 0.6713964 
 ## 
 ## 
 ## $M$sensitivity
@@ -4659,7 +4663,7 @@ age_ablation_list[[&quot;ui_all&quot;]][[&quot;sen_spec&quot;]] = ui_all_origmod
 ## 
 ## $M$sensitivity$ci
 ##      2.5%     97.5% 
-## 0.9189189 1.0000000 
+## 0.9210526 1.0000000 
 ## 
 ## 
 ## 
@@ -4682,7 +4686,7 @@ age_ablation_list[[&quot;ui_all&quot;]][[&quot;sen_spec&quot;]] = ui_all_origmod
 ## 0.7569853 1.0000000</code></pre>
 </div>
 <div id="by-hn-side-2" class="section level5">
-<h5><span class="header-section-number">1.0.3.1.3</span> By HN Side</h5>
+<h5><span class="header-section-number">4.0.0.1.3</span> By HN Side</h5>
 <pre class="r"><code>auroc_auprc_split(score_vec = ui_merge$ui_pred_mod_ep30, 
                target = ui_merge$target01, 
                split_vec = ui_merge$U.B, 
@@ -4693,30 +4697,34 @@ age_ablation_list[[&quot;ui_all&quot;]][[&quot;sen_spec&quot;]] = ui_all_origmod
 ## 
 ## $L$auprc_ci
 ##      2.5%     97.5% 
-## 0.8503627 0.9656868 
+## 0.8448145 0.9657577 
 ## 
 ## $L$auroc
-## [1] 0.9017857
+## [1] 0.9345238
 ## 
 ## $L$auroc_ci
 ##      2.5%     97.5% 
-## 0.7778505 0.9819042 
+## 0.8491086 0.9909943 
 ## 
 ## 
 ## $R
 ## $R$auprc
-## [1] 0.9371739
+## [1] 0.9350662
 ## 
 ## $R$auprc_ci
 ##      2.5%     97.5% 
-## 0.8890601 0.9600454 
+## 0.8845425 0.9601906 
 ## 
 ## $R$auroc
-## [1] 0.9027778
+## [1] 0.9166667
 ## 
 ## $R$auroc_ci
-##      2.5%     97.5% 
-## 0.7864984 1.0000000</code></pre>
+##     2.5%    97.5% 
+## 0.803808 1.000000 
+## 
+## 
+## $B
+## [1] NA</code></pre>
 <pre class="r"><code>sen_spec_split(score_vec = ui_merge$ui_pred_mod_ep30, 
                target = ui_merge$target01, 
                split_vec = ui_merge$U.B, 
@@ -4725,11 +4733,11 @@ age_ablation_list[[&quot;ui_all&quot;]][[&quot;sen_spec&quot;]] = ui_all_origmod
 <pre><code>## $L
 ## $L$specificity
 ## $L$specificity$est
-## [1] 0.2857143
+## [1] 0.3333333
 ## 
 ## $L$specificity$ci
-##       2.5%      97.5% 
-## 0.07153846 0.55555556 
+##      2.5%     97.5% 
+## 0.1428571 0.5555556 
 ## 
 ## 
 ## $L$sensitivity
@@ -4745,11 +4753,11 @@ age_ablation_list[[&quot;ui_all&quot;]][[&quot;sen_spec&quot;]] = ui_all_origmod
 ## $R
 ## $R$specificity
 ## $R$specificity$est
-## [1] 0.5
+## [1] 0.625
 ## 
 ## $R$specificity$ci
 ##  2.5% 97.5% 
-##     0     1 
+##  0.25  1.00 
 ## 
 ## 
 ## $R$sensitivity
@@ -4757,11 +4765,31 @@ age_ablation_list[[&quot;ui_all&quot;]][[&quot;sen_spec&quot;]] = ui_all_origmod
 ## [1] 0.9166667
 ## 
 ## $R$sensitivity$ci
+##      2.5%     97.5% 
+## 0.8076923 1.0000000 
+## 
+## 
+## 
+## $B
+## $B$specificity
+## $B$specificity$est
+## [1] 0.8333333
+## 
+## $B$specificity$ci
+##      2.5%     97.5% 
+## 0.5833333 1.0000000 
+## 
+## 
+## $B$sensitivity
+## $B$sensitivity$est
+## [1] NaN
+## 
+## $B$sensitivity$ci
 ##  2.5% 97.5% 
-##   0.8   1.0</code></pre>
+##    NA    NA</code></pre>
 </div>
 <div id="by-age-group" class="section level5">
-<h5><span class="header-section-number">1.0.3.1.4</span> By Age Group</h5>
+<h5><span class="header-section-number">4.0.0.1.4</span> By Age Group</h5>
 <pre class="r"><code>auroc_auprc_split(score_vec = ui_merge$ui_pred_mod_ep30, 
                target = ui_merge$target01, 
                split_vec = ui_merge$age_grp, 
@@ -4825,6 +4853,26 @@ age_ablation_list[[&quot;ui_all&quot;]][[&quot;sen_spec&quot;]] = ui_all_origmod
 ## 
 ## 
 ## 
+## $&lt;NA&gt;
+## $&lt;NA&gt;$specificity
+## $&lt;NA&gt;$specificity$est
+## [1] NaN
+## 
+## $&lt;NA&gt;$specificity$ci
+##  2.5% 97.5% 
+##    NA    NA 
+## 
+## 
+## $&lt;NA&gt;$sensitivity
+## $&lt;NA&gt;$sensitivity$est
+## [1] NaN
+## 
+## $&lt;NA&gt;$sensitivity$ci
+##  2.5% 97.5% 
+##    NA    NA 
+## 
+## 
+## 
 ## $age2to5
 ## $age2to5$specificity
 ## $age2to5$specificity$est
@@ -4865,8 +4913,8 @@ age_ablation_list[[&quot;ui_all&quot;]][[&quot;sen_spec&quot;]] = ui_all_origmod
 </div>
 </div>
 </div>
-<div id="chop-original-model-performance" class="section level3">
-<h3><span class="header-section-number">1.0.4</span> CHOP original model performance</h3>
+<div id="chop-data" class="section level1">
+<h1><span class="header-section-number">5</span> CHOP data</h1>
 <pre class="r"><code>chop_preds = data.frame(chop_pred_mod_ep30 = st_stan_test$chop[[1]][[30]]$pred_scaled,
                         id = st_stan_test$chop[[1]][[30]]$id,
                         target = st_stan_test$chop[[1]][[30]]$target)
@@ -4895,9 +4943,9 @@ chop_train = sub(pattern = &quot;CHOP&quot;,replacement = &quot;&quot;,x = chop_
 
 chop40_test = chop_merge[!(chop_merge$pt_id %in% chop_train),]</code></pre>
 <div id="model-performance-3" class="section level4">
-<h4><span class="header-section-number">1.0.4.1</span> Model performance</h4>
+<h4><span class="header-section-number">5.0.0.1</span> Model performance</h4>
 <div id="overall-3" class="section level5">
-<h5><span class="header-section-number">1.0.4.1.1</span> Overall</h5>
+<h5><span class="header-section-number">5.0.0.1.1</span> Overall</h5>
 <pre class="r"><code>(chop_all_origmod_auc = get_auroc_aurpc(score_vec = chop_df$chop_pred_mod_ep30, 
                     target = chop_df$target01, 
                     n_it = 500))</code></pre>
@@ -4940,7 +4988,7 @@ age_ablation_list[[&quot;chop_all&quot;]][[&quot;sen_spec&quot;]] = chop_all_ori
 
 saveRDS(object = age_ablation_list, file = paste0(results_wd,&quot;/ageablation_model_list_results_20220207.rds&quot;))</code></pre>
 <div id="test-1" class="section level6">
-<h6><span class="header-section-number">1.0.4.1.1.1</span> 40% Test</h6>
+<h6><span class="header-section-number">5.0.0.1.1.1</span> 40% Test</h6>
 <pre class="r"><code>get_auroc_aurpc(score_vec = chop40_test$chop_pred_mod_ep30, 
                     target = chop40_test$target01, 
                     n_it = 500)</code></pre>
@@ -4980,7 +5028,7 @@ saveRDS(object = age_ablation_list, file = paste0(results_wd,&quot;/ageablation_
 </div>
 </div>
 <div id="by-sex-3" class="section level5">
-<h5><span class="header-section-number">1.0.4.1.2</span> By Sex</h5>
+<h5><span class="header-section-number">5.0.0.1.2</span> By Sex</h5>
 <pre class="r"><code>auroc_auprc_split(score_vec = chop_merge$chop_pred_mod_ep30, 
                target = chop_merge$target01, 
                split_vec = chop_merge$Sex, 
@@ -5059,7 +5107,7 @@ saveRDS(object = age_ablation_list, file = paste0(results_wd,&quot;/ageablation_
 ## 0.6818182 0.9600000</code></pre>
 </div>
 <div id="by-hn-side-3" class="section level5">
-<h5><span class="header-section-number">1.0.4.1.3</span> By HN Side</h5>
+<h5><span class="header-section-number">5.0.0.1.3</span> By HN Side</h5>
 <pre class="r"><code>auroc_auprc_split(score_vec = chop_merge$chop_pred_mod_ep30, 
                target = chop_merge$target01, 
                split_vec = chop_merge$Laterality.of.hydro, 
@@ -5194,7 +5242,7 @@ saveRDS(object = age_ablation_list, file = paste0(results_wd,&quot;/ageablation_
 ##    NA    NA</code></pre>
 </div>
 <div id="by-age-group-1" class="section level5">
-<h5><span class="header-section-number">1.0.4.1.4</span> By Age Group</h5>
+<h5><span class="header-section-number">5.0.0.1.4</span> By Age Group</h5>
 <pre class="r"><code>auroc_auprc_split(score_vec = chop_merge$chop_pred_mod_ep30, 
                target = chop_merge$target01, 
                split_vec = chop_merge$age_grp, 
@@ -5307,7 +5355,6 @@ saveRDS(object = age_ablation_list, file = paste0(results_wd,&quot;/ageablation_
 ## $age2to5$sensitivity$ci
 ##  2.5% 97.5% 
 ##     1     1</code></pre>
-</div>
 </div>
 </div>
 </div>

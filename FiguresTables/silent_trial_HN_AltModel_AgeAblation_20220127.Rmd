@@ -11,7 +11,7 @@ output:
     code_folding: hide
 ---
 
-# Alternative model 
+# Alternative model, Age-ablation
 ```{r setup, include=FALSE}
 
 
@@ -532,7 +532,7 @@ print(results_wd)
 ```
 
 
-# Original SickKids model
+# SickKids data
 ```{r silent_trial_data, warning=FALSE, include = FALSE}
 ###
 ###     SILENT TRIAL DATA 
@@ -840,7 +840,7 @@ sen_spec_split(score_vec = hn_only_most_recent$st_pred_mod_ep30,
                n_it = 500)
 ```
 
-### Stanford original model performance
+# Stanford data
 ```{r, include=FALSE}
 stan_preds = data.frame(stan_pred_mod_ep30 = st_stan_test$stan[[1]][[30]]$pred_scaled,
                       id = st_stan_test$stan[[1]][[30]]$id,
@@ -948,7 +948,7 @@ sen_spec_split(score_vec = stan_merge$stan_pred_mod_ep30,
 ```
 
 
-### UIowa original model performance
+# UIowa data
 ```{r, include=FALSE}
 
 ui_preds = data.frame(ui_pred_mod_ep30 = st_stan_test$ui[[1]][[30]]$pred_scaled,
@@ -958,7 +958,7 @@ ui_preds = data.frame(ui_pred_mod_ep30 = st_stan_test$ui[[1]][[30]]$pred_scaled,
 ui_preds$target = factor(ui_preds$target, levels = c(0,1), labels = c("no Obstruction", "Obstruction"))
 ui_df = ui_preds
 
-ui_datasheet = read.csv(paste0(results_wd,"/Datasheets/UIowa_DeID_Datasheet.csv"), header = TRUE, as.is = TRUE)
+ui_datasheet = read.csv(paste0(results_wd,"/Datasheets/UIowa_Datasheet_newdata_20220104_DeID.csv"), header = TRUE, as.is = TRUE)
 names(ui_datasheet)[1] = "Name"
 
 ui_df$pt_id = unlist(lapply(strsplit(as.character(ui_df$id),"_"),function(x){x[1]}))
@@ -1056,7 +1056,7 @@ sen_spec_split(score_vec = ui_merge$ui_pred_mod_ep30,
 ```
 
 
-### CHOP original model performance
+# CHOP data
 ```{r}
 
 chop_preds = data.frame(chop_pred_mod_ep30 = st_stan_test$chop[[1]][[30]]$pred_scaled,
